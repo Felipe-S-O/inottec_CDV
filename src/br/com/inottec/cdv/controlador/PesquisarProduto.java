@@ -10,11 +10,6 @@ public class PesquisarProduto {
     private TextField campoPesquisar;
 
     @FXML
-    void botaoMenu(ActionEvent event) {
-
-    }
-
-    @FXML
     void botaoPesquisar(ActionEvent event) {
 
     }

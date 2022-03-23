@@ -17,6 +17,10 @@ public class Main extends Application {
 	private static Scene cenaTelaFuncionario;
 	private static Scene cenaTelaFornecedor;
 	private static Scene cenaTelaPDV;
+	private static Scene cenaTelaHistoricoDeVendas;
+	private static Scene cenaTelaPosicaoDoDia;
+	private static Scene cenaTelaPagamento;
+	private static Scene cenaTelaPesquisarProduto;
 	private static Scene cenaTelaMenuPrincipal;
 
 	@Override
@@ -53,6 +57,26 @@ public class Main extends Application {
 		Parent fxmlTelaPDV = FXMLLoader.load(getClass().getResource("/view/PontoDeVenda.fxml"));
 		// criando um senario usando o arquivo fxml
 		cenaTelaPDV = new Scene(fxmlTelaPDV, 1041, 523);
+
+		// pega o arquivo fxml e converte para gridpane
+		Parent fxmlTelaHistoricoDeVendas = FXMLLoader.load(getClass().getResource("/view/HistoricoDeVendas.fxml"));
+		// criando um senario usando o arquivo fxml
+		cenaTelaHistoricoDeVendas = new Scene(fxmlTelaHistoricoDeVendas, 1041, 523);
+
+		// pega o arquivo fxml e converte para gridpane
+		Parent fxmlTelaPosicaoDoDia = FXMLLoader.load(getClass().getResource("/view/PosicaoDoDia.fxml"));
+		// criando um senario usando o arquivo fxml
+		cenaTelaPosicaoDoDia = new Scene(fxmlTelaPosicaoDoDia, 1041, 523);
+
+		// pega o arquivo fxml e converte para gridpane
+		Parent fxmlTelaPagamento = FXMLLoader.load(getClass().getResource("/view/TelaPagamento.fxml"));
+		// criando um senario usando o arquivo fxml
+		cenaTelaPagamento = new Scene(fxmlTelaPagamento, 1041, 523);
+
+		// pega o arquivo fxml e converte para gridpane
+		Parent fxmlTelaPesquisarProduto = FXMLLoader.load(getClass().getResource("/view/PesquisarProduto.fxml"));
+		// criando um senario usando o arquivo fxml
+		cenaTelaPesquisarProduto = new Scene(fxmlTelaPesquisarProduto, 1041, 523);
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaMenuPrincipal = FXMLLoader.load(getClass().getResource("/view/Menu.fxml"));
@@ -150,11 +174,58 @@ public class Main extends Application {
 //		janela.setResizable(false);
 //	    // criando titulo
 //		janela.setTitle("inottec CDV");
-		// executando cenaro
-		janela.setScene(cenaTelaPDV);
+			// executando cenaro
+			janela.setScene(cenaTelaPDV);
 //						// executando a tela
 //						janela.show();
-		break;
+			break;
+
+		case "telaHistoricoDeVendas":
+
+//		    // comando para usuario não pode altera o tamanho da telaadiciona Gasto
+//			janela.setResizable(false);
+//		    // criando titulo
+//			janela.setTitle("inottec CDV");
+			// executando cenaro
+			janela.setScene(cenaTelaHistoricoDeVendas);
+//							// executando a tela
+//							janela.show();
+			break;
+			
+		case "telaPosicaoDoDia":
+
+//		    // comando para usuario não pode altera o tamanho da telaadiciona Gasto
+//			janela.setResizable(false);
+//		    // criando titulo
+//			janela.setTitle("inottec CDV");
+			// executando cenaro
+			janela.setScene(cenaTelaPosicaoDoDia);
+//							// executando a tela
+//							janela.show();
+			break;
+		case "telaPesquisarProduto":
+
+//		    // comando para usuario não pode altera o tamanho da telaadiciona Gasto
+//			janela.setResizable(false);
+//		    // criando titulo
+//			janela.setTitle("inottec CDV");
+			// executando cenaro
+			janela.setScene(cenaTelaPesquisarProduto);
+//							// executando a tela
+//							janela.show();
+			break;
+			
+		case "telaPagamento":
+
+//		    // comando para usuario não pode altera o tamanho da telaadiciona Gasto
+//			janela.setResizable(false);
+//		    // criando titulo
+//			janela.setTitle("inottec CDV");
+			// executando cenaro
+			janela.setScene(cenaTelaPagamento);
+//							// executando a tela
+//							janela.show();
+			break;
 
 		// se o parametro for menuPrincipal chama o cenaTelaMenuPrincipal
 		case "menuPrincipal":

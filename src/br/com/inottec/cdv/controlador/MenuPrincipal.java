@@ -8,7 +8,7 @@ public class MenuPrincipal {
 
 	@FXML
 	void abriPdv(ActionEvent event) {
-		
+
 		Main.trocaTela("telaPDV");
 	}
 
@@ -33,4 +33,20 @@ public class MenuPrincipal {
 		Main.trocaTela("telaProduto");
 
 	}
+
+	@FXML
+	void historicoDeVendas(ActionEvent event) {
+		Main.trocaTela("telaHistoricoDeVendas");
+	}
+
+	@FXML
+	void posicaoDoDia(ActionEvent event) {
+		Main.trocaTela("telaPosicaoDoDia");
+	}
+
+	@FXML
+	void trocarDeUsuario(ActionEvent event) {
+		Main.trocaTela("telaLogin");
+	}
+
 }

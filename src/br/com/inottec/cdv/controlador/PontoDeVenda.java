@@ -1,5 +1,6 @@
 package br.com.inottec.cdv.controlador;
 
+import br.com.inottec.cdv.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -36,6 +37,12 @@ public class PontoDeVenda {
 	@FXML
 	private Label textoData;
 
+    @FXML
+    void botaoMenu(ActionEvent event) {
+
+    	Main.trocaTela("menuPrincipal");
+    }
+    
 	@FXML
 	void botaoPagamento(ActionEvent event) {
 

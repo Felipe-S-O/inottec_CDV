@@ -126,7 +126,7 @@
                            </image>
                         </ImageView>
                      </graphic></MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Posição do dia">
+                  <MenuItem mnemonicParsing="false" onAction="#posicaoDoDia" text="Posição do dia">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -134,7 +134,7 @@
                            </image>
                         </ImageView>
                      </graphic></MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Histórico de Vendas">
+                  <MenuItem mnemonicParsing="false" onAction="#historicoDeVendas" text="Histórico de Vendas">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -169,7 +169,7 @@
                   </ImageView>
                </graphic>
                <items>
-                <MenuItem mnemonicParsing="false" text="Trocar de Usuário">
+                <MenuItem mnemonicParsing="false" onAction="#trocarDeUsuario" text="Trocar de Usuário">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

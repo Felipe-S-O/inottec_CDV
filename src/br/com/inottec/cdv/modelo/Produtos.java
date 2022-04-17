@@ -18,6 +18,8 @@ public class Produtos implements RestricaoEntidade{
 	private double preco ;
 	private int qtdEstoque;
 	
+	private double subtotal;
+	
 	@ManyToOne
 	private Fornecedores fornecedor;
 	
@@ -35,11 +37,18 @@ public class Produtos implements RestricaoEntidade{
 	}
 	
 	//==== get e set =====
+	
 	public Long getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}
+	public double getSubtotal() {
+		return subtotal;
+	}
+	public void setSubtotal(double subtotal) {
+		this.subtotal = subtotal;
 	}
 	public String getDescricao() {
 		return descricao;

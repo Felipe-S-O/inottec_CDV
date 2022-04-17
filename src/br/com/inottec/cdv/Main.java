@@ -21,6 +21,7 @@ public class Main extends Application {
 	private static Scene cenaTelaPosicaoDoDia;
 	private static Scene cenaTelaPagamento;
 	private static Scene cenaTelaPesquisarProduto;
+	
 	private static Scene cenaTelaMenuPrincipal;
 
 	@Override

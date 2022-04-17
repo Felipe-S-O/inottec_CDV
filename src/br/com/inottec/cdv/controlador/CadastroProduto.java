@@ -1,3 +1,4 @@
+
 package br.com.inottec.cdv.controlador;
 
 import java.net.URL;
@@ -71,7 +72,7 @@ public class CadastroProduto {
 	// metodo que inicializa o comboBox
 	public void initialize(URL location, ResourceBundle resources) {
 		// chamndo metodo para executa
-		obterFornecedor();
+		//obterFornecedor();
 		//listaProdutos();
 
 	}
@@ -230,7 +231,7 @@ public class CadastroProduto {
 	void botaoNovo(ActionEvent event) {
 
 		campoDescricao.setText(null);
-		campoPreco.setText(null);
+		campoPreco.setText(null);  
 		campoQtdEstoque.setText(null);
 
 	}

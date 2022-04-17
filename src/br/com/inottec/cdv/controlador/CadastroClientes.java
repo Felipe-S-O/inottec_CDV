@@ -135,7 +135,7 @@ public class CadastroClientes implements Initializable {
 	// metodo que inicializa o comboBox
 	public void initialize(URL location, ResourceBundle resources) {
 		// chamndo metodo para executa
-		// obterUF();
+		 //obterUF();
 //		listaClientes();
 
 	}

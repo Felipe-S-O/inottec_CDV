@@ -74,7 +74,7 @@ public class CadastroFuncionarios implements Initializable {
 	private TextField campoCPF;
 
 	@FXML
-	private ComboBox<String> comboBoxUF;
+	private static ComboBox<String> comboBoxUF;
 
 	@FXML
 	private ComboBox<String> comboBoxNivelDeAcesso;
@@ -157,12 +157,12 @@ public class CadastroFuncionarios implements Initializable {
 	// metodo que inicializa o comboBox
 	public void initialize(URL location, ResourceBundle resources) {
 		// chamndo metodo para executa
-		//obterUF();
+		obterUF();
 		//obterNivelDeAcesso();
 	}
 
 	// metodo que cria o comboBox
-	public void obterUF() {
+	public static void obterUF() {
 
 		// criando um arrey de opções de UF
 		String[] opcoesUF = { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB",

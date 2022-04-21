@@ -137,6 +137,7 @@ public class CadastroFornecedores implements Initializable {
 		obterUF();
 		//listaFornecedores();
 
+		
 	}
 
 	// metodo que cria o comboBox

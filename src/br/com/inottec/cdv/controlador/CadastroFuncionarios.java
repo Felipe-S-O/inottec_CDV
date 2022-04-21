@@ -72,9 +72,9 @@ public class CadastroFuncionarios implements Initializable {
 
 	@FXML
 	private TextField campoCPF;
-
-	@FXML
-	private static ComboBox<String> comboBoxUF;
+	
+    @FXML
+    private ComboBox<String> comboBoxUF;
 
 	@FXML
 	private ComboBox<String> comboBoxNivelDeAcesso;
@@ -158,11 +158,12 @@ public class CadastroFuncionarios implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// chamndo metodo para executa
 		obterUF();
-		//obterNivelDeAcesso();
+		obterNivelDeAcesso();
 	}
 
+
 	// metodo que cria o comboBox
-	public static void obterUF() {
+	public void obterUF() {
 
 		// criando um arrey de opções de UF
 		String[] opcoesUF = { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB",
@@ -181,8 +182,9 @@ public class CadastroFuncionarios implements Initializable {
 		 * vazia
 		 */comboBoxUF.getSelectionModel().select(14);
 
-		logger.info("Lista de UF adicionada a o comboBoxUf");
+		logger.info("Lista de UF adicionada a o comboBoxUf aqui");
 	}
+
 
 	// metodo que cria o comboBox
 	public void obterNivelDeAcesso() {
@@ -510,9 +512,9 @@ public class CadastroFuncionarios implements Initializable {
 
 		// crinado um condição para o nome ser obrigatorio
 		if (!campoNome.getText().equals("")) {
-			
-			if(campoCodigo.getText().equals("")) {
-				
+
+			if (campoCodigo.getText().equals("")) {
+
 				try {
 					// pegando a opção selecionada no comboBox e colocando na variavel local uf
 					String uf = comboBoxUF.getSelectionModel().getSelectedItem();
@@ -524,11 +526,11 @@ public class CadastroFuncionarios implements Initializable {
 					DAO<Funcionarios> dao = new DAO<Funcionarios>();
 
 					// adicionando os campos ao cliente
-					Funcionarios funcionario = new Funcionarios(campoNome.getText(), campoRG.getText(), campoCPF.getText(),
-							campoEmail.getText(), campoSenha.getText(), campoCargo.getText(), nivelDeAcesso,
-							campoTelefone.getText(), campoCelular.getText(), campoCEP.getText(), campoEndereco.getText(),
-							campoNumero.getText(), campoComplemeto.getText(), campoBairro.getText(), campoCidade.getText(),
-							uf);
+					Funcionarios funcionario = new Funcionarios(campoNome.getText(), campoRG.getText(),
+							campoCPF.getText(), campoEmail.getText(), campoSenha.getText(), campoCargo.getText(),
+							nivelDeAcesso, campoTelefone.getText(), campoCelular.getText(), campoCEP.getText(),
+							campoEndereco.getText(), campoNumero.getText(), campoComplemeto.getText(),
+							campoBairro.getText(), campoCidade.getText(), uf);
 
 					// gravando cliente no banco e fechndo conexão
 					dao.incluirAtomico(funcionario).fechar();
@@ -542,7 +544,6 @@ public class CadastroFuncionarios implements Initializable {
 					 * quando adicona um novo funcionario ja exibi na tela de consulta
 					 */
 					listaFuncionarios();
-
 
 					// criando um alerta de confirmação
 					// criando titulo do alerta
@@ -563,8 +564,8 @@ public class CadastroFuncionarios implements Initializable {
 					// chamando o alerta
 					alertErro.show();
 				}
-				
-			}else {				
+
+			} else {
 				// finalizando alteração
 				logger.info("Funcionario já esta cadastrado");
 
@@ -575,9 +576,8 @@ public class CadastroFuncionarios implements Initializable {
 				alertErro.setHeaderText("Funcionario já esta cadastrado!");
 				// chamando o alerta
 				alertErro.show();
-				
+
 			}
-			
 
 		} else {
 			// finalizando alteração

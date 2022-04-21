@@ -47,6 +47,18 @@ public class Fornecedores implements RestricaoEntidade{
 		this.estado = estado;
 	}
 
+	public Fornecedores(Long codigo, String nome, String cnpj, String email, String telefone, String estado) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.cnpj = cnpj;
+		this.email = email;
+		this.telefone = telefone;
+		this.estado = estado;
+	}
+
+
+
 	public Fornecedores() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -51,7 +51,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TableView layoutX="414.0" layoutY="78.0" prefHeight="406.0" prefWidth="651.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
+            <TableView fx:id="tabelaProduto" layoutX="414.0" layoutY="78.0" prefHeight="406.0" prefWidth="651.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
               <columns>
                 <TableColumn fx:id="colunaCodigo" prefWidth="93.33334350585938" text="Codigo" />
                 <TableColumn fx:id="colunaProduto" prefWidth="334.0" text="Produto" />

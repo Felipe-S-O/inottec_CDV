@@ -21,7 +21,7 @@ public class Main extends Application {
 	private static Scene cenaTelaPosicaoDoDia;
 	private static Scene cenaTelaPagamento;
 	private static Scene cenaTelaPesquisarProduto;
-	
+	private static Scene cenaTelaPesquisarFornecedor;
 	private static Scene cenaTelaMenuPrincipal;
 
 	@Override
@@ -77,7 +77,12 @@ public class Main extends Application {
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaPesquisarProduto = FXMLLoader.load(getClass().getResource("/view/PesquisarProduto.fxml"));
 		// criando um senario usando o arquivo fxml
-		cenaTelaPesquisarProduto = new Scene(fxmlTelaPesquisarProduto, 1041, 523);
+		cenaTelaPesquisarProduto = new Scene(fxmlTelaPesquisarProduto, 1041, 523);		
+
+		// pega o arquivo fxml e converte para gridpane
+		Parent fxmlTelaPesquisarFornecedor = FXMLLoader.load(getClass().getResource("/view/PesquisarFornecedor.fxml"));
+		// criando um senario usando o arquivo fxml
+		cenaTelaPesquisarFornecedor = new Scene(fxmlTelaPesquisarFornecedor, 1041, 523);
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaMenuPrincipal = FXMLLoader.load(getClass().getResource("/view/Menu.fxml"));
@@ -192,7 +197,7 @@ public class Main extends Application {
 //							// executando a tela
 //							janela.show();
 			break;
-			
+
 		case "telaPosicaoDoDia":
 
 //		    // comando para usuario não pode altera o tamanho da telaadiciona Gasto
@@ -203,6 +208,7 @@ public class Main extends Application {
 			janela.setScene(cenaTelaPosicaoDoDia);
 //							// executando a tela
 //							janela.show();
+
 			break;
 		case "telaPesquisarProduto":
 
@@ -215,7 +221,19 @@ public class Main extends Application {
 //							// executando a tela
 //							janela.show();
 			break;
-			
+
+		case "telaPesquisarFornecedor":
+
+//		    // comando para usuario não pode altera o tamanho da telaadiciona Gasto
+//			janela.setResizable(false);
+//		    // criando titulo
+//			janela.setTitle("inottec CDV");
+			// executando cenaro
+			janela.setScene(cenaTelaPesquisarFornecedor);
+//							// executando a tela
+//							janela.show();
+			break;
+
 		case "telaPagamento":
 
 //		    // comando para usuario não pode altera o tamanho da telaadiciona Gasto

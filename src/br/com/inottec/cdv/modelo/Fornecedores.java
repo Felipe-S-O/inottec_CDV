@@ -160,6 +160,7 @@ public class Fornecedores implements RestricaoEntidade{
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+	
 
 	public String getCidade() {
 		return cidade;
@@ -176,6 +177,13 @@ public class Fornecedores implements RestricaoEntidade{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	@Override
+	public String toString() {
+		return getNome();
+	}
+//	
+	
 
 }
 

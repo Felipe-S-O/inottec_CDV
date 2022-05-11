@@ -81,6 +81,11 @@ public class PontoDeVenda {
 			Main.trocaTela("");
 		}
 	}
+	
+    @FXML
+    void botaoPesquisar(ActionEvent event) {
+    	Main.trocaTela("telaPesquisarProduto");
+    }
 
 	@FXML
 	void buscarProduto(KeyEvent event) {

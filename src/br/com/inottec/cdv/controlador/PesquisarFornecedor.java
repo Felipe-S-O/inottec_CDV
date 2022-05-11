@@ -44,24 +44,24 @@ public class PesquisarFornecedor {
 	@FXML
 	void botaoAdicionar(ActionEvent event) {
 
-		String nome, cnpj, email, estado, telefone;
-		Long codigo;
-
-		codigo = tabelaFornecedor.getSelectionModel().getSelectedItem().getCodigo();
-		nome = tabelaFornecedor.getSelectionModel().getSelectedItem().getNome().toString();
-		cnpj = tabelaFornecedor.getSelectionModel().getSelectedItem().getCnpj().toString();
-		email = tabelaFornecedor.getSelectionModel().getSelectedItem().getEmail().toString();
-		telefone = tabelaFornecedor.getSelectionModel().getSelectedItem().getTelefone().toString();
-		estado = tabelaFornecedor.getSelectionModel().getSelectedItem().getEndereco().toString();
-
-		Fornecedores fornecedor = new Fornecedores(codigo, nome, cnpj, email, telefone, estado);
-
-		CadastroProduto cadastroProduto = new CadastroProduto();
-
-		cadastroProduto.adicionaFornecedor(fornecedor);		
-	
-		
-		Main.trocaTela("telaProduto");
+//		String nome, cnpj, email, estado, telefone;
+//		Long codigo;
+//
+//		codigo = tabelaFornecedor.getSelectionModel().getSelectedItem().getCodigo();
+//		nome = tabelaFornecedor.getSelectionModel().getSelectedItem().getNome().toString();
+//		cnpj = tabelaFornecedor.getSelectionModel().getSelectedItem().getCnpj().toString();
+//		email = tabelaFornecedor.getSelectionModel().getSelectedItem().getEmail().toString();
+//		telefone = tabelaFornecedor.getSelectionModel().getSelectedItem().getTelefone().toString();
+//		estado = tabelaFornecedor.getSelectionModel().getSelectedItem().getEndereco().toString();
+//
+//		Fornecedores fornecedor = new Fornecedores(codigo, nome, cnpj, email, telefone, estado);
+//
+//		CadastroProduto cadastroProduto = new CadastroProduto();
+//
+//		//cadastroProduto.adicionaFornecedor(fornecedor);		
+//	
+//		
+//		Main.trocaTela("telaProduto");
 		
 
 	}

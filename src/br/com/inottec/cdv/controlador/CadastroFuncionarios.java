@@ -157,6 +157,7 @@ public class CadastroFuncionarios implements Initializable {
 	// metodo que inicializa o comboBox
 	public void initialize(URL location, ResourceBundle resources) {
 		// chamndo metodo para executa
+		campoCodigo.setEditable(false);
 		obterUF();
 		obterNivelDeAcesso();
 	}

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.CadastroProduto22">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="95.0" layoutY="64.0" stroke="#07a0fa" strokeType="INSIDE" width="1041.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="31.0" layoutY="24.0" prefHeight="37.0" prefWidth="258.0" text="Cadastro de Produtos" textFill="WHITE" AnchorPane.bottomAnchor="408.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="24.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TabPane fx:id="tabelaPane" layoutX="13.0" layoutY="88.0" prefHeight="436.0" prefWidth="1041.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="88.0">
+        <tabs>
+          <Tab text="Dados de Produto">
+            <content>
+              <AnchorPane accessibleHelp="jdrtjydt" accessibleRoleDescription="ryjdryu" accessibleText="jdjdty" minHeight="0.0" minWidth="0.0" prefHeight="364.0" prefWidth="1041.0">
+                     <children>
+                        <Label layoutX="35.0" layoutY="49.0" text="Código:" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="49.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label layoutX="28.0" layoutY="100.0" text="Descriço:" AnchorPane.leftAnchor="35.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label layoutX="47.0" layoutY="152.0" text="Preço:" AnchorPane.leftAnchor="35.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label layoutX="221.0" layoutY="151.0" text="Qtd.Estoque:">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label layoutX="34.0" layoutY="200.0" text="Fornecedor:" AnchorPane.leftAnchor="35.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <TextField fx:id="campoCodigo" layoutX="101.0" layoutY="46.0" prefHeight="26.0" prefWidth="84.0" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="46.0" />
+                        <TextField fx:id="campoDescricao" layoutX="101.0" layoutY="97.0" prefHeight="26.0" prefWidth="388.0" AnchorPane.leftAnchor="101.0" />
+                        <TextField fx:id="campoPreco" layoutX="90.0" layoutY="148.0" prefHeight="26.0" prefWidth="105.0" />
+                        <TextField fx:id="campoQtdEstoque" layoutX="322.0" layoutY="148.0" prefHeight="26.0" prefWidth="168.0" />
+                        <Button mnemonicParsing="false" onAction="#botaoExcluir" text="EXCLUIR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="610.0" AnchorPane.rightAnchor="350.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#botaoEditar" text="EDITAR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="522.0" AnchorPane.rightAnchor="447.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#botaoSalvar" text="SALVAR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="535.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#botaoNovo" text="NOVO" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="627.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="cbFornecedor" layoutX="128.0" layoutY="197.0" prefHeight="24.0" prefWidth="148.0" />
+                        <ComboBox fx:id="comboxFornecedor" layoutX="256.0" layoutY="37.0" prefWidth="150.0" />
+                        <ComboBox fx:id="comboBoxUF" layoutX="383.0" layoutY="197.0" prefWidth="150.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab styleClass="background" text="Consulta de Produto">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="28.0" layoutY="47.0" text="Nome:" AnchorPane.topAnchor="47.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="campoNomeConsulta" layoutX="90.0" layoutY="45.0" prefHeight="26.0" prefWidth="367.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="45.0" />
+                        <Button layoutX="656.0" layoutY="42.0" mnemonicParsing="false" onAction="#carregarSelecao" text="Carregar Seleção" AnchorPane.topAnchor="42.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <TableView fx:id="tabelaProdutos" layoutX="33.0" layoutY="92.0" prefHeight="234.0" prefWidth="1041.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
+                          <columns>
+                            <TableColumn fx:id="colunaCodigo" prefWidth="149.0" text="Codigo" />
+                            <TableColumn fx:id="colunaDescricao" minWidth="0.0" prefWidth="453.0" text="Descriçao" />
+                              <TableColumn fx:id="colunaPreco" minWidth="0.0" prefWidth="153.33334350585938" text="Preço" />
+                              <TableColumn fx:id="colunaQtdEstoque" prefWidth="124.0" text="Qtd.Estoque" />
+                              <TableColumn fx:id="colunaFornecedor" prefWidth="168.0" text="Fornecedor" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="513.0" layoutY="41.0" mnemonicParsing="false" onAction="#botaoListaTodos" text="Lista Todos">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Button layoutX="907.0" layoutY="43.0" mnemonicParsing="false" onAction="#botaoMenu" text="Menu" />
+   </children>
+</AnchorPane>

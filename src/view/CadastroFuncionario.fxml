@@ -95,7 +95,7 @@
                         <TextField fx:id="campoTelefone" layoutX="816.0" layoutY="100.0" onKeyReleased="#formataCampoTelefone" prefHeight="26.0" prefWidth="167.0" AnchorPane.rightAnchor="58.0" />
                         <TextField fx:id="campoCEP" layoutX="105.0" layoutY="197.0" onKeyPressed="#buscaCEP" onKeyReleased="#formataCampoCEP" prefHeight="26.0" prefWidth="167.0" AnchorPane.leftAnchor="105.0" />
                         <TextField fx:id="campoEndereco" layoutX="369.0" layoutY="198.0" prefHeight="26.0" prefWidth="364.0" />
-                        <TextField fx:id="campoNumero" layoutX="782.0" layoutY="198.0" onKeyPressed="#formataCampoNumero" prefHeight="26.0" prefWidth="84.0" />
+                        <TextField fx:id="campoNumero" layoutX="782.0" layoutY="198.0" onKeyReleased="#formataCampoNumero" prefHeight="26.0" prefWidth="84.0" />
                         <TextField fx:id="campoBairro" layoutX="105.0" layoutY="249.0" prefHeight="26.0" prefWidth="196.0" AnchorPane.leftAnchor="105.0" />
                         <TextField fx:id="campoCidade" layoutX="372.0" layoutY="250.0" prefHeight="26.0" prefWidth="168.0" />
                         <TextField fx:id="campoComplemeto" layoutX="673.0" layoutY="252.0" prefHeight="26.0" prefWidth="168.0" />

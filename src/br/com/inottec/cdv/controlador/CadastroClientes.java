@@ -10,6 +10,7 @@ import br.com.inottec.cdv.infra.DAO;
 import br.com.inottec.cdv.mascaraText.TextFieldFormatter;
 import br.com.inottec.cdv.modelo.CEP;
 import br.com.inottec.cdv.modelo.Clientes;
+import br.com.inottec.cdv.modelo.Fornecedores;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -122,6 +123,8 @@ public class CadastroClientes implements Initializable {
 
 	@FXML
 	private TableColumn<Clientes, String> colunaUF;
+	
+	ObservableList<String> listaDeUF ;
 
 	// criando um logger
 	private static Logger logger = Logger.getLogger(CadastroClientes.class);
@@ -135,7 +138,8 @@ public class CadastroClientes implements Initializable {
 	// metodo que inicializa o comboBox
 	public void initialize(URL location, ResourceBundle resources) {
 		// chamndo metodo para executa
-		 obterUF();
+		obterUF();
+		campoCodigo.setEditable(false);
 //		listaClientes();
 
 	}
@@ -146,18 +150,19 @@ public class CadastroClientes implements Initializable {
 		// criando um arrey de opções de UF
 		String[] opcoesUF = { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB",
 				"PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" };
+
 		/*
 		 * adicionado lista opções de UF no atributo listaDeUF do Opções de Parcelas no
 		 * formato ObservableList pq o comboBox só aceita um ObservableList
-		 */ ObservableList<String> listaDeUF = FXCollections.observableArrayList(opcoesUF);
+		 */listaDeUF = FXCollections.observableArrayList(opcoesUF);
 
 		// adicionando listaDeItemDeParcels no comboBox
 		comboBoxUF.setItems(listaDeUF);
 
 		/*
 		 * adicionado um index 14 como padão no combBox para quando executar o metodo
-		 * mauseCliqueNaTabelaClientes para não da um erro na coluna UF porque ela esta
-		 * vazia
+		 * mauseCliqueNaTabelaClientes (String s: opcoesUF){ para não da um erro na
+		 * coluna UF porque ela esta vazia
 		 */comboBoxUF.getSelectionModel().select(14);
 
 		logger.info("Lista de UF adicionada a o comboBoxUf aqui");
@@ -453,10 +458,10 @@ public class CadastroClientes implements Initializable {
 
 		// crinado um condição para o nome ser obrigatorio
 		if (!campoNome.getText().equals("")) {
-			
-			//verificando se o cliente já esta cadastrado
-			if(campoCodigo.getText().equals("")){
-				
+
+			// verificando se o cliente já esta cadastrado
+			if (campoCodigo.getText().equals("")) {
+
 				try {
 					// pegando a opção selecionada no comboBox e colocando na variavel local uf
 					String uf = comboBoxUF.getSelectionModel().getSelectedItem();
@@ -503,8 +508,8 @@ public class CadastroClientes implements Initializable {
 					// chamando o alerta
 					alertErro.show();
 				}
-			//se ja estiver cadatrado mostra essa mensagens de erro 	
-			}else {
+				// se ja estiver cadatrado mostra essa mensagens de erro
+			} else {
 				// finalizando alteração
 				logger.info("Cliente já esta cadastrado");
 
@@ -514,10 +519,10 @@ public class CadastroClientes implements Initializable {
 				// criando cabeçario do alerta
 				alertErro.setHeaderText("Cliente já esta cadastrado");
 				// chamando o alerta
-				alertErro.show();				
+				alertErro.show();
 			}
-			
-           //mesangens de erro quando nome estiver cadastrado 
+
+			// mesangens de erro quando nome estiver cadastrado
 		} else {
 			// finalizando alteração
 			logger.info("Campo obrigatorio vazio");
@@ -592,7 +597,7 @@ public class CadastroClientes implements Initializable {
 		campoComplemeto.setText(tabelaClientes.getSelectionModel().getSelectedItem().getComplemento().toString());
 		campoBairro.setText(tabelaClientes.getSelectionModel().getSelectedItem().getBairro().toString());
 		campoCidade.setText(tabelaClientes.getSelectionModel().getSelectedItem().getCidade().toString());
-		comboBoxUF.setPromptText(tabelaClientes.getSelectionModel().getSelectedItem().getEstado().toString());
+		listaDeUF.set(0, tabelaClientes.getSelectionModel().getSelectedItem().getEstado().toString());
 		/*
 		 * listando cliente porque quando uso o metodo listaClientesComLike ele deixa a
 		 * tabela com o filtro e o metodo listaClientes traz a tabela de volta ao normal

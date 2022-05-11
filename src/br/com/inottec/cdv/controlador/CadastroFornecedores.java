@@ -135,6 +135,7 @@ public class CadastroFornecedores implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// chamndo metodo para executa
 		obterUF();
+		campoCodigo.setEditable(false);
 		//listaFornecedores();
 
 		
@@ -316,7 +317,6 @@ public class CadastroFornecedores implements Initializable {
 
 			// finalizando alteração
 			logger.info("Fornecedor Alterado com sucesso");
-
 			/*
 			 * metodo que chama a lista de Fornecedores para a tab consulta Fornecedores que é para
 			 * quando altera o Fornecedores ja exibi na tela de consulta

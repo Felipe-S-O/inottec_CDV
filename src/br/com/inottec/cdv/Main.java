@@ -15,7 +15,7 @@ public class Main extends Application {
 	private static Scene cenaTelaProduto;
 	private static Scene cenaTelaClientes;
 	private static Scene cenaTelaFuncionario;
-	private static Scene cenaTelaFornecedor;
+	private static Scene cenaTelaFornecedor;  
 	private static Scene cenaTelaPDV;
 	private static Scene cenaTelaHistoricoDeVendas;
 	private static Scene cenaTelaPosicaoDoDia;
@@ -23,6 +23,8 @@ public class Main extends Application {
 	private static Scene cenaTelaPesquisarProduto;
 	private static Scene cenaTelaPesquisarFornecedor;
 	private static Scene cenaTelaMenuPrincipal;
+	
+	
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -38,11 +40,13 @@ public class Main extends Application {
 		Parent fxmlTelaProduto = FXMLLoader.load(getClass().getResource("/view/CadastroProduto.fxml"));
 		// criando um senario usando o arquivo fxml
 		cenaTelaProduto = new Scene(fxmlTelaProduto, 1041, 523);
+		
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaClientes = FXMLLoader.load(getClass().getResource("/view/CadastroClientes.fxml"));
 		// criando um senario usando o arquivo fxml
 		cenaTelaClientes = new Scene(fxmlTelaClientes, 1041, 523);
+		
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaFuncionario = FXMLLoader.load(getClass().getResource("/view/CadastroFuncionario.fxml"));

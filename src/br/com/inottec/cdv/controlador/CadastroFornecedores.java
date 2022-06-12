@@ -136,13 +136,323 @@ public class CadastroFornecedores implements Initializable {
 		// chamndo metodo para executa
 		obterUF();
 		campoCodigo.setEditable(false);
-		//listaFornecedores();
+		// listaFornecedores();
+	}
 
+	// metodo que altera um Fornecedor
+	@FXML
+	private void botaoEditar(ActionEvent event) {
+
+		try {
+			// crinado objeto Fornecedor
+			Fornecedores fornecedores = new Fornecedores();
+			// pegando a opção selecionada no comboBox e colocando na variavel local uf
+			String uf = comboBoxUF.getSelectionModel().getSelectedItem();
+
+			// convertendo o campoCodigo para Long
+			long codigo = Long.parseLong(campoCodigo.getText());
+
+			// criando dao do tipo Fornecedores
+			DAO<Fornecedores> dao = new DAO<>(Fornecedores.class);
+
+			/*
+			 * fazendo a consulta por codigo do Fornecedor que é para ajuda a outra consuta
+			 * que faz alteração que é essa que ta abaixo
+			 */
+			fornecedores = dao.consultarUm("codigo", codigo);
+			logger.info("Consulta um por codigo efetuada com sucesso");
+			// fazendo uma segunad consulta pq so essa que consegi fazer a alteração
+			fornecedores = dao.obterPorID(fornecedores.getCodigo());
+			logger.info("Consulta por  ID efetuada com sucesso");
+			// abrindo a conexao com o banco pq sem ele não da para fazer a alteração
+			dao.abrirTransacao();
+
+			// fazendo as alterações no dado do Fornecedor não é obrigatorio ta todos os
+			// campos
+			// preenchido
+			fornecedores.setNome(campoNome.getText());
+			fornecedores.setRg(campoRG.getText());
+			fornecedores.setCnpj(campoCNPJ.getText());
+			fornecedores.setEmail(campoEmail.getText());
+			fornecedores.setTelefone(campoTelefone.getText());
+			fornecedores.setCelular(campoCelular.getText());
+			fornecedores.setCep(campoCEP.getText());
+			fornecedores.setEndereco(campoEndereco.getText());
+			fornecedores.setNumero(campoNumero.getText());
+			fornecedores.setComplemento(campoComplemeto.getText());
+			fornecedores.setBairro(campoBairro.getText());
+			fornecedores.setCidade(campoCidade.getText());
+			fornecedores.setEstado(uf);
+
+			// fechando a conexao
+			dao.fecharTransacao();
+
+			dao.fechar();
+
+			limpaCampo();
+
+			// finalizando alteração
+			logger.info("Fornecedor Alterado com sucesso");
+			/*
+			 * metodo que chama a lista de Fornecedores para a tab consulta Fornecedores que
+			 * é para quando altera o Fornecedores ja exibi na tela de consulta
+			 */listaFornecedores();
+			logger.info("Consultando lista de Fornecedores com sucesso");
+			// criando um alerta de confirmação
+			// criando titulo do alerta
+			alertInf.setTitle("Mensagem");
+			// criando cabeçario do alerta
+			alertInf.setHeaderText("Fornecedor Alterado com sucesso!");
+			// chamando o alerta
+			alertInf.show();
+
+		} catch (Exception e) {
+			// finalizando alteração
+			logger.info("Fornecedor não selecionado");
+
+			// criando um alerta de confirmação
+			// criando titulo do alerta
+			alertErro.setTitle("Erro");
+			// criando cabeçario do alerta
+			alertErro.setHeaderText("Fornecedor não selecionado!");
+			// chamando o alerta
+			alertErro.show();
+
+		}
+	}
+
+	// metodo que excluir um Fornecedor
+	@FXML
+	private void botaoExcluir(ActionEvent event) {
+
+		try {
+
+			// convertendo o campoCodigo para Long
+			long codigo = Long.parseLong(campoCodigo.getText());
+
+			Fornecedores fornecedores = new Fornecedores();
+
+			DAO<Fornecedores> dao = new DAO<>(Fornecedores.class);
+
+			// fazendo a consulta por id
+			fornecedores = dao.consultarUm("codigo", codigo);
+			logger.info("Consulta um por codigo efetuada com sucesso");
+
+			// fazendo uma consulta que faz a exclusão por id
+			fornecedores = dao.obterPorID(fornecedores.getCodigo());
+			logger.info("Consulta por  ID efetuada com sucesso");
+
+			dao.abrirTransacao();
+
+			// removendo Cliente
+			dao.remover(fornecedores);//
+
+			dao.fecharTransacao();
+
+			logger.info("Fornecedor removido com sucesso");
+
+			dao.fechar();
+
+			limpaCampo();
+			/*
+			 * metodo que chama a lista de Fornecedores para a tab consulta Fornecedores que
+			 * é para quando altera o Fornecedor ja exibi na tela de consulta
+			 */listaFornecedores();
+			logger.info("Consultando lista de Fornecedor com sucesso");
+
+			// criando um alerta de confirmação
+			// criando titulo do alerta
+			alertInf.setTitle("Mensagem");
+			// criando cabeçario do alerta
+			alertInf.setHeaderText("Fornecedor Excluidor com sucesso!");
+			// chamando o alerta
+			alertInf.show();
+
+		} catch (Exception e) {
+			// finalizando alteração
+			logger.info("Fornecedor não selecionado");
+
+			// criando um alerta de confirmação
+			// criando titulo do alerta
+			alertErro.setTitle("Erro");
+			// criando cabeçario do alerta
+			alertErro.setHeaderText("Fornecedor não selecionado!");
+			// chamando o alerta
+			alertErro.show();
+		}
+
+	}
+
+	// metodo limpar os campos
+	@FXML
+	private void botaoNovo(ActionEvent event) {
+
+		limpaCampo();
+	}
+
+	@FXML
+	private void campoNomePesquisar(KeyEvent event) {
+		// chamando a lista de Fornecedores com filtro like
+		listaFornecedoresComLike();
+	}
+
+	// metodo que salva um novo Fornecedor
+	@FXML
+	private void botaoSalvar(ActionEvent event) {
+
+		// crinado um condição para o nome ser obrigatorio
+		if (!campoNome.getText().equals("")) {
+
+			if (campoCodigo.getText().equals("")) {
+
+				try {
+
+					// pegando a opção selecionada no comboBox e colocando na variavel local uf
+					String uf = comboBoxUF.getSelectionModel().getSelectedItem();
+
+					// criando o dao clientes para adiciona o clientes no banco
+					DAO<Fornecedores> dao = new DAO<Fornecedores>();
+
+					// adicionando os campos ao Fornecedor
+					Fornecedores fornecedores = new Fornecedores(campoNome.getText(), campoRG.getText(),
+							campoCNPJ.getText(), campoEmail.getText(), campoTelefone.getText(), campoCelular.getText(),
+							campoCEP.getText(), campoEndereco.getText(), campoNumero.getText(),
+							campoComplemeto.getText(), campoBairro.getText(), campoCidade.getText(), uf);
+
+					// gravando Fornecedor no banco e fechndo conexão
+					dao.incluirAtomico(fornecedores).fechar();
+
+					logger.info("Fornecedor Cadastrado com Sucesso!");
+
+					/*
+					 * metodo que chama a lista de Fornecedores para a tab consulta Fornecedor para
+					 * quando adicona um novo Fornecedor ja exibi na tela de consulta
+					 */
+
+					limpaCampo();
+
+					listaFornecedores();
+
+					// criando um alerta de confirmação
+					// criando titulo do alerta
+					alertInf.setTitle("Mensagem");
+					// criando cabeçario do alerta
+					alertInf.setHeaderText("Cadastrado com Sucesso!");
+					// chamando o ale
+					alertInf.show();
+
+				} catch (Exception e) {
+
+					logger.info("erro ao salvar cliente" + e);
+					// criando um alerta de confirmação
+					// criando titulo do alerta
+					alertErro.setTitle("Erro");
+					// criando cabeçario do alerta
+					alertErro.setHeaderText("Erro ao salvar cliente!");
+					// chamando o alerta
+					alertErro.show();
+				}
+
+			} else {
+
+				// finalizando alteração
+				logger.info("Fornecedor já esta cadastrado");
+
+				// criando um alerta de confirmação
+				// criando titulo do alerta
+				alertErro.setTitle("Erro");
+				// criando cabeçario do alerta
+				alertErro.setHeaderText("Fornecedor já esta cadastrado!");
+				// chamando o alerta
+				alertErro.show();
+
+			}
+
+		} else {
+			// finalizando alteração
+			logger.info("Campo obrigatorio vazio");
+
+			// criando um alerta de confirmação
+			// criando titulo do alerta
+			alertErro.setTitle("Erro");
+			// criando cabeçario do alerta
+			alertErro.setHeaderText("Campo nome é obrigatorio!");
+			// chamando o alerta
+			alertErro.show();
+		}
+	}
+
+	// metodo que faz a busca do endereço pelo cep
+	@FXML
+	private void buscaCEP(KeyEvent event) {
+
+		// condição que faz a busca quando preciona enter
+		if (event.getCode() == KeyCode.ENTER) {
+
+			CEP cep = new CEP();
+			// metodo que faz a busca do cep
+			cep.buscaCep(campoCEP.getText());
+
+			campoBairro.setText(cep.getBairro());
+			campoCidade.setText(cep.getCidade());
+			campoEndereco.setText(cep.getEndereco());
+			comboBoxUF.getSelectionModel().select(cep.getUf());
+
+			logger.info("Endereco adiconado com sucesso!");
+
+		} else {
+			logger.info("Endereco não encontrado");
+		}
+	}
+
+	/*
+	 * metodo que pega a linha selecionada da tabela view e mudar para a tab de
+	 * dados pessoas assim que clica no botão
+	 */
+	@FXML
+	private void carregarSelecao(ActionEvent event) {
+
+		// chamndo a tab do index 0 da TabPane que é a area do dados pessoas
+		tabelaPane.getSelectionModel().select(0);
+		logger.info("Chamando a Tab de index (0)");
+		// pegando todos os campos da tabela view da linha celecionada e passando pra a
+		// tela de tab dados pessoas
+		campoCodigo.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getCodigo().toString());
+		campoNome.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getNome().toString());
+		campoRG.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getRg().toString());
+		campoCNPJ.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getCnpj().toString());
+		campoEmail.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getEmail().toString());
+		campoTelefone.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getTelefone().toString());
+		campoCelular.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getCelular().toString());
+		campoCEP.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getCep().toString());
+		campoEndereco.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getEndereco().toString());
+		campoNumero.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getNumero().toString());
+		campoComplemeto.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getComplemento().toString());
+		campoBairro.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getBairro().toString());
+		campoCidade.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getCidade().toString());
+		String UF = tabelaFornecedores.getSelectionModel().getSelectedItem().getEstado().toString();
 		
+		selecionaUF(UF);
+
+		logger.info("Fornecedor adicionado com sucesso na tab dados pessoas");
+	}
+
+	// metodo que lista todos funcionario quando preciona no botão lista
+	@FXML
+	private void botaoListaTodos(ActionEvent event) {
+
+		listaFornecedores();
+	}
+
+	// metodo que chama a tela e menu
+	@FXML
+	private void botaoMenu(ActionEvent event) {
+
+		Main.trocaTela("menuPrincipal");
 	}
 
 	// metodo que cria o comboBox
-	public void obterUF() {
+	private void obterUF() {
 
 		// criando um arrey de opções de UF
 		String[] opcoesUF = { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB",
@@ -165,7 +475,7 @@ public class CadastroFornecedores implements Initializable {
 	}
 
 	// metodo obter um lista Fornecedores
-	public void listaFornecedores() {
+	private void listaFornecedores() {
 
 		/*
 		 * adicionado coluna do banco a coluna da tabela o nome da coluna do banco é o
@@ -180,7 +490,7 @@ public class CadastroFornecedores implements Initializable {
 		colunaCNPJ.setCellValueFactory(new PropertyValueFactory<Fornecedores, String>("cnpj"));
 
 		colunaEmail.setCellValueFactory(new PropertyValueFactory<Fornecedores, String>("email"));
-	
+
 		colunaTelefone.setCellValueFactory(new PropertyValueFactory<Fornecedores, String>("telefone"));
 
 		colunaCelular.setCellValueFactory(new PropertyValueFactory<Fornecedores, String>("celular"));
@@ -215,7 +525,7 @@ public class CadastroFornecedores implements Initializable {
 	}
 
 	// metodo obter um lista Fornecedores com o like
-	public void listaFornecedoresComLike() {
+	private void listaFornecedoresComLike() {
 
 		/*
 		 * adicionado coluna do banco a coluna da tabela o nome da coluna do banco é o
@@ -254,7 +564,8 @@ public class CadastroFornecedores implements Initializable {
 		// crinado a Classe dao do tipo Fornecedores
 		DAO<Fornecedores> dao = new DAO<Fornecedores>(Fornecedores.class);
 
-		// crinado um lista do tipo Fornecedores com filtor e adicionando um listaFornecedores
+		// crinado um lista do tipo Fornecedores com filtor e adicionando um
+		// listaFornecedores
 		List<Fornecedores> listaFornecedores = dao.obterTodosComLike("nome", "%" + campoNomeConsulta.getText() + "%");
 
 		// crinado um lista do tipo ObservableList que recebe uma lista de Fornecedores
@@ -264,385 +575,92 @@ public class CadastroFornecedores implements Initializable {
 		logger.info("Lista de clientes com filtro adicionada a tableview");
 	}
 
-	// metodo que altera um Fornecedor
-	@FXML
-	void botaoEditar(ActionEvent event) {
+	// metodo que limpa os campos
+	private void limpaCampo() {
 
-		try {
-			// crinado objeto Fornecedor
-			Fornecedores fornecedores = new Fornecedores();
-			// pegando a opção selecionada no comboBox e colocando na variavel local uf
-			String uf = comboBoxUF.getSelectionModel().getSelectedItem();
+		campoNome.setText("");
+		campoRG.setText("");
+		campoCNPJ.setText("");
+		campoTelefone.setText("");
+		campoCelular.setText("");
+		campoCEP.setText("");
+		campoEndereco.setText("");
+		campoNumero.setText("");
+		campoComplemeto.setText("");
+		campoBairro.setText("");
+		campoCidade.setText("");
+		campoCodigo.setText("");
+		campoEmail.setText("");
 
-			// convertendo o campoCodigo para Long
-			long codigo = Long.parseLong(campoCodigo.getText());
+	}
 
-			// criando dao do tipo Fornecedores
-			DAO<Fornecedores> dao = new DAO<>(Fornecedores.class);
+	// metodo que seleciona posição da UF no comboBox
+	private void selecionaUF(String uf) {
 
-			/*
-			 * fazendo a consulta por codigo do Fornecedor que é para ajuda a outra consuta que
-			 * faz alteração que é essa que ta abaixo
-			 */
-			fornecedores = dao.consultarUm("codigo", codigo);
-			logger.info("Consulta um por codigo efetuada com sucesso");
-			// fazendo uma segunad consulta pq so essa que consegi fazer a alteração
-			fornecedores = dao.obterPorID(fornecedores.getCodigo());
-			logger.info("Consulta por  ID efetuada com sucesso");
-			// abrindo a conexao com o banco pq sem ele não da para fazer a alteração
-			dao.abrirTransacao();
-
-			// fazendo as alterações no dado do Fornecedor não é obrigatorio ta todos os campos
-			// preenchido
-			fornecedores.setNome(campoNome.getText());
-			fornecedores.setRg(campoRG.getText());
-			fornecedores.setCnpj(campoCNPJ.getText());
-			fornecedores.setEmail(campoEmail.getText());
-			fornecedores.setTelefone(campoTelefone.getText());
-			fornecedores.setCelular(campoCelular.getText());
-			fornecedores.setCep(campoCEP.getText());
-			fornecedores.setEndereco(campoEndereco.getText());
-			fornecedores.setNumero(campoNumero.getText());
-			fornecedores.setComplemento(campoComplemeto.getText());
-			fornecedores.setBairro(campoBairro.getText());
-			fornecedores.setCidade(campoCidade.getText());
-			fornecedores.setEstado(uf);
-
-			// fechando a conexao
-			dao.fecharTransacao();
-
-			dao.fechar();
-			
-			limpaCampo();
-
-			// finalizando alteração
-			logger.info("Fornecedor Alterado com sucesso");
-			/*
-			 * metodo que chama a lista de Fornecedores para a tab consulta Fornecedores que é para
-			 * quando altera o Fornecedores ja exibi na tela de consulta
-			 */listaFornecedores();
-			logger.info("Consultando lista de Fornecedores com sucesso");
-			// criando um alerta de confirmação
-			// criando titulo do alerta
-			alertInf.setTitle("Mensagem");
-			// criando cabeçario do alerta
-			alertInf.setHeaderText("Fornecedor Alterado com sucesso!");
-			// chamando o alerta
-			alertInf.show();
-
-		} catch (Exception e) {
-			// finalizando alteração
-			logger.info("Fornecedor não selecionado");
-
-			// criando um alerta de confirmação
-			// criando titulo do alerta
-			alertErro.setTitle("Erro");
-			// criando cabeçario do alerta
-			alertErro.setHeaderText("Fornecedor não selecionado!");
-			// chamando o alerta
-			alertErro.show();
-
+		// condição para seta posição
+		if (uf.equals("AC")) {
+			comboBoxUF.getSelectionModel().select(0);
+		} else if (uf.equals("AL")) {
+			comboBoxUF.getSelectionModel().select(1);
+		} else if (uf.equals("AM")) {
+			comboBoxUF.getSelectionModel().select(2);
+		} else if (uf.equals("AP")) {
+			comboBoxUF.getSelectionModel().select(3);
+		} else if (uf.equals("BA")) {
+			comboBoxUF.getSelectionModel().select(4);
+		} else if (uf.equals("CE")) {
+			comboBoxUF.getSelectionModel().select(5);
+		} else if (uf.equals("DF")) {
+			comboBoxUF.getSelectionModel().select(6);
+		} else if (uf.equals("ES")) {
+			comboBoxUF.getSelectionModel().select(7);
+		} else if (uf.equals("GO")) {
+			comboBoxUF.getSelectionModel().select(8);
+		} else if (uf.equals("MA")) {
+			comboBoxUF.getSelectionModel().select(9);
+		} else if (uf.equals("MG")) {
+			comboBoxUF.getSelectionModel().select(10);
+		} else if (uf.equals("MS")) {
+			comboBoxUF.getSelectionModel().select(11);
+		} else if (uf.equals("MT")) {
+			comboBoxUF.getSelectionModel().select(12);
+		} else if (uf.equals("PA")) {
+			comboBoxUF.getSelectionModel().select(13);
+		} else if (uf.equals("PB")) {
+			comboBoxUF.getSelectionModel().select(14);
+		} else if (uf.equals("PE")) {
+			comboBoxUF.getSelectionModel().select(15);
+		} else if (uf.equals("PI")) {
+			comboBoxUF.getSelectionModel().select(16);
+		} else if (uf.equals("PR")) {
+			comboBoxUF.getSelectionModel().select(17);
+		} else if (uf.equals("RJ")) {
+			comboBoxUF.getSelectionModel().select(18);
+		} else if (uf.equals("RN")) {
+			comboBoxUF.getSelectionModel().select(19);
+		} else if (uf.equals("RO")) {
+			comboBoxUF.getSelectionModel().select(20);
+		} else if (uf.equals("RR")) {
+			comboBoxUF.getSelectionModel().select(21);
+		} else if (uf.equals("RS")) {
+			comboBoxUF.getSelectionModel().select(22);
+		} else if (uf.equals("SC")) {
+			comboBoxUF.getSelectionModel().select(23);
+		} else if (uf.equals("SE")) {
+			comboBoxUF.getSelectionModel().select(24);
+		} else if (uf.equals("SP")) {
+			comboBoxUF.getSelectionModel().select(25);
+		} else if (uf.equals("TO")) {
+			comboBoxUF.getSelectionModel().select(12);
 		}
 	}
 
-	// metodo que excluir um Fornecedor
+	// ========== metodos que cria uma mascara no campo assim que é digitado
+	// =====================
+
+	// metodos que cria uma mascara no campo CEP
 	@FXML
-	void botaoExcluir(ActionEvent event) {
-
-		try {
-
-			// convertendo o campoCodigo para Long
-			long codigo = Long.parseLong(campoCodigo.getText());
-
-			Fornecedores fornecedores = new Fornecedores();
-
-			DAO<Fornecedores> dao = new DAO<>(Fornecedores.class);
-
-			// fazendo a consulta por id
-			fornecedores = dao.consultarUm("codigo", codigo);
-			logger.info("Consulta um por codigo efetuada com sucesso");
-
-			// fazendo uma consulta que faz a exclusão por id
-			fornecedores = dao.obterPorID(fornecedores.getCodigo());
-			logger.info("Consulta por  ID efetuada com sucesso");
-
-//		// verificando se Fornecedor é nulo
-//		if (cliente != null) {
-
-			// logger.info("Cliente encontrado");
-
-			dao.abrirTransacao();
-
-			// removendo Cliente
-			dao.remover(fornecedores);//
-
-			dao.fecharTransacao();
-
-			logger.info("Fornecedor removido com sucesso");
-
-			dao.fechar();
-			
-			limpaCampo();
-			/*
-			 * metodo que chama a lista de Fornecedores para a tab consulta Fornecedores que é para
-			 * quando altera o Fornecedor ja exibi na tela de consulta
-			 */listaFornecedores();
-			logger.info("Consultando lista de Fornecedor com sucesso");
-
-			// criando um alerta de confirmação
-			// criando titulo do alerta
-			alertInf.setTitle("Mensagem");
-			// criando cabeçario do alerta
-			alertInf.setHeaderText("Fornecedor Excluidor com sucesso!");
-			// chamando o alerta
-			alertInf.show();
-
-		} catch (Exception e) {
-			// finalizando alteração
-			logger.info("Fornecedor não selecionado");
-
-			// criando um alerta de confirmação
-			// criando titulo do alerta
-			alertErro.setTitle("Erro");
-			// criando cabeçario do alerta
-			alertErro.setHeaderText("Fornecedor não selecionado!");
-			// chamando o alerta
-			alertErro.show();
-		}
-
-	}
-
-	// metodo limpar os campos
-	@FXML
-	void botaoNovo(ActionEvent event) {
-
-		limpaCampo();
-	}
-
-	@FXML
-	void campoNomePesquisar(KeyEvent event) {
-		// chamando a lista de Fornecedores com filtro like
-		listaFornecedoresComLike();
-	}
-
-//	// metodo que pesquisa Fornecedores com filtro
-//	@FXML
-//	void botaoPesquisar(ActionEvent event) {
-//		// chamando a lista de Fornecedores com filtro like
-//		listaClientesComLike();
-//	}
-
-	// metodo que salva um novo Fornecedor
-	@FXML
-	void botaoSalvar(ActionEvent event) {
-
-		// crinado um condição para o nome ser obrigatorio
-		if (!campoNome.getText().equals("")) {
-			
-			if(campoCodigo.getText().equals("")) {
-				
-				try {
-
-					// pegando a opção selecionada no comboBox e colocando na variavel local uf
-					String uf = comboBoxUF.getSelectionModel().getSelectedItem();
-
-					// criando o dao clientes para adiciona o clientes no banco
-					DAO<Fornecedores> dao = new DAO<Fornecedores>();
-
-					// adicionando os campos ao Fornecedor
-					Fornecedores fornecedores = new Fornecedores(campoNome.getText(), campoRG.getText(), campoCNPJ.getText(),
-							campoEmail.getText(), campoTelefone.getText(), campoCelular.getText(), campoCEP.getText(),
-							campoEndereco.getText(), campoNumero.getText(), campoComplemeto.getText(),
-							campoBairro.getText(), campoCidade.getText(), uf);
-
-					// gravando Fornecedor no banco e fechndo conexão
-					dao.incluirAtomico(fornecedores).fechar();
-
-					logger.info("Fornecedor Cadastrado com Sucesso!");
-
-					/*
-					 * metodo que chama a lista de Fornecedores para a tab consulta Fornecedor para quando
-					 * adicona um novo Fornecedor ja exibi na tela de consulta
-					 */
-					
-					limpaCampo();
-					
-					listaFornecedores();
-
-					// criando um alerta de confirmação
-					// criando titulo do alerta
-					alertInf.setTitle("Mensagem");
-					// criando cabeçario do alerta
-					alertInf.setHeaderText("Cadastrado com Sucesso!");
-					// chamando o ale
-					alertInf.show();
-
-				} catch (Exception e) {
-
-					logger.info("erro ao salvar cliente" + e);
-					// criando um alerta de confirmação
-					// criando titulo do alerta
-					alertErro.setTitle("Erro");
-					// criando cabeçario do alerta
-					alertErro.setHeaderText("Erro ao salvar cliente!");
-					// chamando o alerta
-					alertErro.show();
-				}
-
-			}else {
-				
-				// finalizando alteração
-				logger.info("Fornecedor já esta cadastrado");
-
-				// criando um alerta de confirmação
-				// criando titulo do alerta
-				alertErro.setTitle("Erro");
-				// criando cabeçario do alerta
-				alertErro.setHeaderText("Fornecedor já esta cadastrado!");
-				// chamando o alerta
-				alertErro.show();
-				
-			}
-			
-		} else {
-			// finalizando alteração
-			logger.info("Campo obrigatorio vazio");
-
-			// criando um alerta de confirmação
-			// criando titulo do alerta
-			alertErro.setTitle("Erro");
-			// criando cabeçario do alerta
-			alertErro.setHeaderText("Campo nome é obrigatorio!");
-			// chamando o alerta
-			alertErro.show();
-		}
-	}
-
-	// metodo que faz a busca do endereço pelo cep
-	@FXML
-	void buscaCEP(KeyEvent event) {
-
-		// condição que faz a busca quando preciona enter
-		if (event.getCode() == KeyCode.ENTER) {
-
-			CEP cep = new CEP();
-			// metodo que faz a busca do cep
-			cep.buscaCep(campoCEP.getText());
-
-			campoBairro.setText(cep.getBairro());
-			campoCidade.setText(cep.getCidade());
-			campoEndereco.setText(cep.getEndereco());
-			comboBoxUF.getSelectionModel().select(cep.getUf());
-
-			logger.info("Endereco adiconado com sucesso!");
-
-		} else {
-			logger.info("Endereco não encontrado");
-		}
-	}
-
-	/*
-	 * metodo que pega a linha selecionada da tabela view e mudar para a tab de
-	 * dados pessoas assim que clica no botão
-	 */
-	@FXML
-	void carregarSelecao(ActionEvent event) {
-
-		// chamndo a tab do index 0 da TabPane que é a area do dados pessoas
-		tabelaPane.getSelectionModel().select(0);
-		logger.info("Chamando a Tab de index (0)");
-		// pegando todos os campos da tabela view da linha celecionada e passando pra a
-		// tela de tab dados pessoas
-		campoCodigo.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getCodigo().toString());
-		campoNome.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getNome().toString());
-		campoRG.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getRg().toString());
-		campoCNPJ.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getCnpj().toString());
-		campoEmail.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getEmail().toString());
-		campoTelefone.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getTelefone().toString());
-		campoCelular.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getCelular().toString());
-		campoCEP.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getCep().toString());
-		campoEndereco.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getEndereco().toString());
-		campoNumero.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getNumero().toString());
-		campoComplemeto.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getComplemento().toString());
-		campoBairro.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getBairro().toString());
-		campoCidade.setText(tabelaFornecedores.getSelectionModel().getSelectedItem().getCidade().toString());
-		comboBoxUF.setPromptText(tabelaFornecedores.getSelectionModel().getSelectedItem().getEstado().toString());
-		/*
-		 * listando Fornecedor porque quando uso o metodo listaFornecedoresComLike ele deixa a
-		 * tabela com o filtro e o metodo listaClientes traz a tabela de volta ao normal
-		 */
-		listaFornecedores();
-		logger.info("Fornecedor adicionado com sucesso na tab dados pessoas");
-	}
-
-//	/*
-//	 * metodo que pega a linha selecionada da tabela view e mudar para a tab de
-//	 * dados pessoas assim que clica na linha da tableta view, mas não da para altera o tamanho da coluna 
-//	 * pq fica trocando de tela 
-//	 */
-//	@FXML
-//	void pegaDadosDaTabelaClientes(MouseEvent event) {
-//
-//		// chamndo a tab do index 0 da TabPane que é a area do dados pessoas
-//		tabelaPane.getSelectionModel().select(0);
-//		logger.info("Chamando a Tab de index (0)");
-//		// pegando todos os campos da tabela view da linha celecionada e passando pra a
-//		// tela de tab dados pessoas
-//		campoCodigo.setText(tabelaClientes.getSelectionModel().getSelectedItem().getCodigo().toString());
-//		campoNome.setText(tabelaClientes.getSelectionModel().getSelectedItem().getNome().toString());
-//		campoRG.setText(tabelaClientes.getSelectionModel().getSelectedItem().getRg().toString());
-//		campoCPF.setText(tabelaClientes.getSelectionModel().getSelectedItem().getCpf().toString());
-//		campoEmail.setText(tabelaClientes.getSelectionModel().getSelectedItem().getEmail().toString());
-//		campoTelefone.setText(tabelaClientes.getSelectionModel().getSelectedItem().getTelefone().toString());
-//		campoCelular.setText(tabelaClientes.getSelectionModel().getSelectedItem().getCelular().toString());
-//		campoCEP.setText(tabelaClientes.getSelectionModel().getSelectedItem().getCep().toString());
-//		campoEndereco.setText(tabelaClientes.getSelectionModel().getSelectedItem().getEndereco().toString());
-//		campoNumero.setText(tabelaClientes.getSelectionModel().getSelectedItem().getNumero().toString());
-//		campoComplemeto.setText(tabelaClientes.getSelectionModel().getSelectedItem().getComplemento().toString());
-//		campoBairro.setText(tabelaClientes.getSelectionModel().getSelectedItem().getBairro().toString());
-//		campoCidade.setText(tabelaClientes.getSelectionModel().getSelectedItem().getCidade().toString());
-//		comboBoxUF.setPromptText(tabelaClientes.getSelectionModel().getSelectedItem().getEstado().toString());
-//		/*
-//		 * listando cliente porque quando uso o metodo listaClientesComLike ele deixa a
-//		 * tabela com o filtro e o metodo listaClientes traz a tabela de volta ao normal
-//		 */
-//		listaClientes();
-//	}
-    @FXML
-    void botaoListaTodos(ActionEvent event) {
-
-    	listaFornecedores();
-    }
-
-    @FXML
-    void botaoMenu(ActionEvent event) {
-
-    	Main.trocaTela("menuPrincipal");
-    }
-
-	
-	//metodo que limpa os campos
-	void limpaCampo () {
-		
-		campoNome.setText(null);
-		campoRG.setText(null);
-		campoCNPJ.setText(null);
-		campoTelefone.setText(null);
-		campoCelular.setText(null);
-		campoCEP.setText(null);
-		campoEndereco.setText(null);
-		campoNumero.setText(null);
-		campoComplemeto.setText(null);
-		campoBairro.setText(null);
-		campoCidade.setText(null);
-		campoCodigo.setText(null);
-		campoEmail.setText(null);
-		
-	}
-
-	// metodos que cria uma mascara no campodo assim que o String for digitado
-	@FXML
-	void formataCampoCEP(KeyEvent event) {
+	private void formataCampoCEP(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -655,8 +673,9 @@ public class CadastroFornecedores implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo CPF
 	@FXML
-	void formataCampoCPF(KeyEvent event) {
+	private void formataCampoCPF(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -669,8 +688,9 @@ public class CadastroFornecedores implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo CELULAR
 	@FXML
-	void formataCampoCelular(KeyEvent event) {
+	private void formataCampoCelular(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -683,8 +703,9 @@ public class CadastroFornecedores implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo RG
 	@FXML
-	void formataCampoRG(KeyEvent event) {
+	private void formataCampoRG(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -697,8 +718,9 @@ public class CadastroFornecedores implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo TEFELONE
 	@FXML
-	void formataCampoTelefone(KeyEvent event) {
+	private void formataCampoTelefone(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -711,8 +733,9 @@ public class CadastroFornecedores implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo CODIGO
 	@FXML
-	void formataCampoCodigo(KeyEvent event) {
+	private void formataCampoCodigo(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -725,8 +748,9 @@ public class CadastroFornecedores implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo NUMERO
 	@FXML
-	void formataCampoNumero(KeyEvent event) {
+	private void formataCampoNumero(KeyEvent event) {
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
 		tff.setMask("######");

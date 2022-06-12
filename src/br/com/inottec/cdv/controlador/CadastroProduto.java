@@ -214,11 +214,6 @@ public class CadastroProduto implements Initializable {
 			produtos = dao.obterPorID(produtos.getCodigo());
 			logger.info("Consulta por  ID efetuada com sucesso");
 
-//		// verificando se cliente é nulo
-//		if (cliente != null) {
-
-			// logger.info("Cliente encontrado");
-
 			dao.abrirTransacao();
 
 			// removendo Cliente
@@ -385,11 +380,6 @@ public class CadastroProduto implements Initializable {
 
 		colunaFornecedor.setCellValueFactory(new PropertyValueFactory<Produtos, String>("fornecedor"));
 
-		// colunaQtdEstoque.setCellValueFactory(new PropertyValueFactory<Produtos,
-		// Integer>("QtdEstoque"));
-
-//			colunaFornecedor.setCellValueFactory(new PropertyValueFactory<Produtos, String>("nome")
-
 		logger.info("Todos os Atributo de produto forão adicionado na tablela de consulta");
 
 		// crinado a Classe dao do tipo Clinetes
@@ -420,13 +410,6 @@ public class CadastroProduto implements Initializable {
 
 		colunaQtdEstoque.setCellValueFactory(new PropertyValueFactory<Produtos, Integer>("qtdEstoque"));
 		
-		//colunaFornecedor.setCellValueFactory(new PropertyValueFactory<Produtos, String>("fornecedor"));
-
-		// colunaUF.setCellValueFactory(new PropertyValueFactory<Produtos,
-		// Fornecedores>("fornecedor"));
-		// colunaQtdEstoque.setCellValueFactory(new PropertyValueFactory<Produtos,
-		// Integer>("QtdEstoque"));
-
 		logger.info("Todos os Atributo de produto forão adicionado na tablela de consulta");
 
 		// crinado a Classe dao do tipo Clinetes

@@ -667,7 +667,6 @@ public class CadastroFuncionarios implements Initializable {
 	}
 
 	// metodo que seleciona posição da UF no comboBox
-	// metodo para seleciona UF salva no banco
 	private void selecionaUF(String uf) {
 
 		// condição para seta posição

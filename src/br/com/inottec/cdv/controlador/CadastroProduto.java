@@ -4,12 +4,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
-
 import br.com.inottec.cdv.Main;
 import br.com.inottec.cdv.infra.DAO;
 import br.com.inottec.cdv.mascaraText.TextFieldFormatter;
-import br.com.inottec.cdv.modelo.CEP;
-import br.com.inottec.cdv.modelo.Clientes;
 import br.com.inottec.cdv.modelo.Fornecedores;
 import br.com.inottec.cdv.modelo.Produtos;
 import javafx.collections.FXCollections;
@@ -19,19 +16,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-//import javafx.scene.input.MouseEvent;
 
 public class CadastroProduto implements Initializable {
-
-	private List<Fornecedores> fornecedor;
 
 	@FXML
 	private TextField campoCodigo;
@@ -90,46 +82,9 @@ public class CadastroProduto implements Initializable {
 		obterFornecedor();
 	}
 
-	// metodo que cria o comboBox
-	public void obterFornecedor() {
-
-		DAO<Fornecedores> dao = new DAO<>(Fornecedores.class);
-
-		listaFornecedores = dao.obterTodos();
-
-		for (Fornecedores s : listaFornecedores) {
-
-			comboBoxFornecedor.getItems().add(s);
-		}
-
-		comboBoxFornecedor.getSelectionModel().select(0);
-
-		logger.info("Lista de Fornecedor adicionada a o comboBoxFornecedor");
-
-	}
-
-	// metodo que troca o index do combobox
-	public void alteraFornecedor(Fornecedores fornecedor) {
-
-		int i = 0;
-		for (Fornecedores s : listaFornecedores) {
-
-			if (!s.getCodigo().equals(fornecedor.getCodigo())) {
-
-				i++;
-
-			} else {
-
-				comboBoxFornecedor.getSelectionModel().select(i);
-			}
-		}
-
-		logger.info("Fornecedor adicionada a o comboBoxFornecedor");
-
-	}
-
+	//metodo que edita o produto selecionado 
 	@FXML
-	void botaoEditar(ActionEvent event) {
+	private void botaoEditar(ActionEvent event) {
 		try {
 			// crinado objeto cliente
 			Produtos produtos = new Produtos();
@@ -165,6 +120,10 @@ public class CadastroProduto implements Initializable {
 			dao.fecharTransacao();
 
 			dao.fechar();
+			
+			listaProdutos();
+			
+			limpacampo();
 
 			// finalizando alteração
 			logger.info("Produtos Alterado com sucesso");
@@ -199,8 +158,9 @@ public class CadastroProduto implements Initializable {
 
 	}
 
+	//metodo que excluir o produto selecionado 
 	@FXML
-	void botaoExcluir(ActionEvent event) {
+	private void botaoExcluir(ActionEvent event) {
 
 		try {
 
@@ -229,6 +189,10 @@ public class CadastroProduto implements Initializable {
 			logger.info("Produto removido com sucesso");
 
 			dao.fechar();
+			
+			limpacampo();
+			
+			listaProdutos();
 			/*
 			 * metodo que chama a lista de Clientes para a tab consulta Clientes que é para
 			 * quando altera o cliente ja exibi na tela de consulta
@@ -257,28 +221,33 @@ public class CadastroProduto implements Initializable {
 			alertErro.show();
 		}
 	}
-
+	
+    //metodo de lista produtos 
 	@FXML
-	void botaoLista(ActionEvent event) {
+	private void botaoLista(ActionEvent event) {
 		listaProdutos();
 	}
 
+	//metodo que chama a tela de menu 
 	@FXML
-	void botaoMenu(ActionEvent event) {
+	private void botaoMenu(ActionEvent event) {
 
 		Main.trocaTela("menuPrincipal");
 	}
 
+	//metodo que limpa os campos 
 	@FXML
-	void botaoNovo(ActionEvent event) {
+	private void botaoNovo(ActionEvent event) {
 
-		campoDescricao.setText(null);
-		campoPreco.setText(null);
-		campoQtdEstoque.setText(null);
+		campoCodigo.setText("");
+		campoDescricao.setText("");
+		campoPreco.setText("");
+		campoQtdEstoque.setText("");
 	}
 
+	//metodo que salva produto 
 	@FXML
-	void botaoSalvar(ActionEvent event) {
+	private void botaoSalvar(ActionEvent event) {
 		// crinado um condição para o nome ser obrigatorio
 		if (!campoDescricao.getText().equals("")) {
 			try {
@@ -302,7 +271,10 @@ public class CadastroProduto implements Initializable {
 				 * metodo que chama a lista de Clientes para a tab consulta cLiente para quando
 				 * adicona um novo cliente ja exibi na tela de consulta
 				 */
-				// listaProdutos();
+
+				limpacampo();
+
+				listaProdutos();
 
 				// criando um alerta de confirmação
 				// criando titulo do alerta
@@ -339,15 +311,17 @@ public class CadastroProduto implements Initializable {
 
 	}
 
+	//metodo que pesquisar produto por filtro 
 	@FXML
-	void campoDescricaoPesquisar(KeyEvent event) {
+	private void campoDescricaoPesquisar(KeyEvent event) {
 
 		// chamando a lista de clientes com filtro like
 		listaClientesComLike();
 	}
 
+	//metodo que carrega seleção no dados do produtos 
 	@FXML
-	void carregarSelecao(ActionEvent event) {
+	private void carregarSelecao(ActionEvent event) {
 
 		// chamndo a tab do index 0 da TabPane que é a area do dados pessoas
 		tabelaPane.getSelectionModel().select(0);
@@ -373,7 +347,7 @@ public class CadastroProduto implements Initializable {
 	}
 
 	// metodo obter um lista clientes
-	public void listaProdutos() {
+	private void listaProdutos() {
 
 		/*
 		 * adicionado coluna do banco a coluna da tabela o nome da coluna do banco é o
@@ -405,7 +379,7 @@ public class CadastroProduto implements Initializable {
 	}
 
 	// metodo obter um lista clientes com o like
-	public void listaClientesComLike() {
+	private void listaClientesComLike() {
 
 		/*
 		 * adicionado coluna do banco a coluna da tabela o nome da coluna do banco é o
@@ -434,8 +408,56 @@ public class CadastroProduto implements Initializable {
 		logger.info("Lista de produto com filtro adicionada a tableview");
 	}
 
+	// metodo limpa campos
+	private void limpacampo() {
+
+		campoCodigo.setText("");
+		campoDescricao.setText("");
+		campoPreco.setText("");
+		campoQtdEstoque.setText("");
+	}
+
+	// metodo que cria o comboBox
+	private void obterFornecedor() {
+
+		DAO<Fornecedores> dao = new DAO<>(Fornecedores.class);
+
+		listaFornecedores = dao.obterTodos();
+
+		for (Fornecedores s : listaFornecedores) {
+
+			comboBoxFornecedor.getItems().add(s);
+		}
+
+		comboBoxFornecedor.getSelectionModel().select(0);
+
+		logger.info("Lista de Fornecedor adicionada a o comboBoxFornecedor");
+
+	}
+
+	// metodo que troca o index do combobox
+	private void alteraFornecedor(Fornecedores fornecedor) {
+
+		int i = 0;
+		for (Fornecedores s : listaFornecedores) {
+
+			if (!s.getCodigo().equals(fornecedor.getCodigo())) {
+
+				i++;
+
+			} else {
+
+				comboBoxFornecedor.getSelectionModel().select(i);
+			}
+		}
+
+		logger.info("Fornecedor adicionada a o comboBoxFornecedor");
+
+	}
+
+	//metodo que cria uma mascara do campo preco
 	@FXML
-	void formataCampoPreco(KeyEvent event) {
+	private void formataCampoPreco(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -448,8 +470,9 @@ public class CadastroProduto implements Initializable {
 		tff.formatter();
 	}
 
+	//metodo que cria uma mascara do campo estoque
 	@FXML
-	void formataCampoQtdEstoque(KeyEvent event) {
+	private void formataCampoQtdEstoque(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara

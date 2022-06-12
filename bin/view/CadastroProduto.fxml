@@ -15,7 +15,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.CadastroProduto">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="95.0" layoutY="64.0" stroke="#07a0fa" strokeType="INSIDE" width="1041.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="31.0" layoutY="24.0" prefHeight="37.0" prefWidth="258.0" text="Cadastro de Clientes" textFill="WHITE" AnchorPane.bottomAnchor="408.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="24.0">
+      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="31.0" layoutY="24.0" prefHeight="37.0" prefWidth="258.0" text="Cadastro de Produtos" textFill="WHITE" AnchorPane.bottomAnchor="408.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="24.0">
          <font>
             <Font size="24.0" />
          </font>

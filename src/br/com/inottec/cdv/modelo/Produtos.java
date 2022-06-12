@@ -19,7 +19,9 @@ public class Produtos implements RestricaoEntidade{
 	private String descricao ;
 	private double preco ;
 	private int qtdEstoque;
-	private String fornecedor; 
+	
+	@OneToOne
+	private Fornecedores fornecedor; 
 	
 	@Transient
 	private double subtotal;
@@ -31,7 +33,7 @@ public class Produtos implements RestricaoEntidade{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Produtos(String descricao, double preco, int qtdEstoque, String fornecedor) {
+	public Produtos(String descricao, double preco, int qtdEstoque, Fornecedores fornecedor) {
 		super();
 		this.descricao = descricao;
 		this.preco = preco;
@@ -71,10 +73,10 @@ public class Produtos implements RestricaoEntidade{
 	public void setQtdEstoque(int qtdEstoque) {
 		this.qtdEstoque = qtdEstoque;
 	}
-	public String getFornecedor() {
+	public Fornecedores getFornecedor() {
 		return fornecedor;
 	}
-	public void setFornecedor(String fornecedor) {
+	public void setFornecedor(Fornecedores fornecedor) {
 		this.fornecedor = fornecedor;
 	}
 	@Override

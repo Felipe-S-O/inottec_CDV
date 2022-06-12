@@ -30,8 +30,8 @@ import javafx.scene.input.KeyEvent;
 //import javafx.scene.input.MouseEvent;
 
 public class CadastroProduto implements Initializable {
-	
-	private List<String> fornecedor;
+
+	private List<Fornecedores> fornecedor;
 
 	@FXML
 	private TextField campoCodigo;
@@ -64,10 +64,12 @@ public class CadastroProduto implements Initializable {
 	private TableColumn<Produtos, String> colunaFornecedor;
 
 	@FXML
-	private ComboBox<String> comboBoxFornecedor;
+	private ComboBox<Fornecedores> comboBoxFornecedor;
 
 	@FXML
 	private TableView<Produtos> tabelaProdutos;
+
+	List<Fornecedores> listaFornecedores;
 
 	@FXML
 	private TabPane tabelaPane;
@@ -85,43 +87,46 @@ public class CadastroProduto implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// chamndo metodo para executa
 		campoCodigo.setEditable(false);
-		obterUF();
+		obterFornecedor();
 	}
 
 	// metodo que cria o comboBox
-	public void obterUF() {
+	public void obterFornecedor() {
 
 		DAO<Fornecedores> dao = new DAO<>(Fornecedores.class);
 
-		List<Fornecedores> listaFornecedores = dao.obterTodos();
+		listaFornecedores = dao.obterTodos();
 
 		for (Fornecedores s : listaFornecedores) {
 
-			comboBoxFornecedor.getItems().add(s.getNome());
+			comboBoxFornecedor.getItems().add(s);
 		}
 
 		comboBoxFornecedor.getSelectionModel().select(0);
 
-		logger.info("Lista de Fornecedor adicionada a o comboBoxFornecedor aqui");
-		
+		logger.info("Lista de Fornecedor adicionada a o comboBoxFornecedor");
+
 	}
-	
-//	// metodo que cria o comboBox
-//		public void obterUF() {
-//
-//			DAO<Fornecedores> dao = new DAO<>(Fornecedores.class);
-//
-//			List<Fornecedores> listaFornecedores = dao.obterTodos();
-//
-//			for (Fornecedores s : listaFornecedores) {
-//
-//				comboBoxUF.getItems().add(s);
-//			}
-//
-//			comboBoxUF.getSelectionModel().select(0);
-//
-//			logger.info("Lista de UF adicionada a o comboBoxUf aqui");
-//		}
+
+	// metodo que troca o index do combobox
+	public void alteraFornecedor(Fornecedores fornecedor) {
+
+		int i = 0;
+		for (Fornecedores s : listaFornecedores) {
+
+			if (!s.getCodigo().equals(fornecedor.getCodigo())) {
+
+				i++;
+
+			} else {
+
+				comboBoxFornecedor.getSelectionModel().select(i);
+			}
+		}
+
+		logger.info("Fornecedor adicionada a o comboBoxFornecedor");
+
+	}
 
 	@FXML
 	void botaoEditar(ActionEvent event) {
@@ -129,7 +134,7 @@ public class CadastroProduto implements Initializable {
 			// crinado objeto cliente
 			Produtos produtos = new Produtos();
 			// pegando a opção selecionada no comboBox e colocando na variavel local uf
-			String fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
+			Fornecedores fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
 
 			// convertendo o campoCodigo para Long
 			long codigo = Long.parseLong(campoCodigo.getText());
@@ -279,7 +284,7 @@ public class CadastroProduto implements Initializable {
 			try {
 
 				// pegando a opção selecionada no comboBox e colocando na variavel local uf
-				String fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
+				Fornecedores fornecedor = comboBoxFornecedor.getSelectionModel().getSelectedItem();
 
 				// criando o dao clientes para adiciona o clientes no banco
 				DAO<Produtos> dao = new DAO<>(Produtos.class);
@@ -353,13 +358,17 @@ public class CadastroProduto implements Initializable {
 		campoDescricao.setText("teste");
 		campoPreco.setText(tabelaProdutos.getSelectionModel().getSelectedItem().getPreco().toString());
 		campoQtdEstoque.setText(tabelaProdutos.getSelectionModel().getSelectedItem().getQtdEstoque().toString());
-	    comboBoxFornecedor.setPromptText(tabelaProdutos.getSelectionModel().getSelectedItem().getFornecedor());
+		Fornecedores fornecedor = tabelaProdutos.getSelectionModel().getSelectedItem().getFornecedor();
 		/*
 		 * listando cliente porque quando uso o metodo listaClientesComLike ele deixa a
 		 * tabela com o filtro e o metodo listaClientes traz a tabela de volta ao normal
 		 */
+
+		alteraFornecedor(fornecedor);
+
 		listaProdutos();
-		logger.info("Cliente adicionado com sucesso na tab dados pessoas");
+
+		logger.info("Produto adicionado com sucesso na tab dados produto");
 
 	}
 
@@ -409,7 +418,7 @@ public class CadastroProduto implements Initializable {
 		colunaPreco.setCellValueFactory(new PropertyValueFactory<Produtos, Double>("preco"));
 
 		colunaQtdEstoque.setCellValueFactory(new PropertyValueFactory<Produtos, Integer>("qtdEstoque"));
-		
+
 		logger.info("Todos os Atributo de produto forão adicionado na tablela de consulta");
 
 		// crinado a Classe dao do tipo Clinetes

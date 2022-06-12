@@ -72,9 +72,9 @@ public class CadastroFuncionarios implements Initializable {
 
 	@FXML
 	private TextField campoCPF;
-	
-    @FXML
-    private ComboBox<String> comboBoxUF;
+
+	@FXML
+	private ComboBox<String> comboBoxUF;
 
 	@FXML
 	private ComboBox<String> comboBoxNivelDeAcesso;
@@ -162,176 +162,9 @@ public class CadastroFuncionarios implements Initializable {
 		obterNivelDeAcesso();
 	}
 
-
-	// metodo que cria o comboBox
-	public void obterUF() {
-
-		// criando um arrey de opções de UF
-		String[] opcoesUF = { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB",
-				"PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" };
-		/*
-		 * adicionado lista opções de UF no atributo listaDeUF do Opções de Parcelas no
-		 * formato ObservableList pq o comboBox só aceita um ObservableList
-		 */ ObservableList<String> listaDeUF = FXCollections.observableArrayList(opcoesUF);
-
-		// adicionando listaDeItemDeParcels no comboBox
-		comboBoxUF.setItems(listaDeUF);
-
-		/*
-		 * adicionado um index 14 como padão no combBox para quando executar o metodo
-		 * mauseCliqueNaTabelaClientes para não da um erro na coluna UF porque ela esta
-		 * vazia
-		 */comboBoxUF.getSelectionModel().select(14);
-
-		logger.info("Lista de UF adicionada a o comboBoxUf aqui");
-	}
-
-
-	// metodo que cria o comboBox
-	public void obterNivelDeAcesso() {
-
-		// criando um arrey de opções de UF
-		String[] opcoesNvelDeAesso = { "Vendedor", "Admin" };
-		/*
-		 * adicionado lista opções de UF no atributo listaDeUF do Opções de Parcelas no
-		 * formato ObservableList pq o comboBox só aceita um ObservableList
-		 */ ObservableList<String> listaDeNiveDeAcesso = FXCollections.observableArrayList(opcoesNvelDeAesso);
-
-		// adicionando listaDeItemDeParcels no comboBox
-		comboBoxNivelDeAcesso.setItems(listaDeNiveDeAcesso);
-
-		/*
-		 * adicionado um index 0 como padão no combBox para quando executar o metodo
-		 * mauseCliqueNaTabelaClientes para não da um erro na coluna NivelDeAcesso
-		 * porque ela esta vazia
-		 */comboBoxNivelDeAcesso.getSelectionModel().select(1);
-
-		logger.info("Lista de UF adicionada a o comboBoxNivelDeAcesso");
-	}
-
-	// metodo obter um lista clientes
-	public void listaFuncionarios() {
-
-		/*
-		 * adicionado coluna do banco a coluna da tabela o nome da coluna do banco é o
-		 * mesmo da classe entidade
-		 */
-		colunaCodigo.setCellValueFactory(new PropertyValueFactory<Funcionarios, Long>("codigo"));
-
-		colunaNome.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("nome"));
-
-		colunaRG.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("rg"));
-
-		colunaCPF.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cpf"));
-
-		colunaEmail.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("email"));
-
-		colunaSenha.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("senha"));
-
-		colunaCargo.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cargo"));
-
-		colunaNivelDeAcesso.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("nivelDeAcesso"));
-
-		colunaTelefone.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("telefone"));
-
-		colunaCelular.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("celular"));
-
-		colunaCEP.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cep"));
-
-		colunaEndereco.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("endereco"));
-
-		colunaNumero.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("numero"));
-
-		colunaComple.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("complemento"));
-
-		colunaBairro.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("bairro"));
-
-		colunaCidade.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cidade"));
-
-		colunaUF.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("estado"));
-
-		logger.info("Todos os Atributo de cliente forão adicionado na tablela de consulta");
-
-		DAO<Funcionarios> dao = new DAO<Funcionarios>(Funcionarios.class);
-
-		List<Funcionarios> listaFuncionario = dao.obterTodos();
-
-		ObservableList<Funcionarios> observaFuncionaro = FXCollections.observableArrayList(listaFuncionario);
-
-		tabelaFuncionario.setItems(observaFuncionaro);
-
-		logger.info("Lista de funcionario adicionada a tableview");
-//		//try {
-//
-//			// crinado a Classe dao do tipo Clinetes
-//			DAO<Funcionarios> dao = new DAO<Funcionarios>(Funcionarios.class);
-//
-//			// crinado um lista do tipo Cliente e adicionando um lista de Clientes
-//			List<Funcionarios> listafuncionario = dao.obterTodos();
-//
-//			// crinado um lista do tipo ObservableList que recebe uma lista de clientes
-//			ObservableList<Funcionarios> observaFuncionario = FXCollections.observableArrayList(listafuncionario);
-//			// adicionado o ObservableList na tabela
-//			tabelaFuncionario.setItems(observaFuncionario);
-//			
-//		//} catch (Exception e) {
-//			logger.info("Opes algo de errado");
-//		//}
-	}
-
-	// metodo obter um lista clientes com o like
-	public void listaFuncionariosComLike() {
-
-		/*
-		 * adicionado coluna do banco a coluna da tabela o nome da coluna do banco é o
-		 * mesmo da classe entidade
-		 */
-		colunaCodigo.setCellValueFactory(new PropertyValueFactory<Funcionarios, Long>("codigo"));
-
-		colunaNome.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("nome"));
-
-		colunaRG.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("rg"));
-
-		colunaCPF.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cpf"));
-
-		colunaEmail.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("email"));
-
-		colunaTelefone.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("telefone"));
-
-		colunaCelular.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("celular"));
-
-		colunaCEP.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cep"));
-
-		colunaEndereco.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("endereco"));
-
-		colunaNumero.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("numero"));
-
-		colunaComple.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("complemento"));
-
-		colunaBairro.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("bairro"));
-
-		colunaCidade.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cidade"));
-
-		colunaUF.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("estado"));
-
-		logger.info("Todos os Atributo de funcionario forão adicionado na tablela de consulta");
-
-		// crinado a Classe dao do tipo Clinetes
-		DAO<Funcionarios> dao = new DAO<Funcionarios>(Funcionarios.class);
-
-		// crinado um lista do tipo Cliente com filtor e adicionando um listaclinte
-		List<Funcionarios> listaclinte = dao.obterTodosComLike("nome", "%" + campoNomeConsulta.getText() + "%");
-
-		// crinado um lista do tipo ObservableList que recebe uma lista de clientes
-		ObservableList<Funcionarios> observaClientes = FXCollections.observableArrayList(listaclinte);
-		// adicionado o ObservableList na tabela
-		tabelaFuncionario.setItems(observaClientes);
-		logger.info("Lista de funcionario com filtro adicionada a tableview");
-	}
-
 	// metodo que altera um funcionario
 	@FXML
-	void botaoEditar(ActionEvent event) {
+	private void botaoEditar(ActionEvent event) {
 
 		try {
 			// crinado objeto Funcuinario
@@ -420,7 +253,7 @@ public class CadastroFuncionarios implements Initializable {
 
 	// metodo que excluir funcionario
 	@FXML
-	void botaoExcluir(ActionEvent event) {
+	private void botaoExcluir(ActionEvent event) {
 
 		try {
 
@@ -490,26 +323,29 @@ public class CadastroFuncionarios implements Initializable {
 
 	// metodo que limpa os campos
 	@FXML
-	void botaoNovo(ActionEvent event) {
+	private void botaoNovo(ActionEvent event) {
 
-		// limpando todos os campos alterando para nulo
+		// limpando todos os campos alterando para vazio
 		limpaCampo();
 	}
 
+	// metodo que chama tela de menu
 	@FXML
-	void botaoMenu(ActionEvent event) {
+	private void botaoMenu(ActionEvent event) {
 
 		Main.trocaTela("menuPrincipal");
 	}
 
+	// metodo que lista funcionrio com filtro
 	@FXML
-	void botaoPesquisar(ActionEvent event) {
+	private void botaoPesquisar(ActionEvent event) {
 		// chamando a lista de Funcionario com filtro like
 		listaFuncionariosComLike();
 	}
 
+	// metodo que salva funcionario
 	@FXML
-	void botaoSalvar(ActionEvent event) {
+	private void botaoSalvar(ActionEvent event) {
 
 		// crinado um condição para o nome ser obrigatorio
 		if (!campoNome.getText().equals("")) {
@@ -597,7 +433,7 @@ public class CadastroFuncionarios implements Initializable {
 
 	// metodo que faz a busca do endereço pelo cep
 	@FXML
-	void buscaCEP(KeyEvent event) {
+	private void buscaCEP(KeyEvent event) {
 
 		// condição que faz a busca quando preciona enter
 		if (event.getCode() == KeyCode.ENTER) {
@@ -620,7 +456,7 @@ public class CadastroFuncionarios implements Initializable {
 
 	// metodo que pesquisar funcionario
 	@FXML
-	void campoNomePesquisar(KeyEvent event) {
+	private void campoNomePesquisar(KeyEvent event) {
 		// chamando a lista de funcionario com filtro like
 		listaFuncionariosComLike();
 	}
@@ -630,7 +466,9 @@ public class CadastroFuncionarios implements Initializable {
 	 * dados pessoas assim que clica no botão
 	 */
 	@FXML
-	void carregarSelecao(ActionEvent event) {
+	private void carregarSelecao(ActionEvent event) {
+
+		String UF, permisao;
 
 		// chamndo a tab do index 0 da TabPane que é a area do dados pessoas
 		tabelaPane.getSelectionModel().select(0);
@@ -644,8 +482,7 @@ public class CadastroFuncionarios implements Initializable {
 		campoEmail.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getEmail().toString());
 		campoSenha.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getSenha().toString());
 		campoCargo.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getCargo().toString());
-		comboBoxNivelDeAcesso
-				.setPromptText(tabelaFuncionario.getSelectionModel().getSelectedItem().getNivelDeAcesso().toString());
+		permisao = tabelaFuncionario.getSelectionModel().getSelectedItem().getNivelDeAcesso().toString();
 		campoTelefone.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getTelefone().toString());
 		campoCelular.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getCelular().toString());
 		campoCEP.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getCep().toString());
@@ -654,7 +491,16 @@ public class CadastroFuncionarios implements Initializable {
 		campoComplemeto.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getComplemento().toString());
 		campoBairro.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getBairro().toString());
 		campoCidade.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getCidade().toString());
-		comboBoxUF.setPromptText(tabelaFuncionario.getSelectionModel().getSelectedItem().getEstado().toString());
+		UF = tabelaFuncionario.getSelectionModel().getSelectedItem().getEstado().toString();
+
+		// condição para seta posição
+		if (permisao.equals("Vendedor")) {
+			comboBoxNivelDeAcesso.getSelectionModel().select(0);
+		} else if (permisao.equals("Admin")) {
+			comboBoxNivelDeAcesso.getSelectionModel().select(1);
+		}
+
+		selecionaUF(UF);
 		/*
 		 * listando cliente porque quando uso o metodo listaClientesComLike ele deixa a
 		 * tabela com o filtro e o metodo listaClientes traz a tabela de volta ao normal
@@ -663,36 +509,254 @@ public class CadastroFuncionarios implements Initializable {
 		logger.info("Cliente adicionado com sucesso na tab dados pessoas");
 	}
 
+	// metodo que lista funcionario qundo clica no botão lista
 	@FXML
-	void listaTodos(ActionEvent event) {
+	private void listaTodos(ActionEvent event) {
 
 		listaFuncionarios();
 	}
 
-	void limpaCampo() {
+	// metodo que cria o comboBox
+	public void obterUF() {
+
+		// criando um arrey de opções de UF
+		String[] opcoesUF = { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB",
+				"PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" };
+		/*
+		 * adicionado lista opções de UF no atributo listaDeUF do Opções de Parcelas no
+		 * formato ObservableList pq o comboBox só aceita um ObservableList
+		 */
+		ObservableList<String> listaDeUF = FXCollections.observableArrayList(opcoesUF);
+
+		// adicionando listaDeItemDeParcels no comboBox
+		comboBoxUF.setItems(listaDeUF);
+
+		/*
+		 * adicionado um index 14 como padão no combBox para quando executar o metodo
+		 * mauseCliqueNaTabelaClientes para não da um erro na coluna UF porque ela esta
+		 * vazia
+		 */comboBoxUF.getSelectionModel().select(14);
+
+		logger.info("Lista de UF adicionada a o comboBoxUf aqui");
+	}
+
+	// metodo que cria o comboBox
+	private void obterNivelDeAcesso() {
+
+		// criando um arrey de opções de UF
+		String[] opcoesNvelDeAesso = { "Vendedor", "Admin" };
+		/*
+		 * adicionado lista opções de UF no atributo listaDeUF do Opções de Parcelas no
+		 * formato ObservableList pq o comboBox só aceita um ObservableList
+		 */ ObservableList<String> listaDeNiveDeAcesso = FXCollections.observableArrayList(opcoesNvelDeAesso);
+
+		// adicionando listaDeItemDeParcels no comboBox
+		comboBoxNivelDeAcesso.setItems(listaDeNiveDeAcesso);
+
+		/*
+		 * adicionado um index 0 como padão no combBox para quando executar o metodo
+		 * mauseCliqueNaTabelaClientes para não da um erro na coluna NivelDeAcesso
+		 * porque ela esta vazia
+		 */comboBoxNivelDeAcesso.getSelectionModel().select(1);
+
+		logger.info("Lista de UF adicionada a o comboBoxNivelDeAcesso");
+	}
+
+	// metodo obter um lista clientes
+	private void listaFuncionarios() {
+
+		/*
+		 * adicionado coluna do banco a coluna da tabela o nome da coluna do banco é o
+		 * mesmo da classe entidade
+		 */
+		colunaCodigo.setCellValueFactory(new PropertyValueFactory<Funcionarios, Long>("codigo"));
+
+		colunaNome.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("nome"));
+
+		colunaRG.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("rg"));
+
+		colunaCPF.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cpf"));
+
+		colunaEmail.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("email"));
+
+		colunaSenha.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("senha"));
+
+		colunaCargo.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cargo"));
+
+		colunaNivelDeAcesso.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("nivelDeAcesso"));
+
+		colunaTelefone.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("telefone"));
+
+		colunaCelular.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("celular"));
+
+		colunaCEP.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cep"));
+
+		colunaEndereco.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("endereco"));
+
+		colunaNumero.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("numero"));
+
+		colunaComple.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("complemento"));
+
+		colunaBairro.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("bairro"));
+
+		colunaCidade.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cidade"));
+
+		colunaUF.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("estado"));
+
+		logger.info("Todos os Atributo de cliente forão adicionado na tablela de consulta");
+
+		DAO<Funcionarios> dao = new DAO<Funcionarios>(Funcionarios.class);
+
+		List<Funcionarios> listaFuncionario = dao.obterTodos();
+
+		ObservableList<Funcionarios> observaFuncionaro = FXCollections.observableArrayList(listaFuncionario);
+
+		tabelaFuncionario.setItems(observaFuncionaro);
+
+		logger.info("Lista de funcionario adicionada a tableview");
+	}
+
+	// metodo obter um lista clientes com o like
+	private void listaFuncionariosComLike() {
+
+		/*
+		 * adicionado coluna do banco a coluna da tabela o nome da coluna do banco é o
+		 * mesmo da classe entidade
+		 */
+		colunaCodigo.setCellValueFactory(new PropertyValueFactory<Funcionarios, Long>("codigo"));
+
+		colunaNome.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("nome"));
+
+		colunaRG.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("rg"));
+
+		colunaCPF.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cpf"));
+
+		colunaEmail.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("email"));
+
+		colunaTelefone.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("telefone"));
+
+		colunaCelular.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("celular"));
+
+		colunaCEP.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cep"));
+
+		colunaEndereco.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("endereco"));
+
+		colunaNumero.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("numero"));
+
+		colunaComple.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("complemento"));
+
+		colunaBairro.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("bairro"));
+
+		colunaCidade.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("cidade"));
+
+		colunaUF.setCellValueFactory(new PropertyValueFactory<Funcionarios, String>("estado"));
+
+		logger.info("Todos os Atributo de funcionario forão adicionado na tablela de consulta");
+
+		// crinado a Classe dao do tipo Clinetes
+		DAO<Funcionarios> dao = new DAO<Funcionarios>(Funcionarios.class);
+
+		// crinado um lista do tipo Cliente com filtor e adicionando um listaclinte
+		List<Funcionarios> listaclinte = dao.obterTodosComLike("nome", "%" + campoNomeConsulta.getText() + "%");
+
+		// crinado um lista do tipo ObservableList que recebe uma lista de clientes
+		ObservableList<Funcionarios> observaClientes = FXCollections.observableArrayList(listaclinte);
+		// adicionado o ObservableList na tabela
+		tabelaFuncionario.setItems(observaClientes);
+		logger.info("Lista de funcionario com filtro adicionada a tableview");
+	}
+
+	// metodo que seleciona posição da UF no comboBox
+	// metodo para seleciona UF salva no banco
+	private void selecionaUF(String uf) {
+
+		// condição para seta posição
+		if (uf.equals("AC")) {
+			comboBoxUF.getSelectionModel().select(0);
+		} else if (uf.equals("AL")) {
+			comboBoxUF.getSelectionModel().select(1);
+		} else if (uf.equals("AM")) {
+			comboBoxUF.getSelectionModel().select(2);
+		} else if (uf.equals("AP")) {
+			comboBoxUF.getSelectionModel().select(3);
+		} else if (uf.equals("BA")) {
+			comboBoxUF.getSelectionModel().select(4);
+		} else if (uf.equals("CE")) {
+			comboBoxUF.getSelectionModel().select(5);
+		} else if (uf.equals("DF")) {
+			comboBoxUF.getSelectionModel().select(6);
+		} else if (uf.equals("ES")) {
+			comboBoxUF.getSelectionModel().select(7);
+		} else if (uf.equals("GO")) {
+			comboBoxUF.getSelectionModel().select(8);
+		} else if (uf.equals("MA")) {
+			comboBoxUF.getSelectionModel().select(9);
+		} else if (uf.equals("MG")) {
+			comboBoxUF.getSelectionModel().select(10);
+		} else if (uf.equals("MS")) {
+			comboBoxUF.getSelectionModel().select(11);
+		} else if (uf.equals("MT")) {
+			comboBoxUF.getSelectionModel().select(12);
+		} else if (uf.equals("PA")) {
+			comboBoxUF.getSelectionModel().select(13);
+		} else if (uf.equals("PB")) {
+			comboBoxUF.getSelectionModel().select(14);
+		} else if (uf.equals("PE")) {
+			comboBoxUF.getSelectionModel().select(15);
+		} else if (uf.equals("PI")) {
+			comboBoxUF.getSelectionModel().select(16);
+		} else if (uf.equals("PR")) {
+			comboBoxUF.getSelectionModel().select(17);
+		} else if (uf.equals("RJ")) {
+			comboBoxUF.getSelectionModel().select(18);
+		} else if (uf.equals("RN")) {
+			comboBoxUF.getSelectionModel().select(19);
+		} else if (uf.equals("RO")) {
+			comboBoxUF.getSelectionModel().select(20);
+		} else if (uf.equals("RR")) {
+			comboBoxUF.getSelectionModel().select(21);
+		} else if (uf.equals("RS")) {
+			comboBoxUF.getSelectionModel().select(22);
+		} else if (uf.equals("SC")) {
+			comboBoxUF.getSelectionModel().select(23);
+		} else if (uf.equals("SE")) {
+			comboBoxUF.getSelectionModel().select(24);
+		} else if (uf.equals("SP")) {
+			comboBoxUF.getSelectionModel().select(25);
+		} else if (uf.equals("TO")) {
+			comboBoxUF.getSelectionModel().select(12);
+		}
+	}
+
+	// metodo que limpa os campos
+
+	private void limpaCampo() {
 
 		// limpando todos os campos alterando para nulo
-		campoNome.setText(null);
-		campoRG.setText(null);
-		campoCPF.setText(null);
-		campoTelefone.setText(null);
-		campoCelular.setText(null);
-		campoCEP.setText(null);
-		campoEndereco.setText(null);
-		campoNumero.setText(null);
-		campoComplemeto.setText(null);
-		campoBairro.setText(null);
-		campoCidade.setText(null);
-		campoCodigo.setText(null);
-		campoEmail.setText(null);
-		campoCargo.setText(null);
-		campoSenha.setText(null);
+		campoNome.setText("");
+		campoRG.setText("");
+		campoCPF.setText("");
+		campoTelefone.setText("");
+		campoCelular.setText("");
+		campoCEP.setText("");
+		campoEndereco.setText("");
+		campoNumero.setText("");
+		campoComplemeto.setText("");
+		campoBairro.setText("");
+		campoCidade.setText("");
+		campoCodigo.setText("");
+		campoEmail.setText("");
+		campoCargo.setText("");
+		campoSenha.setText("");
 
 	}
 
-	// metodos que cria uma mascara no campodo assim que o String for digitado
+	// ===================== metodos que cria uma mascara no campo assim que
+	// digitado ==========================
+
+	// metodos que cria uma mascara no campo CEP
 	@FXML
-	void formataCampoCEP(KeyEvent event) {
+	private void formataCampoCEP(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -705,8 +769,9 @@ public class CadastroFuncionarios implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo CPF
 	@FXML
-	void formataCampoCPF(KeyEvent event) {
+	private void formataCampoCPF(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -719,8 +784,9 @@ public class CadastroFuncionarios implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo CELULAR
 	@FXML
-	void formataCampoCelular(KeyEvent event) {
+	private void formataCampoCelular(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -733,8 +799,9 @@ public class CadastroFuncionarios implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo RG
 	@FXML
-	void formataCampoRG(KeyEvent event) {
+	private void formataCampoRG(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -747,8 +814,9 @@ public class CadastroFuncionarios implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo TELEFONE
 	@FXML
-	void formataCampoTelefone(KeyEvent event) {
+	private void formataCampoTelefone(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -761,8 +829,9 @@ public class CadastroFuncionarios implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo CODIGO
 	@FXML
-	void formataCampoCodigo(KeyEvent event) {
+	private void formataCampoCodigo(KeyEvent event) {
 
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
@@ -775,8 +844,9 @@ public class CadastroFuncionarios implements Initializable {
 		tff.formatter();
 	}
 
+	// metodos que cria uma mascara no campo NUMERO
 	@FXML
-	void formataCampoNumero(KeyEvent event) {
+	private void formataCampoNumero(KeyEvent event) {
 		TextFieldFormatter tff = new TextFieldFormatter();
 		// crinado a mascara
 		tff.setMask("######");
@@ -788,37 +858,4 @@ public class CadastroFuncionarios implements Initializable {
 		tff.formatter();
 	}
 
-///*
-//	 * metodo que pega a linha selecionada da tabela view e mudar para a tab de
-//	 * dados pessoas assim que clica na linha da tableta view, mas não da para altera o tamanho da coluna 
-//	 * pq fica trocando de tela 
-//	 */
-//	@FXML
-//	void pegaDadosDaTabelaFuncionario(MouseEvent event) {
-//
-//		// chamndo a tab do index 0 da TabPane que é a area do dados pessoas
-//		tabelaPane.getSelectionModel().select(0);
-//		logger.info("Chamando a Tab de index (0)");
-//		// pegando todos os campos da tabela view da linha celecionada e passando pra a
-//		// tela de tab dados pessoas
-//		campoCodigo.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getCodigo().toString());
-//		campoNome.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getNome().toString());
-//		campoRG.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getRg().toString());
-//		campoCPF.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getCpf().toString());
-//		campoEmail.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getEmail().toString());
-//		campoTelefone.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getTelefone().toString());
-//		campoCelular.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getCelular().toString());
-//		campoCEP.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getCep().toString());
-//		campoEndereco.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getEndereco().toString());
-//		campoNumero.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getNumero().toString());
-//		campoComplemeto.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getComplemento().toString());
-//		campoBairro.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getBairro().toString());
-//		campoCidade.setText(tabelaFuncionario.getSelectionModel().getSelectedItem().getCidade().toString());
-//		comboBoxUF.setPromptText(tabelaFuncionario.getSelectionModel().getSelectedItem().getEstado().toString());
-//		/*
-//		 * listando cliente porque quando uso o metodo listaClientesComLike ele deixa a
-//		 * tabela com o filtro e o metodo listaClientes traz a tabela de volta ao normal
-//		 */
-//		listaFuncionarios();
-//	}
 }

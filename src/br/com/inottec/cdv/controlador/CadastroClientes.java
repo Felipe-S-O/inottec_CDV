@@ -121,9 +121,6 @@ public class CadastroClientes implements Initializable {
 	@FXML
 	private TableColumn<Clientes, String> colunaUF;
 
-	ObservableList<String> listaDeUF;
-
-
 	// criando um logger
 	private static Logger logger = Logger.getLogger(CadastroClientes.class);
 
@@ -138,8 +135,7 @@ public class CadastroClientes implements Initializable {
 		// chamndo metodo para executa
 		obterUF();
 		campoCodigo.setEditable(false);
-	}	// metodo que cria o comboBox
-
+	}
 
 	// metodo que altera um cliente
 	@FXML
@@ -452,7 +448,7 @@ public class CadastroClientes implements Initializable {
 		String opcoesUF = tabelaClientes.getSelectionModel().getSelectedItem().getEstado();
 
 		//chamando metodo que altera posição  do compobox UF
-		UF(opcoesUF);
+		selecionaUF(opcoesUF);
 
 		// listaClientes();
 		logger.info("Cliente adicionado com sucesso na tab dados pessoas");
@@ -468,7 +464,8 @@ public class CadastroClientes implements Initializable {
 		/*
 		 * adicionado lista opções de UF no atributo listaDeUF do Opções de Parcelas no
 		 * formato ObservableList pq o comboBox só aceita um ObservableList
-		 */listaDeUF = FXCollections.observableArrayList(opcoesUF);
+		 */
+		 ObservableList<String> listaDeUF = FXCollections.observableArrayList(opcoesUF);
 
 		// adicionando listaDeItemDeParcels no comboBox
 		comboBoxUF.setItems(listaDeUF);
@@ -483,7 +480,7 @@ public class CadastroClientes implements Initializable {
 	}
 	
 	//metodo para seleciona UF salva no banco 
-	private void UF(String uf) {
+	private void selecionaUF(String uf) {
 		
 		//condição para seta posição 
 		if(uf.equals("AC")) {

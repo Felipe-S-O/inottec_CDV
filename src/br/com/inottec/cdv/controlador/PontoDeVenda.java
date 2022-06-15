@@ -3,7 +3,7 @@ package br.com.inottec.cdv.controlador;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 
 import br.com.inottec.cdv.Main;
 import br.com.inottec.cdv.infra.DAO;
@@ -23,32 +23,14 @@ import javafx.scene.input.KeyEvent;
 
 public class PontoDeVenda {
 
-	private Produtos produto;
-
-	private List<Produtos> produtos = new ArrayList<>();
-
-	private DAO<Produtos> dao = new DAO<Produtos>(Produtos.class);
-
-//	// criando um logger
-//	private static Logger logger = Logger.getLogger(CadastroClientes.class);
-//
-//	// crinado uma mensagem de informação do tipo alerta
-//	private Alert alertInf = new Alert(Alert.AlertType.INFORMATION);
-
-	// crinado uma mensagem de erro do tipo alerta
-	private Alert alertErro = new Alert(Alert.AlertType.ERROR);
-
 	@FXML
-	private TextField campoBuscarProduto;
+	static TextField campoBuscarProduto;
 
 	@FXML
 	private TextField campoQuantidade;
 
 	@FXML
 	private TextField campoValorTotal;
-
-	@FXML
-	private TableView<Produtos> tabelaProduto;
 
 	@FXML
 	private TableColumn<Produtos, Long> colunaCodigo;
@@ -66,34 +48,59 @@ public class PontoDeVenda {
 	private TableColumn<Produtos, Double> colunaSubtotal;
 
 	@FXML
+	private TableView<Produtos> tabelaCarrinho;
+
+	Double totalApaga = (double) 0;
+
+	static public String codigo = "0";
+
+	@FXML
 	private Label textoData;
+
+	private List<Produtos> produtos = new ArrayList<>();
+
+	// criando um logger
+	private Logger logger = Logger.getLogger(PontoDeVenda.class);
+
+	// crinado uma mensagem de erro do tipo alerta
+	private Alert alertErro = new Alert(Alert.AlertType.ERROR);
 
 	@FXML
 	void botaoMenu(ActionEvent event) {
-
 		Main.trocaTela("menuPrincipal");
 	}
 
 	@FXML
+
 	void botaoPagamento(ActionEvent event) {
 
-		if(!produtos.equals(null)) {
-			Main.trocaTela("");
+	}
+
+	@FXML
+	void botaoPesquisar(ActionEvent event) {
+		Main.trocaTela("telaPesquisarProduto");
+
+//		campoBuscarProduto.setText("1");
+	}
+
+	@FXML
+	void burcar(KeyEvent event) {
+		// condição que faz a adiciona produto preciona enter
+		if (event.getCode() == KeyCode.ENTER) {
+
+			adicionarProduto();
 		}
 	}
-	
-    @FXML
-    void botaoPesquisar(ActionEvent event) {
-    	Main.trocaTela("telaPesquisarProduto");
-    }
 
 	@FXML
 	void buscarProduto(KeyEvent event) {
 
 		// condição que faz a adiciona produto preciona enter
 		if (event.getCode() == KeyCode.ENTER) {
-			
+
 			adicionarProduto();
+
+//			adicionarCarrinho();
 
 		} else if (event.getCode() == KeyCode.P) {
 
@@ -102,8 +109,47 @@ public class PontoDeVenda {
 
 	}
 
-	// metodo obter um lista clientes com o like
-	public void listaCarrinho() {
+	private void adicionarProduto() {
+		try {
+
+			if (!campoBuscarProduto.getText().equals("") || !campoBuscarProduto.getText().equals(null)) {
+
+				Long idProduto = Long.parseLong(campoBuscarProduto.getText());
+
+				Produtos produto;
+
+				DAO<Produtos> dao = new DAO<>(Produtos.class);
+
+				produto = dao.obterPorID(idProduto);
+
+				produto.setQtdEstoque(Integer.parseInt(campoQuantidade.getText()));
+
+				double subtotal = produto.getQtdEstoque() * produto.getPreco();
+
+				totalApaga = totalApaga + subtotal;
+
+				campoValorTotal.setText(totalApaga.toString());
+
+				produto.setSubtotal(subtotal);
+
+				produtos.add(produto);
+
+				adicionarCarrinho();
+
+			}
+		} catch (Exception e) {
+
+			// criando titulo do alerta
+			alertErro.setTitle("Erro");
+			// criando cabeçario do alerta
+			alertErro.setHeaderText("Codigo do produto !");
+			// chamando o alerta
+			alertErro.show();
+		}
+
+	}
+
+	public void adicionarCarrinho() {
 
 		/*
 		 * adicionado coluna do banco a coluna da tabela o nome da coluna do banco é o
@@ -122,39 +168,15 @@ public class PontoDeVenda {
 		// crinado um lista do tipo ObservableList que recebe uma lista de clientes
 		ObservableList<Produtos> observaCarrinho = FXCollections.observableArrayList(produtos);
 		// adicionado o ObservableList na tabela
-		tabelaProduto.setItems(observaCarrinho);
-		// logger.info("Lista de clientes com filtro adicionada a tableview");
+		tabelaCarrinho.setItems(observaCarrinho);
+		logger.info("Produto adicionado no carinho");
 	}
 
-	private void adicionarProduto() {
-		try {
+	// metodo adiciona codigo do produto
+	public void adicionarProDescricao(double sbt, Produtos pro) {
 
-			if (campoBuscarProduto.getText().equals("") || campoBuscarProduto.getText().equals(null)) {
-
-				Long idProduto = Long.parseLong(campoBuscarProduto.getText());
-
-				produto = dao.obterPorID(idProduto);
-				
-				produto.setQtdEstoque(Integer.parseInt(campoQuantidade.getText()));
-				
-			    double subtotal =  produto.getQtdEstoque() * produto.getPreco();
-				
-				produto.setSubtotal(subtotal);
-
-				produtos.add(produto);
-
-				listaCarrinho();
-			}
-		} catch (Exception e) {
-
-			// criando titulo do alerta
-			alertErro.setTitle("Erro");
-			// criando cabeçario do alerta
-			alertErro.setHeaderText("Codigo do produto !");
-			// chamando o alerta
-			alertErro.show();
-		}
-
+		produtos.add(pro);
+		adicionarCarrinho();
 	}
 
 }

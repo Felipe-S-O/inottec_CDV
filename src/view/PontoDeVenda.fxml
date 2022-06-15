@@ -53,7 +53,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TableView fx:id="tabelaProduto" layoutX="414.0" layoutY="78.0" prefHeight="406.0" prefWidth="651.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
+            <TableView fx:id="tabelaCarrinho" layoutX="414.0" layoutY="78.0" prefHeight="406.0" prefWidth="651.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
               <columns>
                 <TableColumn fx:id="colunaCodigo" prefWidth="93.33334350585938" text="Codigo" />
                 <TableColumn fx:id="colunaProduto" prefWidth="334.0" text="Produto" />
@@ -67,7 +67,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="campoQuantidade" alignment="CENTER" layoutX="939.0" layoutY="40.0" prefHeight="33.0" prefWidth="102.0" text="1" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+            <TextField fx:id="campoQuantidade" alignment="CENTER" layoutX="939.0" layoutY="40.0" onKeyPressed="#burcar" prefHeight="33.0" prefWidth="102.0" text="1" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
                <font>
                   <Font size="16.0" />
                </font>
@@ -102,9 +102,9 @@
                </children>
             </AnchorPane>
             <MeshView layoutX="294.0" layoutY="239.0" />
-            <Button layoutX="875.0" layoutY="37.0" mnemonicParsing="false" onAction="#botaoPesquisar" prefHeight="33.0" prefWidth="36.0" AnchorPane.bottomAnchor="511.0" AnchorPane.leftAnchor="875.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="37.0">
+            <Button layoutX="875.0" layoutY="40.0" mnemonicParsing="false" onAction="#botaoPesquisar" prefHeight="29.0" prefWidth="46.0" AnchorPane.bottomAnchor="511.0" AnchorPane.leftAnchor="875.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="40.0">
                <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@imagens/buscar.png" />
                      </image>

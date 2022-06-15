@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="1041.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.PesquisarProduto">
    <children>
@@ -17,13 +18,22 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView layoutX="81.0" layoutY="196.0" prefHeight="336.0" prefWidth="1041.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="tabelaProdutos" layoutX="81.0" layoutY="196.0" onMouseClicked="#carregaselecao" prefHeight="321.0" prefWidth="1041.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="colunaCodigo" prefWidth="97.0" text="Codigo" />
+            <TableColumn fx:id="colunaDescricao" prefWidth="504.0" text="Descrição" />
+            <TableColumn fx:id="colunaPreco" prefWidth="93.0" text="Preço" />
+            <TableColumn fx:id="colunaQtdEstoque" prefWidth="101.0" text="QtdEstoque" />
+            <TableColumn fx:id="colunaFornecedor" prefWidth="245.0" text="Fornecedor" />
         </columns>
       </TableView>
-      <TextField fx:id="campoPesquisar" layoutX="221.0" layoutY="128.0" prefHeight="24.0" prefWidth="343.0" />
-      <Button layoutX="639.0" layoutY="128.0" mnemonicParsing="false" onAction="#botaoPesquisar" text="Pesquisar" />
+      <Button layoutX="608.0" layoutY="160.0" mnemonicParsing="false" onAction="#botaoPesquisar" text="Pesquisar" />
+      <Button layoutX="916.0" layoutY="58.0" mnemonicParsing="false" onAction="#botaoVoltar" text="Voltar" />
+      <Button layoutX="783.0" layoutY="105.0" mnemonicParsing="false" onAction="#botaoAdicionar" text="Adicionar " />
+      <TextField fx:id="campoDescrição" layoutX="190.0" layoutY="104.0" prefHeight="24.0" prefWidth="375.0" />
+      <TextField fx:id="campoQuantidade" layoutX="624.0" layoutY="105.0" prefHeight="24.0" prefWidth="102.0" text="1" />
+      <Text layoutX="116.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição:" wrappingWidth="76.5" />
+      <Text layoutX="590.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qtd:" />
+      <TextField fx:id="campoPesquisar" layoutX="236.0" layoutY="161.0" onKeyPressed="#campoPesquisarProduto" prefHeight="24.0" prefWidth="352.0" />
    </children>
 </AnchorPane>

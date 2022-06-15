@@ -61,7 +61,7 @@ public class Main extends Application {
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaPDV = FXMLLoader.load(getClass().getResource("/view/PontoDeVenda.fxml"));
 		// criando um senario usando o arquivo fxml
-		cenaTelaPDV = new Scene(fxmlTelaPDV, 1041, 523);
+		cenaTelaPDV = new Scene(fxmlTelaPDV, 1066, 700);
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaHistoricoDeVendas = FXMLLoader.load(getClass().getResource("/view/HistoricoDeVendas.fxml"));

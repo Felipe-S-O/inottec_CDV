@@ -3,7 +3,9 @@ package br.com.inottec.cdv.controlador;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import org.apache.log4j.Logger;
+
 import br.com.inottec.cdv.Main;
 import br.com.inottec.cdv.infra.DAO;
 import br.com.inottec.cdv.mascaraText.TextFieldFormatter;

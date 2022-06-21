@@ -19,21 +19,27 @@
          </children></Pane>
       <Pane layoutX="49.0" layoutY="76.0" prefHeight="308.0" prefWidth="266.0" style="-fx-background-color: #dddddd;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0">
          <children>
-            <TextField fx:id="campoDinheiro" layoutX="137.0" layoutY="35.0" prefHeight="24.0" prefWidth="119.0" />
-            <TextField fx:id="campoCartao" layoutX="137.0" layoutY="69.0" prefHeight="24.0" prefWidth="119.0" />
-            <TextField fx:id="campoPix" layoutX="137.0" layoutY="110.0" prefHeight="24.0" prefWidth="119.0" />
-            <TextField fx:id="campoTroco" layoutX="137.0" layoutY="149.0" prefHeight="24.0" prefWidth="119.0" />
-            <TextField fx:id="campoFaltaPaga" layoutX="137.0" layoutY="183.0" prefHeight="24.0" prefWidth="119.0" />
-            <Text layoutX="14.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DINHERIO" />
+            <TextField fx:id="campoDinheiro" layoutX="137.0" layoutY="41.0" prefHeight="24.0" prefWidth="119.0" />
+            <TextField fx:id="campoCartao" layoutX="137.0" layoutY="77.0" prefHeight="24.0" prefWidth="119.0" />
+            <TextField fx:id="campoPix" layoutX="137.0" layoutY="114.0" prefHeight="24.0" prefWidth="119.0" />
+            <TextField fx:id="campoTroco" layoutX="137.0" layoutY="150.0" prefHeight="24.0" prefWidth="119.0" />
+            <TextField fx:id="campoFaltaPaga" layoutX="137.0" layoutY="184.0" prefHeight="24.0" prefWidth="119.0" />
+            <Text layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DINHERIO" />
             <Text layoutX="33.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total da Conta:" />
-            <Text layoutX="14.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARTÃO" />
+            <Text layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARTÃO" />
             <Button layoutX="44.0" layoutY="271.0" mnemonicParsing="false" onAction="#botaoFinalizarPagamento" text="FINALIZAR PAGAMENTO " />
-            <Text layoutX="14.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PIX" />
-            <Text fill="#018629" layoutX="14.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TROCO" />
-            <Text fill="RED" layoutX="14.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALTA PAGA" />
+            <Text layoutX="14.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PIX" />
+            <Text fill="#018629" layoutX="14.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TROCO" />
+            <Text fill="RED" layoutX="14.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALTA PAGA" />
             <Text layoutX="14.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VALOR PAGO:" />
-            <Text fx:id="TotalDaConta" fill="RED" layoutX="150.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor" />
-            <Text fx:id="ValorPago" fill="RED" layoutX="160.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor" />
+            <Text fx:id="TotalDaConta" fill="RED" layoutX="150.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor">
+               <font>
+                  <Font size="16.0" />
+               </font></Text>
+            <Text fx:id="ValorPago" fill="RED" layoutX="153.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor">
+               <font>
+                  <Font size="16.0" />
+               </font></Text>
          </children>
       </Pane>
    </children>

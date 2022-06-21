@@ -8,48 +8,33 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="1041.0" style="-fx-background-color: #ffffff;" stylesheets="@estilo/Estilo.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.CadastroClientes">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="1041.0" stylesheets="@estilo/Estilo.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.CadastroClientes">
    <children>
-      <ImageView fitHeight="241.0" fitWidth="213.0" layoutX="863.0" layoutY="272.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="862.49462890625" AnchorPane.rightAnchor="-33.9892578125" AnchorPane.topAnchor="272.0">
-         <image>
-            <Image url="@imagens/logo.png" />
-         </image>
-      </ImageView>
-      <TabPane fx:id="tabelaPane" layoutX="13.0" layoutY="88.0" prefHeight="437.0" prefWidth="1041.0" rotateGraphic="true" stylesheets="@estilo/Estilo.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="88.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="95.0" layoutY="64.0" stroke="#07a0fa" strokeType="INSIDE" width="1041.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="31.0" layoutY="24.0" prefHeight="37.0" prefWidth="258.0" text="Cadastro de Clientes" textFill="WHITE" AnchorPane.bottomAnchor="408.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="24.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TabPane fx:id="tabelaPane" layoutX="13.0" layoutY="88.0" prefHeight="437.0" prefWidth="1041.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="88.0">
         <tabs>
           <Tab text="Dados Pessoas">
             <content>
               <AnchorPane accessibleHelp="jdrtjydt" accessibleRoleDescription="ryjdryu" accessibleText="jdjdty" minHeight="0.0" minWidth="0.0" prefHeight="364.0" prefWidth="1041.0">
                      <children>
-                        <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="521.0" layoutY="325.0" mnemonicParsing="false" onAction="#botaoEditar" prefHeight="60.0" prefWidth="78.0" text="EDITAR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="521.0" AnchorPane.rightAnchor="442.0">
+                        <Button mnemonicParsing="false" onAction="#botaoEditar" text="EDITAR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="522.0" AnchorPane.rightAnchor="447.0">
                            <font>
                               <Font size="14.0" />
                            </font>
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@imagens/editar.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                         </Button>
-                        <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="427.0" layoutY="325.0" mnemonicParsing="false" onAction="#botaoSalvar" prefHeight="60.0" prefWidth="78.0" text="SALVAR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="427.0" AnchorPane.rightAnchor="536.0">
+                        <Button mnemonicParsing="false" onAction="#botaoSalvar" text="SALVAR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="535.0">
                            <font>
                               <Font size="14.0" />
                            </font>
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@imagens/salvar.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                         </Button>
                         <Label layoutX="24.0" layoutY="49.0" text="Código:" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="49.0">
                            <font>
@@ -121,66 +106,33 @@
                         <TextField fx:id="campoRG" layoutX="90.0" layoutY="253.0" onKeyReleased="#formataCampoRG" prefHeight="26.0" prefWidth="160.0" AnchorPane.leftAnchor="90.0" />
                         <TextField fx:id="campoCPF" layoutX="312.0" layoutY="257.0" onKeyReleased="#formataCampoCPF" prefHeight="26.0" prefWidth="168.0" />
                         <ComboBox fx:id="comboBoxUF" layoutX="880.0" layoutY="204.0" prefHeight="26.0" prefWidth="87.0" />
-                        <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="346.0" mnemonicParsing="false" onAction="#botaoNovo" prefHeight="60.0" prefWidth="66.0" text="NOVO" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="334.0" AnchorPane.rightAnchor="629.0">
+                        <Button mnemonicParsing="false" onAction="#botaoNovo" text="NOVO" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="351.0" AnchorPane.rightAnchor="627.0">
                            <font>
                               <Font size="14.0" />
                            </font>
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@imagens/novo.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                         </Button>
-                        <Button alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="616.0" layoutY="325.0" mnemonicParsing="false" onAction="#botaoExcluir" prefHeight="60.0" prefWidth="84.0" text="EXCLUIR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="616.0" AnchorPane.rightAnchor="341.0">
+                        <Button mnemonicParsing="false" onAction="#botaoExcluir" text="EXCLUIR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="610.0" AnchorPane.rightAnchor="350.0">
                            <font>
                               <Font size="14.0" />
                            </font>
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@imagens/excluir.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                         </Button>
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab text="Consulta de Clientes">
+          <Tab styleClass="background" text="Consulta de Clientes">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="84.0" layoutY="47.0" text="Nome:" AnchorPane.topAnchor="47.0">
+                        <Label layoutX="28.0" layoutY="47.0" text="Nome:" AnchorPane.topAnchor="47.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="campoNomeConsulta" layoutX="139.0" layoutY="45.0" onKeyPressed="#campoNomePesquisar" prefHeight="26.0" prefWidth="367.0" AnchorPane.leftAnchor="139.0" AnchorPane.topAnchor="45.0" />
-                        <Button alignment="CENTER" layoutX="731.0" layoutY="39.0" mnemonicParsing="false" onAction="#carregarSelecao" text="Carregar Seleção" AnchorPane.topAnchor="39.0">
+                        <TextField fx:id="campoNomeConsulta" layoutX="90.0" layoutY="45.0" onKeyPressed="#campoNomePesquisar" prefHeight="26.0" prefWidth="367.0" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="45.0" />
+                        <Button layoutX="725.0" layoutY="45.0" mnemonicParsing="false" onAction="#carregarSelecao" text="Carregar Seleção" AnchorPane.topAnchor="45.0">
                            <font>
                               <Font size="14.0" />
                            </font>
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@imagens/cached.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button alignment="CENTER" layoutX="539.0" layoutY="39.0" mnemonicParsing="false" onAction="#botaoLista" text="Lista Todos">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@imagens/buscar.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                         </Button>
                         <TableView fx:id="tabelaClientes" layoutX="33.0" layoutY="92.0" prefHeight="309.0" prefWidth="1041.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
                           <columns>
@@ -200,27 +152,16 @@
                               <TableColumn fx:id="colunaUF" prefWidth="30.0" text="UF" />
                           </columns>
                         </TableView>
+                        <Button layoutX="543.0" layoutY="44.0" mnemonicParsing="false" onAction="#botaoLista" text="Lista Todos">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
                      </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="95.0" layoutY="64.0" stroke="#07a0fa" strokeType="INSIDE" width="1041.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="38.0" layoutY="26.0" prefHeight="54.0" prefWidth="535.0" text="Cadastro de Clientes" textFill="WHITE" AnchorPane.bottomAnchor="443.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="468.0" AnchorPane.topAnchor="26.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Button alignment="CENTER" layoutX="862.0" layoutY="42.0" mnemonicParsing="false" onAction="#botaoMenu" prefHeight="34.0" prefWidth="92.0" text="MENU" AnchorPane.bottomAnchor="447.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="42.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@imagens/home.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
+      <Button layoutX="883.0" layoutY="31.0" mnemonicParsing="false" onAction="#botaoMenu" text="Menu" />
    </children>
 </AnchorPane>

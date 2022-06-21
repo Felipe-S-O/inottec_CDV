@@ -63,38 +63,50 @@ public class PesquisarProduto {
 
 	@FXML
 	void botaoAdicionar(ActionEvent event) {
-		try {
-
-			if (!campoDescrição.equals("") || !campoDescrição.equals(null)) {
-
-				Produtos produto;
-
-				DAO<Produtos> dao = new DAO<>(Produtos.class);
-
-				produto = dao.obterPorID(codigo);
-
-				produto.setQtdEstoque(Integer.parseInt(campoQuantidade.getText()));
-
-				double subtotal = produto.getQtdEstoque() * produto.getPreco();
-
-				produto.setSubtotal(subtotal);
-
-				pdv.adicionarProDescricao(subtotal, produto);
-
-				Main.trocaTela("telaPDV");
-				
-				logger.info("Produto adicionado com sucesso na tab dados produto");
-
-			}
-		} catch (Exception e) {
-
-			// criando titulo do alerta
-			alertErro.setTitle("Erro");
-			// criando cabeçario do alerta
-			alertErro.setHeaderText("Codigo do produto !");
-			// chamando o alerta
-			alertErro.show();
-		}
+		
+		PontoDeVenda pdv = new PontoDeVenda();
+		
+		pdv.campoQuantidade.setText("7");
+//		try {
+//			
+//			if (!campoDescrição.getText().equals("") || !campoDescrição.getText().equals(null)) {
+//
+////				Long idProduto = Long.parseLong(campoBuscarProduto.getText());
+//
+//				Produtos produto;
+//
+//				DAO<Produtos> dao = new DAO<>(Produtos.class);
+//
+//				produto = dao.obterPorID(codigo);
+//
+//				produto.setQtdEstoque(Integer.parseInt(campoQuantidade.getText()));
+//
+//				double subtotal = produto.getQtdEstoque() * produto.getPreco();
+//
+//				totalApaga = totalApaga + subtotal;
+//
+//				produto.setSubtotal(subtotal);
+//	
+//				pdv.campoQuantidade.setText("2");
+//				
+//				System.out.println(produto);
+////				
+////				pdv.trocaCampo(produto);
+//
+//				
+//
+//			}
+//
+//			
+//		} catch (Exception e) {
+//
+//			// criando titulo do alerta
+//			alertErro.setTitle("Erro");
+//			// criando cabeçario do alerta
+//			alertErro.setHeaderText("Codigo do produto !");
+//			// chamando o alerta
+//			alertErro.show();
+//		}
 
 
 	}

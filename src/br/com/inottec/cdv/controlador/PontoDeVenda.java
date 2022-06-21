@@ -24,13 +24,30 @@ import javafx.scene.input.KeyEvent;
 public class PontoDeVenda {
 
 	@FXML
-	static TextField campoBuscarProduto;
+	private TextField campoBuscarProduto;
 
 	@FXML
-	private TextField campoQuantidade;
+	public TextField campoQuantidade;
 
 	@FXML
 	private TextField campoValorTotal;
+	
+    @FXML
+    private Label textCPF;
+
+    @FXML
+    private Label textCliente;
+
+    @FXML
+    private Label textOperador;
+
+    @FXML
+    private Label textoData;
+    
+    @FXML
+    void botãoIdentificar(ActionEvent event) {
+
+    }    
 
 	@FXML
 	private TableColumn<Produtos, Long> colunaCodigo;
@@ -52,12 +69,10 @@ public class PontoDeVenda {
 
 	Double totalApaga = (double) 0;
 
-	static public String codigo = "0";
+//	static public String codigo = "0";
 
-	@FXML
-	private Label textoData;
 
-	private List<Produtos> produtos = new ArrayList<>();
+	static List<Produtos> produtos = new ArrayList<>();
 
 	// criando um logger
 	private Logger logger = Logger.getLogger(PontoDeVenda.class);
@@ -89,6 +104,8 @@ public class PontoDeVenda {
 		if (event.getCode() == KeyCode.ENTER) {
 
 			adicionarProduto();
+
+			campoBuscarProduto.setText("");
 		}
 	}
 
@@ -100,7 +117,7 @@ public class PontoDeVenda {
 
 			adicionarProduto();
 
-//			adicionarCarrinho();
+			campoBuscarProduto.setText("");
 
 		} else if (event.getCode() == KeyCode.P) {
 
@@ -128,11 +145,9 @@ public class PontoDeVenda {
 
 				totalApaga = totalApaga + subtotal;
 
-				campoValorTotal.setText(totalApaga.toString());
-
 				produto.setSubtotal(subtotal);
 
-				produtos.add(produto);
+				trocaCampo(produto);
 
 				adicionarCarrinho();
 
@@ -172,11 +187,25 @@ public class PontoDeVenda {
 		logger.info("Produto adicionado no carinho");
 	}
 
-	// metodo adiciona codigo do produto
-	public void adicionarProDescricao(double sbt, Produtos pro) {
+	public void trocaCampo(Produtos produto) {
 
-		produtos.add(pro);
-		adicionarCarrinho();
+		produtos.add(produto);
+
+		campoValorTotal.setText(totalApaga.toString());
 	}
+
+	public void teste() {
+		int teste = 1 + 1;
+	
+		
+		System.out.println(teste);
+	}
+
+//	// metodo adiciona codigo do produto
+//	public void adicionarProDescricao(double sbt, Produtos pro) {
+//
+//		produtos.add(pro);
+//		adicionarCarrinho();
+//	}
 
 }

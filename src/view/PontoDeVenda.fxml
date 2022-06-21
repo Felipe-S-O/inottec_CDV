@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -26,17 +27,17 @@
             </Label>
             <MenuBar prefHeight="29.0" prefWidth="1041.0" style="-fx-background-color: #1e90ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" text="Menu">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#botaoMenu" text="Menu" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu mnemonicParsing="false" text="Configuração">
                   <items>
                     <MenuItem mnemonicParsing="false" text="Delete" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu mnemonicParsing="false" text="Arquivo">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />
                   </items>
@@ -47,19 +48,20 @@
       </AnchorPane>
       <AnchorPane layoutX="-15.0" layoutY="95.0" prefHeight="602.0" prefWidth="1073.0" style="-fx-background-color: #4c4f51;" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="87.0">
          <children>
-            <Polyline fill="#ffba1c" layoutX="243.0" layoutY="422.0" points="-243.0, -159.0, 157.0, 64.0, 156.0, 158.0, -243.0, 158.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="666.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="68.0" layoutY="403.0" text="VERSÃO: 0.1">
+            <Polyline fill="#ffba1c" layoutX="243.0" layoutY="422.0" points="-243.0, -93.0, 157.0, 64.0, 156.0, 158.0, -243.0, 158.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="666.0" AnchorPane.topAnchor="329.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="431.0" prefHeight="19.0" prefWidth="122.0" text="OPERADOR(a):" textFill="#fffdfd" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="925.0" AnchorPane.topAnchor="431.0">
                <font>
-                  <Font size="15.0" />
+                  <Font name="DejaVu Sans Condensed Bold" size="15.0" />
                </font>
             </Label>
             <TableView fx:id="tabelaCarrinho" layoutX="414.0" layoutY="78.0" prefHeight="406.0" prefWidth="651.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
               <columns>
-                <TableColumn fx:id="colunaCodigo" prefWidth="93.33334350585938" text="Codigo" />
-                <TableColumn fx:id="colunaProduto" prefWidth="334.0" text="Produto" />
-                  <TableColumn fx:id="colunaQtd" prefWidth="64.0" text="Qtd" />
-                  <TableColumn fx:id="colunaPreco" prefWidth="69.0" text="Preço" />
-                  <TableColumn fx:id="colunaSubtotal" prefWidth="89.0" text="Subtotal" />
+                  <TableColumn prefWidth="59.0" text="Excluir" />
+                <TableColumn fx:id="colunaCodigo" prefWidth="65.0" text="Codigo" />
+                <TableColumn fx:id="colunaProduto" prefWidth="348.9999694824219" text="Produto" />
+                  <TableColumn fx:id="colunaQtd" prefWidth="37.0" text="Qtd" />
+                  <TableColumn fx:id="colunaPreco" prefWidth="66.0" text="Preço" />
+                  <TableColumn fx:id="colunaSubtotal" prefWidth="79.0" text="Subtotal" />
               </columns>
             </TableView>
             <TextField fx:id="campoBuscarProduto" layoutX="405.0" layoutY="40.0" onKeyPressed="#buscarProduto" prefHeight="33.0" prefWidth="462.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="199.0" AnchorPane.topAnchor="40.0">
@@ -111,11 +113,45 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ImageView fitHeight="171.0" fitWidth="286.0" layoutX="54.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="203.0" fitWidth="336.0" layoutX="35.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imagens/logo-inottec-azul-me.png" />
                </image>
             </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="535.0" text="CPF:" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="1003.0" AnchorPane.topAnchor="535.0">
+               <font>
+                  <Font name="DejaVu Sans Condensed Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="509.0" text="CLIENTE: " textFill="WHITE" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="966.0" AnchorPane.topAnchor="509.0">
+               <font>
+                  <Font name="DejaVu Sans Condensed Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="textCliente" alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="510.0" prefHeight="19.0" prefWidth="165.0" text="Não indentificado" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="806.0" AnchorPane.topAnchor="510.0">
+               <font>
+                  <Font name="DejaVu Sans Mono Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="textCPF" alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="537.0" text="##.###.###-##" textFill="WHITE" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="858.0" AnchorPane.topAnchor="537.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="textOperador" alignment="CENTER" contentDisplay="CENTER" layoutX="142.0" layoutY="433.0" text="FELIPE" textFill="WHITE" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="869.0" AnchorPane.topAnchor="433.0">
+               <font>
+                  <Font name="DejaVu Sans Mono Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="281.0" layoutY="512.0" mnemonicParsing="false" onAction="#botãoIdentificar" prefHeight="39.0" prefWidth="101.0" text="INDENTIFICAR" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="684.0" AnchorPane.topAnchor="512.0">
+               <font>
+                  <Font size="12.0" />
+               </font>
+               <rotationAxis>
+                  <Point3D y="1.0" z="1.0" />
+               </rotationAxis>
+            </Button>
+            <Polyline fill="WHITE" layoutX="245.0" layoutY="329.0" points="-248.0, 144.33331298828125, 156.0, 158.0, 156.0, 158.0, -248.0, 151.0" stroke="TRANSPARENT" strokeDashOffset="1.0" strokeMiterLimit="1.0" strokeType="INSIDE" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="662.0" AnchorPane.topAnchor="473.33331298828125" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-60.0" layoutY="672.0" prefHeight="29.0" prefWidth="1041.0" style="-fx-background-color: #1e90ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -125,17 +161,12 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="425.0" layoutY="5.0" text="VERSÃO: 0.1" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="5.0" text="VERSÃO: 0.1" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="5.0" text="inottec suporte : (83) 99371-2374" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="50.0">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="634.0" layoutY="5.0" text="DELETE Remover item" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="397.0" layoutY="5.0" text="inottec suporte : (83) 99371-2374" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="397.0">
                <font>
                   <Font size="15.0" />
                </font>

@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 
 	private static Stage janela;
-	private static Scene cenaTelaLogin;
+	private static Scene cenaTelaLogin;	
 	private static Scene cenaTelaProduto;
 	private static Scene cenaTelaClientes;
 	private static Scene cenaTelaFuncionario;
@@ -43,7 +43,7 @@ public class Main extends Application {
 		
 
 		// pega o arquivo fxml e converte para gridpane
-		Parent fxmlTelaClientes = FXMLLoader.load(getClass().getResource("/view/CadastroClientes.fxml"));
+    	Parent fxmlTelaClientes = FXMLLoader.load(getClass().getResource("/view/CadastroClientes.fxml"));
 		// criando um senario usando o arquivo fxml
 		cenaTelaClientes = new Scene(fxmlTelaClientes, 1041, 523);
 		

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="2024.0" prefWidth="2280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.MenuPrincipal">
+<AnchorPane prefHeight="538.0" prefWidth="968.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.MenuPrincipal">
    <children>
       <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -172,7 +172,6 @@
             </Menu>
         </menus>
       </MenuBar>
-      <Pane layoutX="90.0" layoutY="116.0" prefHeight="200.0" prefWidth="845.0" styleClass="fundo_menu" stylesheets="@Estilo/Estilo.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0" />
       <Pane layoutX="317.0" layoutY="353.0" prefHeight="44.0" prefWidth="999.0" style="-fx-background-color: #245a8d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="116.0" layoutY="14.0" text="felipe silva" textFill="WHITE">
@@ -186,5 +185,6 @@
                </font>
             </Label>
          </children></Pane>
+      <Pane layoutX="198.0" layoutY="65.0" prefHeight="429.0" prefWidth="968.0" styleClass="fundo_menu" stylesheets="@estilo/Estilo.css" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
    </children>
 </AnchorPane>

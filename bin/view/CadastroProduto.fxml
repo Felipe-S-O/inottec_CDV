@@ -28,7 +28,7 @@
             <content>
               <AnchorPane accessibleHelp="jdrtjydt" accessibleRoleDescription="ryjdryu" accessibleText="jdjdty" minHeight="0.0" minWidth="0.0" prefHeight="364.0" prefWidth="1041.0">
                      <children>
-                        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#botaoEditar" text="EDITAR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="522.0" AnchorPane.rightAnchor="447.0">
+                        <Button contentDisplay="TOP" layoutX="520.0" layoutY="307.0" mnemonicParsing="false" onAction="#botaoEditar" prefHeight="58.0" prefWidth="81.0" text="EDITAR" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="440.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -40,7 +40,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#botaoSalvar" text="SALVAR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="535.0">
+                        <Button contentDisplay="TOP" layoutX="416.0" layoutY="307.0" mnemonicParsing="false" onAction="#botaoSalvar" prefHeight="58.0" prefWidth="81.0" text="SALVAR" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="416.0" AnchorPane.rightAnchor="544.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -77,7 +77,7 @@
                         <TextField fx:id="campoDescricao" layoutX="113.0" layoutY="97.0" prefHeight="26.0" prefWidth="364.0" AnchorPane.leftAnchor="113.0" />
                         <TextField fx:id="campoQtdEstoque" layoutX="335.0" layoutY="142.0" onKeyReleased="#formataCampoQtdEstoque" prefHeight="26.0" prefWidth="142.0" />
                         <ComboBox fx:id="comboBoxFornecedor" layoutX="122.0" layoutY="196.0" prefHeight="26.0" prefWidth="356.0" />
-                        <Button contentDisplay="TOP" layoutX="344.0" mnemonicParsing="false" onAction="#botaoNovo" prefHeight="58.0" prefWidth="70.0" text="NOVO" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="344.0" AnchorPane.rightAnchor="627.0">
+                        <Button contentDisplay="TOP" layoutX="313.0" layoutY="307.0" mnemonicParsing="false" onAction="#botaoNovo" prefHeight="58.0" prefWidth="81.0" text="NOVO" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="313.0" AnchorPane.rightAnchor="647.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -89,7 +89,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#botaoExcluir" text="EXCLUIR" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="610.0" AnchorPane.rightAnchor="350.0">
+                        <Button contentDisplay="TOP" layoutX="622.0" layoutY="307.0" mnemonicParsing="false" onAction="#botaoExcluir" text="EXCLUIR" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="622.0" AnchorPane.rightAnchor="338.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -113,20 +113,20 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="93.0" layoutY="47.0" text="Descrição:" AnchorPane.topAnchor="47.0">
+                        <Label layoutX="104.0" layoutY="42.0" text="Descrição:" AnchorPane.topAnchor="42.0">
                            <font>
-                              <Font size="14.0" />
+                              <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="campoDescricaoConsulta" layoutX="173.0" layoutY="45.0" onKeyPressed="#campoDescricaoPesquisar" prefHeight="26.0" prefWidth="367.0" AnchorPane.leftAnchor="173.0" AnchorPane.topAnchor="45.0" />
-                        <Button layoutX="730.0" layoutY="38.0" mnemonicParsing="false" onAction="#carregarSelecao" text="Carregar Seleção" AnchorPane.topAnchor="38.0">
+                        <TextField fx:id="campoDescricaoConsulta" layoutX="195.0" layoutY="36.0" onKeyPressed="#campoDescricaoPesquisar" prefHeight="36.0" prefWidth="367.0" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="36.0" />
+                        <Button layoutX="744.0" layoutY="33.0" mnemonicParsing="false" onAction="#carregarSelecao" prefHeight="42.0" text="Carregar Seleção" AnchorPane.topAnchor="33.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@imagens/carregando.png" />
+                                    <Image url="@imagens/cached.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -140,14 +140,14 @@
                               <TableColumn fx:id="colunaFornecedor" prefWidth="140.0" text="Fornecedor" />
                           </columns>
                         </TableView>
-                        <Button layoutX="564.0" layoutY="38.0" mnemonicParsing="false" onAction="#botaoLista" text="Lista Todos">
+                        <Button layoutX="586.0" layoutY="33.0" mnemonicParsing="false" onAction="#botaoLista" prefHeight="42.0" text="Lista Todos">
                            <font>
                               <Font size="14.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@imagens/buscar.png" />
+                                    <Image url="@imagens/lupa.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -157,11 +157,11 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="866.0" layoutY="42.0" mnemonicParsing="false" onAction="#botaoMenu" text="MENU">
+      <Button layoutX="866.0" layoutY="42.0" mnemonicParsing="false" onAction="#botaoMenu" prefHeight="36.0" prefWidth="92.0" text="MENU">
          <graphic>
-            <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@imagens/menu.png" />
+                  <Image url="@imagens/home.png" />
                </image>
             </ImageView>
          </graphic>

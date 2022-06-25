@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -13,12 +15,12 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="1041.0" stylesheets="@estilo/Estilo.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.PesquisarProduto">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="95.0" layoutY="64.0" stroke="#07a0fa" strokeType="INSIDE" width="1041.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="31.0" layoutY="24.0" prefHeight="37.0" prefWidth="258.0" text="Pesquisar Produto" textFill="WHITE" AnchorPane.bottomAnchor="408.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="24.0">
+      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="31.0" layoutY="24.0" prefHeight="68.0" prefWidth="535.0" text="Pesquisar Produto" textFill="WHITE" AnchorPane.bottomAnchor="431.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="24.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="tabelaProdutos" layoutX="81.0" layoutY="196.0" onMouseClicked="#carregaselecao" prefHeight="321.0" prefWidth="1041.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="tabelaProdutos" layoutX="81.0" layoutY="196.0" onMouseClicked="#carregaselecao" prefHeight="338.0" prefWidth="1041.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
           <TableColumn fx:id="colunaCodigo" prefWidth="97.0" text="Codigo" />
             <TableColumn fx:id="colunaDescricao" prefWidth="504.0" text="Descrição" />
@@ -27,13 +29,47 @@
             <TableColumn fx:id="colunaFornecedor" prefWidth="245.0" text="Fornecedor" />
         </columns>
       </TableView>
-      <Button layoutX="639.0" layoutY="104.0" mnemonicParsing="false" onAction="#botaoPesquisar" text="Pesquisar" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="639.0" AnchorPane.rightAnchor="321.0" AnchorPane.topAnchor="104.0" />
-      <Button layoutX="916.0" layoutY="58.0" mnemonicParsing="false" onAction="#botaoVoltar" text="Voltar" AnchorPane.bottomAnchor="441.0" AnchorPane.leftAnchor="916.0" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="58.0" />
-      <Button layoutX="783.0" layoutY="158.0" mnemonicParsing="false" onAction="#botaoAdicionar" text="Adicionar " AnchorPane.bottomAnchor="341.0" AnchorPane.leftAnchor="783.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="158.0" />
-      <TextField fx:id="campoDescrição" layoutX="190.0" layoutY="157.0" prefHeight="24.0" prefWidth="375.0" AnchorPane.bottomAnchor="342.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="476.0" AnchorPane.topAnchor="157.0" />
-      <TextField fx:id="campoQuantidade" layoutX="624.0" layoutY="158.0" prefHeight="24.0" prefWidth="102.0" text="1" AnchorPane.bottomAnchor="341.0" AnchorPane.leftAnchor="624.0" AnchorPane.rightAnchor="315.0" AnchorPane.topAnchor="158.0" />
-      <Text layoutX="116.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição:" wrappingWidth="76.5" AnchorPane.bottomAnchor="348.0" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="848.5" AnchorPane.topAnchor="159.0" />
-      <Text layoutX="590.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qtd:" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="590.0" AnchorPane.rightAnchor="423.03857421875" AnchorPane.topAnchor="160.0" />
-      <TextField fx:id="campoPesquisar" layoutX="244.0" layoutY="104.0" onKeyPressed="#campoPesquisarProduto" prefHeight="24.0" prefWidth="375.0" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="244.0" AnchorPane.rightAnchor="422.0" AnchorPane.topAnchor="104.0" />
+      <Button layoutX="619.0" layoutY="115.0" mnemonicParsing="false" onAction="#botaoPesquisar" prefHeight="41.0" prefWidth="122.0" text="Pesquisar" AnchorPane.bottomAnchor="367.0" AnchorPane.leftAnchor="619.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="115.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/lupa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="853.0" layoutY="34.0" mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="41.0" prefWidth="93.0" text="Voltar" AnchorPane.bottomAnchor="448.0" AnchorPane.leftAnchor="853.0" AnchorPane.rightAnchor="95.0" AnchorPane.topAnchor="34.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/voltar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="771.0" layoutY="115.0" mnemonicParsing="false" onAction="#botaoAdicionar" prefHeight="41.0" prefWidth="122.0" text="Adicionar " AnchorPane.bottomAnchor="367.0" AnchorPane.leftAnchor="771.0" AnchorPane.rightAnchor="148.0" AnchorPane.topAnchor="115.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/carrinho.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <TextField fx:id="campoPesquisar" layoutX="225.0" layoutY="120.0" onKeyPressed="#campoPesquisarProduto" prefHeight="30.0" prefWidth="370.0" AnchorPane.bottomAnchor="373.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="446.0" AnchorPane.topAnchor="120.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Text layoutX="141.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição:" wrappingWidth="76.5">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

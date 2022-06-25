@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -29,7 +28,23 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Menu">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#botaoMenu" text="Menu" />
+                    <MenuItem mnemonicParsing="false" onAction="#botaoMenu" text="MENU">
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imagens/home.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#botaoIdentificar" text="IDENTIFICAR">
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imagens/idetificar.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Configuração">
@@ -54,57 +69,64 @@
                   <Font name="DejaVu Sans Condensed Bold" size="15.0" />
                </font>
             </Label>
-            <TableView fx:id="tabelaCarrinho" layoutX="414.0" layoutY="78.0" prefHeight="406.0" prefWidth="651.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
+            <TableView fx:id="tabelaCarrinho" layoutX="414.0" layoutY="78.0" prefHeight="406.0" prefWidth="651.0" stylesheets="@estilo/Estilo.css" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
               <columns>
                   <TableColumn prefWidth="59.0" text="Excluir" />
                 <TableColumn fx:id="colunaCodigo" prefWidth="65.0" text="Codigo" />
-                <TableColumn fx:id="colunaProduto" prefWidth="348.9999694824219" text="Produto" />
-                  <TableColumn fx:id="colunaQtd" prefWidth="37.0" text="Qtd" />
-                  <TableColumn fx:id="colunaPreco" prefWidth="66.0" text="Preço" />
-                  <TableColumn fx:id="colunaSubtotal" prefWidth="79.0" text="Subtotal" />
+                <TableColumn fx:id="colunaProduto" prefWidth="367.0" text="Produto" />
+                  <TableColumn fx:id="colunaQtd" prefWidth="36.0" text="Qtd" />
+                  <TableColumn fx:id="colunaPreco" prefWidth="59.0" text="Preço" />
+                  <TableColumn fx:id="colunaSubtotal" prefWidth="69.0" text="Subtotal" />
               </columns>
             </TableView>
-            <TextField fx:id="campoBuscarProduto" layoutX="405.0" layoutY="40.0" onKeyPressed="#buscarProduto" prefHeight="33.0" prefWidth="462.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="199.0" AnchorPane.topAnchor="40.0">
+            <TextField fx:id="campoProduto" layoutX="500.0" layoutY="40.0" prefHeight="33.0" prefWidth="404.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="162.0" AnchorPane.topAnchor="40.0">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="campoQuantidade" alignment="CENTER" layoutX="939.0" layoutY="40.0" onKeyPressed="#burcar" prefHeight="33.0" prefWidth="102.0" text="1" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+            <TextField fx:id="campoQuantidade" alignment="CENTER" layoutX="939.0" layoutY="40.0" onKeyPressed="#burcar" prefHeight="33.0" prefWidth="73.0" text="1" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <Label layoutX="401.0" layoutY="15.0" prefHeight="24.0" prefWidth="477.0" text=" CÓDIGO DO PRUDUTO " textFill="WHITE" AnchorPane.leftAnchor="401.0" AnchorPane.rightAnchor="188.0" AnchorPane.topAnchor="15.0">
+            <Label layoutX="401.0" layoutY="15.0" prefHeight="24.0" prefWidth="96.0" text=" CÓDIGO " textFill="WHITE" AnchorPane.leftAnchor="401.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="15.0">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="955.0" layoutY="15.0" prefHeight="24.0" prefWidth="48.0" text="Qtd" textFill="WHITE" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="15.0">
+            <Label layoutX="984.0" layoutY="15.0" prefHeight="24.0" prefWidth="48.0" text="Qtd" textFill="WHITE" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="15.0">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
             <AnchorPane layoutX="405.0" layoutY="487.0" prefHeight="93.0" prefWidth="581.0" style="-fx-background-color: #106292;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="10.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="29.0" text="TOTAL: R$" textFill="WHITE" AnchorPane.leftAnchor="26.0">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="29.0" text="TOTAL: R$" textFill="WHITE" AnchorPane.leftAnchor="19.0">
                      <font>
                         <Font size="31.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="campoValorTotal" alignment="CENTER" layoutX="213.0" layoutY="7.0" prefHeight="63.0" prefWidth="244.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="194.0" AnchorPane.topAnchor="15.0">
+                  <TextField fx:id="campoValorTotal" alignment="CENTER" layoutX="191.0" layoutY="15.0" prefHeight="63.0" prefWidth="244.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="216.0" AnchorPane.topAnchor="15.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="476.0" layoutY="2.0" mnemonicParsing="false" onAction="#botaoPagamento" prefHeight="55.0" prefWidth="136.0" text="PAGAMENTO" AnchorPane.bottomAnchor="12.5" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="12.5">
+                  <Button layoutX="458.0" layoutY="13.0" mnemonicParsing="false" onAction="#botaoPagamento" prefHeight="67.0" prefWidth="171.0" text="PAGAMENTO" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="13.0">
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imagens/pagamentos.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </AnchorPane>
             <MeshView layoutX="294.0" layoutY="239.0" />
-            <Button layoutX="875.0" layoutY="40.0" mnemonicParsing="false" onAction="#botaoPesquisar" prefHeight="29.0" prefWidth="46.0" AnchorPane.bottomAnchor="511.0" AnchorPane.leftAnchor="875.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="40.0">
+            <Button layoutX="915.0" layoutY="40.0" mnemonicParsing="false" onAction="#botaoPesquisar" prefHeight="29.0" prefWidth="46.0" AnchorPane.bottomAnchor="511.0" AnchorPane.leftAnchor="915.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="40.0">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -143,15 +165,17 @@
                   <Font name="DejaVu Sans Mono Bold" size="15.0" />
                </font>
             </Label>
-            <Button layoutX="281.0" layoutY="512.0" mnemonicParsing="false" onAction="#botãoIdentificar" prefHeight="39.0" prefWidth="101.0" text="INDENTIFICAR" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="281.0" AnchorPane.rightAnchor="684.0" AnchorPane.topAnchor="512.0">
-               <font>
-                  <Font size="12.0" />
-               </font>
-               <rotationAxis>
-                  <Point3D y="1.0" z="1.0" />
-               </rotationAxis>
-            </Button>
             <Polyline fill="WHITE" layoutX="245.0" layoutY="329.0" points="-248.0, 144.33331298828125, 156.0, 158.0, 156.0, 158.0, -248.0, 151.0" stroke="TRANSPARENT" strokeDashOffset="1.0" strokeMiterLimit="1.0" strokeType="INSIDE" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="662.0" AnchorPane.topAnchor="473.33331298828125" />
+            <TextField fx:id="campoCodigo" alignment="CENTER" layoutX="405.0" layoutY="40.0" onKeyPressed="#buscarProduto" prefHeight="33.0" prefWidth="87.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Label layoutX="500.0" layoutY="16.0" prefHeight="24.0" prefWidth="96.0" text="PRODUTO" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-60.0" layoutY="672.0" prefHeight="29.0" prefWidth="1041.0" style="-fx-background-color: #1e90ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

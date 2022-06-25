@@ -11,37 +11,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="288.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.TelaLogin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="633.0" stylesheets="@estilo/Estilo.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.TelaLogin">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="26.0" layoutX="-14.0" layoutY="192.0" stroke="#07a0fa" strokeType="INSIDE" width="592.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="78.0" layoutX="95.0" layoutY="64.0" stroke="#07a0fa" strokeType="INSIDE" width="592.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="31.0" layoutY="24.0" prefHeight="240.0" prefWidth="361.0" text="Autenticação de Usuarios" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="25.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="203.0" layoutY="118.0" prefHeight="16.0" prefWidth="53.0" text="Email:" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="336.0" AnchorPane.topAnchor="118.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="199.0" layoutY="167.0" prefHeight="20.0" prefWidth="60.0" text="Senha:" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="332.0" AnchorPane.topAnchor="167.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="132.0" fitWidth="136.0" layoutX="26.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="430.987548828125" AnchorPane.topAnchor="102.0">
-         <image>
-            <Image url="@imagens/preto.png" />
-         </image>
-      </ImageView>
-      <TextField fx:id="campoEmail" layoutX="261.0" layoutY="115.0" prefHeight="26.0" prefWidth="292.0" AnchorPane.leftAnchor="261.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="115.0" />
-      <PasswordField fx:id="campoSenha" layoutX="261.0" layoutY="166.0" prefHeight="26.0" prefWidth="250.0" AnchorPane.leftAnchor="261.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="166.0" />
-      <Button layoutX="322.0" layoutY="208.0" mnemonicParsing="false" onAction="#botaoEntrar" prefHeight="35.0" prefWidth="150.0" text="ENTRAR" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="120.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="384.0" layoutX="183.0" stroke="WHITE" strokeType="INSIDE" width="336.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#171717" height="384.0" layoutX="95.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" width="299.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="0.0" />
+      <PasswordField fx:id="campoSenha" layoutX="393.0" layoutY="195.0" prefHeight="26.0" prefWidth="200.0" AnchorPane.leftAnchor="393.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="195.0" />
+      <Button layoutX="333.0" layoutY="255.0" mnemonicParsing="false" onAction="#botaoEntrar" prefHeight="41.0" prefWidth="270.0" text="ENTRAR" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="30.0">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Text layoutX="41.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Versão 0.1                          inottec soluções                        Controle de Vendas" />
+      <ImageView fitHeight="146.0" fitWidth="261.0" layoutX="17.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagens/logo-inottec-azul-me.png" />
+         </image>
+      </ImageView>
+      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="349.0" layoutY="58.0" prefHeight="28.0" prefWidth="235.0" text="Autenticação de Usuarios">
+         <font>
+            <Font name="Liberation Sans Narrow Bold" size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="campoUsuario" layoutX="393.0" layoutY="143.0" prefHeight="26.0" prefWidth="200.0" AnchorPane.leftAnchor="393.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="143.0" />
+      <Label layoutX="333.0" layoutY="195.0" prefHeight="26.0" prefWidth="59.0" text="SENHA" AnchorPane.leftAnchor="333.0">
+         <font>
+            <Font name="Padauk Book" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="333.0" layoutY="143.0" prefHeight="26.0" prefWidth="59.0" text="USUARIO" AnchorPane.leftAnchor="333.0">
+         <font>
+            <Font name="Padauk Book" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="408.0" layoutY="109.0" text="Informe seu usuario" textFill="#ffce06">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Text fill="WHITE" layoutX="95.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VERSÃO 1.0" />
    </children>
 </AnchorPane>

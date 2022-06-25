@@ -24,30 +24,28 @@ import javafx.scene.input.KeyEvent;
 public class PontoDeVenda {
 
 	@FXML
-	private TextField campoBuscarProduto;
+	private TextField campoCodigo;
+
+	@FXML
+	private TextField campoProduto;
 
 	@FXML
 	public TextField campoQuantidade;
 
 	@FXML
 	private TextField campoValorTotal;
-	
-    @FXML
-    private Label textCPF;
 
-    @FXML
-    private Label textCliente;
+	@FXML
+	private Label textCPF;
 
-    @FXML
-    private Label textOperador;
+	@FXML
+	private Label textCliente;
 
-    @FXML
-    private Label textoData;
-    
-    @FXML
-    void botãoIdentificar(ActionEvent event) {
+	@FXML
+	private Label textOperador;
 
-    }    
+	@FXML
+	private Label textoData;
 
 	@FXML
 	private TableColumn<Produtos, Long> colunaCodigo;
@@ -71,7 +69,6 @@ public class PontoDeVenda {
 
 //	static public String codigo = "0";
 
-
 	static List<Produtos> produtos = new ArrayList<>();
 
 	// criando um logger
@@ -81,6 +78,12 @@ public class PontoDeVenda {
 	private Alert alertErro = new Alert(Alert.AlertType.ERROR);
 
 	@FXML
+	void botaoIdentificar(ActionEvent event) {
+		Main.trocaTela("telaIdentificao");
+
+	}
+
+	@FXML
 	void botaoMenu(ActionEvent event) {
 		Main.trocaTela("menuPrincipal");
 	}
@@ -88,6 +91,8 @@ public class PontoDeVenda {
 	@FXML
 
 	void botaoPagamento(ActionEvent event) {
+
+		Main.trocaTela("telaPagamento");
 
 	}
 
@@ -105,7 +110,10 @@ public class PontoDeVenda {
 
 			adicionarProduto();
 
-			campoBuscarProduto.setText("");
+			campoProduto.setText("");
+			campoCodigo.setText("");
+			campoCodigo.requestFocus();
+			
 		}
 	}
 
@@ -115,9 +123,9 @@ public class PontoDeVenda {
 		// condição que faz a adiciona produto preciona enter
 		if (event.getCode() == KeyCode.ENTER) {
 
-			adicionarProduto();
-
-			campoBuscarProduto.setText("");
+			apresentaProduto();
+			
+			campoQuantidade.requestFocus();
 
 		} else if (event.getCode() == KeyCode.P) {
 
@@ -126,12 +134,42 @@ public class PontoDeVenda {
 
 	}
 
+	private void apresentaProduto() {
+		try {
+
+			if (!campoCodigo.getText().equals("") || !campoCodigo.getText().equals(null)) {
+
+				Long idProduto = Long.parseLong(campoCodigo.getText());
+
+				Produtos produto;
+
+				DAO<Produtos> dao = new DAO<>(Produtos.class);
+
+				produto = dao.obterPorID(idProduto);
+
+				campoProduto.setText(produto.getDescricao());
+
+
+			}
+		} catch (Exception e) {
+
+			// criando titulo do alerta
+			alertErro.setTitle("Erro");
+			// criando cabeçario do alerta
+			alertErro.setHeaderText("Codigo do produto !");
+			// chamando o alerta
+			alertErro.show();
+		}
+		
+
+	}
+	
 	private void adicionarProduto() {
 		try {
 
-			if (!campoBuscarProduto.getText().equals("") || !campoBuscarProduto.getText().equals(null)) {
+			if (!campoCodigo.getText().equals("") || !campoCodigo.getText().equals(null)) {
 
-				Long idProduto = Long.parseLong(campoBuscarProduto.getText());
+				Long idProduto = Long.parseLong(campoCodigo.getText());
 
 				Produtos produto;
 
@@ -196,8 +234,7 @@ public class PontoDeVenda {
 
 	public void teste() {
 		int teste = 1 + 1;
-	
-		
+
 		System.out.println(teste);
 	}
 

@@ -11,20 +11,19 @@ import javafx.scene.Scene;
 public class Main extends Application {
 
 	private static Stage janela;
-	private static Scene cenaTelaLogin;	
+	private static Scene cenaTelaLogin;
 	private static Scene cenaTelaProduto;
 	private static Scene cenaTelaClientes;
 	private static Scene cenaTelaFuncionario;
-	private static Scene cenaTelaFornecedor;  
+	private static Scene cenaTelaFornecedor;
 	private static Scene cenaTelaPDV;
 	private static Scene cenaTelaHistoricoDeVendas;
 	private static Scene cenaTelaPosicaoDoDia;
 	private static Scene cenaTelaPagamento;
+	private static Scene cenaTelaIdetificar;
 	private static Scene cenaTelaPesquisarProduto;
 	private static Scene cenaTelaPesquisarFornecedor;
 	private static Scene cenaTelaMenuPrincipal;
-	
-	
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -34,24 +33,22 @@ public class Main extends Application {
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaLogin = FXMLLoader.load(getClass().getResource("/view/TelaLogin.fxml"));
 		// criando um senario usando o arquivo fxml
-		cenaTelaLogin = new Scene(fxmlTelaLogin, 592, 288);
+		cenaTelaLogin = new Scene(fxmlTelaLogin, 633, 379);
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaProduto = FXMLLoader.load(getClass().getResource("/view/CadastroProduto.fxml"));
 		// criando um senario usando o arquivo fxml
 		cenaTelaProduto = new Scene(fxmlTelaProduto, 1041, 523);
-		
 
 		// pega o arquivo fxml e converte para gridpane
-    	Parent fxmlTelaClientes = FXMLLoader.load(getClass().getResource("/view/CadastroClientes.fxml"));
+		Parent fxmlTelaClientes = FXMLLoader.load(getClass().getResource("/view/CadastroClientes.fxml"));
 		// criando um senario usando o arquivo fxml
 		cenaTelaClientes = new Scene(fxmlTelaClientes, 1041, 523);
-		
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaFuncionario = FXMLLoader.load(getClass().getResource("/view/CadastroFuncionario.fxml"));
 		// criando um senario usando o arquivo fxml
-		cenaTelaFuncionario = new Scene(fxmlTelaFuncionario, 1041, 523);
+		cenaTelaFuncionario = new Scene(fxmlTelaFuncionario, 1041, 573);
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaFornecedor = FXMLLoader.load(getClass().getResource("/view/CadastroFornecedores.fxml"));
@@ -63,35 +60,40 @@ public class Main extends Application {
 		// criando um senario usando o arquivo fxml
 		cenaTelaPDV = new Scene(fxmlTelaPDV, 1066, 700);
 
-		// pega o arquivo fxml e converte para gridpane
-		Parent fxmlTelaHistoricoDeVendas = FXMLLoader.load(getClass().getResource("/view/HistoricoDeVendas.fxml"));
-		// criando um senario usando o arquivo fxml
-		cenaTelaHistoricoDeVendas = new Scene(fxmlTelaHistoricoDeVendas, 1041, 523);
+//		// pega o arquivo fxml e converte para gridpane
+//		Parent fxmlTelaHistoricoDeVendas = FXMLLoader.load(getClass().getResource("/view/HistoricoDeVendas.fxml"));
+//		// criando um senario usando o arquivo fxml
+//		cenaTelaHistoricoDeVendas = new Scene(fxmlTelaHistoricoDeVendas, 1041, 523);
 
-		// pega o arquivo fxml e converte para gridpane
-		Parent fxmlTelaPosicaoDoDia = FXMLLoader.load(getClass().getResource("/view/PosicaoDoDia.fxml"));
-		// criando um senario usando o arquivo fxml
-		cenaTelaPosicaoDoDia = new Scene(fxmlTelaPosicaoDoDia, 1041, 523);
+//		// pega o arquivo fxml e converte para gridpane
+//		Parent fxmlTelaPosicaoDoDia = FXMLLoader.load(getClass().getResource("/view/PosicaoDoDia.fxml"));
+//		// criando um senario usando o arquivo fxml
+//		cenaTelaPosicaoDoDia = new Scene(fxmlTelaPosicaoDoDia, 1041, 523);
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaPagamento = FXMLLoader.load(getClass().getResource("/view/TelaPagamento.fxml"));
 		// criando um senario usando o arquivo fxml
-		cenaTelaPagamento = new Scene(fxmlTelaPagamento, 1041, 523);
+		cenaTelaPagamento = new Scene(fxmlTelaPagamento, 289, 417);
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaPesquisarProduto = FXMLLoader.load(getClass().getResource("/view/PesquisarProduto.fxml"));
 		// criando um senario usando o arquivo fxml
-		cenaTelaPesquisarProduto = new Scene(fxmlTelaPesquisarProduto, 1041, 523);		
+		cenaTelaPesquisarProduto = new Scene(fxmlTelaPesquisarProduto, 1041, 523);
 
 		// pega o arquivo fxml e converte para gridpane
-		Parent fxmlTelaPesquisarFornecedor = FXMLLoader.load(getClass().getResource("/view/PesquisarFornecedor.fxml"));
+		Parent fxmlTelaIndetificar = FXMLLoader.load(getClass().getResource("/view/IndentificaClientes.fxml"));
 		// criando um senario usando o arquivo fxml
-		cenaTelaPesquisarFornecedor = new Scene(fxmlTelaPesquisarFornecedor, 1041, 523);
+		cenaTelaIdetificar = new Scene(fxmlTelaIndetificar, 1041, 523);
+
+//		// pega o arquivo fxml e converte para gridpane
+//		Parent fxmlTelaPesquisarFornecedor = FXMLLoader.load(getClass().getResource("/view/PesquisarFornecedor.fxml"));
+//		// criando um senario usando o arquivo fxml
+//		cenaTelaPesquisarFornecedor = new Scene(fxmlTelaPesquisarFornecedor, 1041, 523);
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaMenuPrincipal = FXMLLoader.load(getClass().getResource("/view/Menu.fxml"));
 		// criando um senario usando o arquivo fxml
-		cenaTelaMenuPrincipal = new Scene(fxmlTelaMenuPrincipal, 1041, 523);
+		cenaTelaMenuPrincipal = new Scene(fxmlTelaMenuPrincipal, 1041, 700);
 
 		// comando para usuario não pode altera o tamanho da tela
 		janela.setResizable(false);
@@ -99,9 +101,10 @@ public class Main extends Application {
 		janela.setTitle("inottec CDV");
 
 		// executando cenaro
-		janela.setScene(cenaTelaMenuPrincipal);
+		janela.setScene(cenaTelaLogin);
 		// executando a tela
 		janela.show();
+		
 	}
 
 	// criando metodo statico para troca tela com parametro do tipo string
@@ -136,6 +139,19 @@ public class Main extends Application {
 			janela.setScene(cenaTelaClientes);
 //			// executando a tela
 //			janela.show();
+			break;
+
+		// se o parametro for telaClientes chama o cenaTelaClientes
+		case "telaIdentificao":
+
+//				// comando para usuario não pode altera o tamanho da telaadiciona Gasto
+//				janela.setResizable(false);
+//				// criando titulo
+//				janela.setTitle("Cadastro Clientes");
+			// executando cenaro
+			janela.setScene(cenaTelaIdetificar);
+//				// executando a tela
+//				janela.show();
 			break;
 
 		// se o parametro for telaFuncionario chama o cenaTelaFuncionario
@@ -253,19 +269,19 @@ public class Main extends Application {
 		// se o parametro for menuPrincipal chama o cenaTelaMenuPrincipal
 		case "menuPrincipal":
 
-			// criando titulo
-			janela.setTitle("inottec CDV");
+//			// criando titulo
+//			janela.setTitle("inottec CDV");
 			// executando cenaro
 			janela.setScene(cenaTelaMenuPrincipal);
-			// centralizando a tela
-			janela.centerOnScreen();
-			// comando para usuario não pode altera o tamanho da telaadiciona Gasto
-			janela.setResizable(false);
-//			// remove a barra de titulo
-//			janela1.initStyle(StageStyle.DECORATED);
-			janela.setFullScreen(true);
-			// executando a tela
-			janela.show();
+//			// centralizando a tela
+//			janela.centerOnScreen();
+//			// comando para usuario não pode altera o tamanho da telaadiciona Gasto
+//			janela.setResizable(false);
+////			// remove a barra de titulo
+////			janela1.initStyle(StageStyle.DECORATED);
+//			janela.setFullScreen(true);
+//			// executando a tela
+//			janela.show();
 			break;
 		}
 	}

@@ -71,9 +71,9 @@
             </Label>
             <TableView fx:id="tabelaCarrinho" layoutX="414.0" layoutY="78.0" prefHeight="406.0" prefWidth="651.0" stylesheets="@estilo/Estilo.css" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="78.0">
               <columns>
-                  <TableColumn prefWidth="59.0" text="Excluir" />
-                <TableColumn fx:id="colunaCodigo" prefWidth="65.0" text="Codigo" />
-                <TableColumn fx:id="colunaProduto" prefWidth="367.0" text="Produto" />
+                  <TableColumn fx:id="colunaExcluir" prefWidth="69.0" text="Excluir" />
+                <TableColumn fx:id="colunaCodigo" prefWidth="88.0" text="Codigo" />
+                <TableColumn fx:id="colunaProduto" prefWidth="334.0" text="Produto" />
                   <TableColumn fx:id="colunaQtd" prefWidth="36.0" text="Qtd" />
                   <TableColumn fx:id="colunaPreco" prefWidth="59.0" text="Preço" />
                   <TableColumn fx:id="colunaSubtotal" prefWidth="69.0" text="Subtotal" />

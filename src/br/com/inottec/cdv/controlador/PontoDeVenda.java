@@ -2,6 +2,7 @@ package br.com.inottec.cdv.controlador;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 
@@ -13,10 +14,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -51,6 +56,9 @@ public class PontoDeVenda {
 	private TableColumn<Produtos, Long> colunaCodigo;
 
 	@FXML
+	private TableColumn<Produtos, Button> colunaExcluir;
+
+	@FXML
 	private TableColumn<Produtos, Double> colunaPreco;
 
 	@FXML
@@ -66,8 +74,6 @@ public class PontoDeVenda {
 	private TableView<Produtos> tabelaCarrinho;
 
 	Double totalApaga = (double) 0;
-
-//	static public String codigo = "0";
 
 	static List<Produtos> produtos = new ArrayList<>();
 
@@ -113,7 +119,7 @@ public class PontoDeVenda {
 			campoProduto.setText("");
 			campoCodigo.setText("");
 			campoCodigo.requestFocus();
-			
+
 		}
 	}
 
@@ -124,7 +130,7 @@ public class PontoDeVenda {
 		if (event.getCode() == KeyCode.ENTER) {
 
 			apresentaProduto();
-			
+
 			campoQuantidade.requestFocus();
 
 		} else if (event.getCode() == KeyCode.P) {
@@ -149,7 +155,6 @@ public class PontoDeVenda {
 
 				campoProduto.setText(produto.getDescricao());
 
-
 			}
 		} catch (Exception e) {
 
@@ -160,10 +165,9 @@ public class PontoDeVenda {
 			// chamando o alerta
 			alertErro.show();
 		}
-		
 
 	}
-	
+
 	private void adicionarProduto() {
 		try {
 
@@ -181,15 +185,17 @@ public class PontoDeVenda {
 
 				double subtotal = produto.getQtdEstoque() * produto.getPreco();
 
-				totalApaga = totalApaga + subtotal;
+
+				produto.setExcluir(botaoexcluir());
 
 				produto.setSubtotal(subtotal);
-
-				trocaCampo(produto);
-
+				
+				produtos.add(produto);
+				
 				adicionarCarrinho();
 
-			}
+				somatotal();	
+}
 		} catch (Exception e) {
 
 			// criando titulo do alerta
@@ -218,6 +224,8 @@ public class PontoDeVenda {
 
 		colunaSubtotal.setCellValueFactory(new PropertyValueFactory<Produtos, Double>("subtotal"));
 
+		colunaExcluir.setCellValueFactory(new PropertyValueFactory<Produtos, Button>("excluir"));
+
 		// crinado um lista do tipo ObservableList que recebe uma lista de clientes
 		ObservableList<Produtos> observaCarrinho = FXCollections.observableArrayList(produtos);
 		// adicionado o ObservableList na tabela
@@ -225,11 +233,72 @@ public class PontoDeVenda {
 		logger.info("Produto adicionado no carinho");
 	}
 
-	public void trocaCampo(Produtos produto) {
+	public void somatotal() {
+		
+		Double total = (double) 0;
+		
+		for (Produtos pro : produtos) {
 
-		produtos.add(produto);
+			total = total + pro.getSubtotal();
+		}
 
-		campoValorTotal.setText(totalApaga.toString());
+		campoValorTotal.setText(total.toString());
+	}
+	
+	// metodo que adiciona botão de Excluir no carrinho
+	private Button botaoexcluir() {
+
+		Button excluir = new Button("Excluir");
+
+		excluir.setOnAction(Event -> {
+
+			if (confirmarExclusao()) {
+			
+				for (Produtos verifica : tabelaCarrinho.getItems()) {
+					if (verifica.getExcluir() == excluir) {
+
+						tabelaCarrinho.getSelectionModel().clearSelection();
+						
+						tabelaCarrinho.getItems().remove(verifica);
+						
+						produtos.remove(verifica);
+						
+						somatotal();
+
+						logger.info("Produto removido do carinho com sucesso");
+
+					}
+				}
+			}
+
+		});
+		
+		
+		return excluir;
+	}
+
+//	Metodo que gera mensagen de confirmação de para exlcur item do carrinho 
+	private boolean confirmarExclusao() {
+		boolean excluir = false;
+
+		Alert alert = new Alert(AlertType.WARNING);
+		// criando titulo do alerta
+		alert.setTitle("Excluir");
+		// criando cabeçario do alerta
+		alert.setHeaderText("Tem certeza que deseja excluir esse item!");
+
+		// Criando um butão cancelar
+		ButtonType cancelar = new ButtonType("CANCELAR", ButtonData.CANCEL_CLOSE);
+		alert.getDialogPane().getButtonTypes().add(cancelar);
+
+//		criando condição 
+		Optional<ButtonType> resultado = alert.showAndWait();
+		if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+			excluir = true;
+		}
+
+		return excluir;
+
 	}
 
 	public void teste() {

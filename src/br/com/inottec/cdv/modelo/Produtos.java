@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javafx.scene.control.Button;
+
 
 @Entity
 @Table(name = "tb_produto")
@@ -25,13 +27,18 @@ public class Produtos implements RestricaoEntidade{
 	@Transient
 	private double subtotal;
 	
+	@Transient
+	private Button excluir;
+	
 	
 	
 	//==== construto =====	
 	public Produtos() {
 		super();
+	
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Produtos(String descricao, double preco, int qtdEstoque, Fornecedores fornecedor) {
 		super();
 		this.descricao = descricao;
@@ -40,14 +47,24 @@ public class Produtos implements RestricaoEntidade{
 		this.fornecedor = fornecedor;
 	}
 	
-	//==== get e set =====
+	//==== get e set =====	
 	
 	public Long getCodigo() {
 		return codigo;
 	}
+	
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
+	
+	public Button getExcluir() {
+		return excluir;
+	}
+	
+	public void setExcluir(Button excluir) {
+		this.excluir = excluir;
+	}
+	
 	public double getSubtotal() {
 		return subtotal;
 	}

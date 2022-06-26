@@ -97,9 +97,11 @@ public class Main extends Application {
 
 		// comando para usuario não pode altera o tamanho da tela
 		janela.setResizable(false);
+		
 		// criando titulo
 		janela.setTitle("inottec CDV");
 
+//		janela.getIcons().add(new Image("/view/imagens/logo"));
 		// executando cenaro
 		janela.setScene(cenaTelaLogin);
 		// executando a tela

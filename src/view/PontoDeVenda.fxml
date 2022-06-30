@@ -15,15 +15,10 @@
 <?import javafx.scene.shape.Polyline?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="1066.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.PontoDeVenda">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="638.0" prefWidth="1066.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.PontoDeVenda">
    <children>
       <AnchorPane prefHeight="87.0" prefWidth="1041.0" style="-fx-background-color: #1e90ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="400.0" prefHeight="45.0" prefWidth="377.0" text="PONTO DE VENDA " textFill="WHITE" AnchorPane.leftAnchor="344.5" AnchorPane.rightAnchor="344.5" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font size="37.0" />
-               </font>
-            </Label>
             <MenuBar prefHeight="29.0" prefWidth="1041.0" style="-fx-background-color: #1e90ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Menu">
@@ -59,12 +54,37 @@
                 </Menu>
               </menus>
             </MenuBar>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="345.0" layoutY="10.0" prefHeight="56.0" prefWidth="376.0" text="PONTO DE VENDA " textFill="WHITE" AnchorPane.leftAnchor="345.0" AnchorPane.rightAnchor="345.0">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-15.0" layoutY="95.0" prefHeight="602.0" prefWidth="1073.0" style="-fx-background-color: #4c4f51;" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="87.0">
          <children>
+            <TextField fx:id="campoCodigo" alignment="CENTER" layoutX="405.0" layoutY="40.0" onKeyPressed="#buscarProduto" prefHeight="33.0" prefWidth="87.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="campoQuantidade" alignment="CENTER" layoutX="939.0" layoutY="40.0" onKeyPressed="#burcar" prefHeight="33.0" prefWidth="73.0" text="1" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Label layoutX="984.0" layoutY="15.0" prefHeight="24.0" prefWidth="48.0" text="Qtd" textFill="WHITE" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="15.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="401.0" layoutY="15.0" prefHeight="24.0" prefWidth="96.0" text=" CÓDIGO " textFill="WHITE" AnchorPane.leftAnchor="401.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="15.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
             <Polyline fill="#ffba1c" layoutX="243.0" layoutY="422.0" points="-243.0, -93.0, 157.0, 64.0, 156.0, 158.0, -243.0, 158.0" stroke="TRANSPARENT" strokeType="INSIDE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="666.0" AnchorPane.topAnchor="329.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="431.0" prefHeight="19.0" prefWidth="122.0" text="OPERADOR(a):" textFill="#fffdfd" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="925.0" AnchorPane.topAnchor="431.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="431.0" prefHeight="19.0" prefWidth="122.0" text="OPERADOR(A):" textFill="#fffdfd" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="19.0">
                <font>
                   <Font name="DejaVu Sans Condensed Bold" size="15.0" />
                </font>
@@ -84,21 +104,6 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="campoQuantidade" alignment="CENTER" layoutX="939.0" layoutY="40.0" onKeyPressed="#burcar" prefHeight="33.0" prefWidth="73.0" text="1" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
-            <Label layoutX="401.0" layoutY="15.0" prefHeight="24.0" prefWidth="96.0" text=" CÓDIGO " textFill="WHITE" AnchorPane.leftAnchor="401.0" AnchorPane.rightAnchor="569.0" AnchorPane.topAnchor="15.0">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="984.0" layoutY="15.0" prefHeight="24.0" prefWidth="48.0" text="Qtd" textFill="WHITE" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="15.0">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
             <AnchorPane layoutX="405.0" layoutY="487.0" prefHeight="93.0" prefWidth="581.0" style="-fx-background-color: #106292;" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="10.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="19.0" layoutY="29.0" text="TOTAL: R$" textFill="WHITE" AnchorPane.leftAnchor="19.0">
@@ -126,7 +131,7 @@
                </children>
             </AnchorPane>
             <MeshView layoutX="294.0" layoutY="239.0" />
-            <Button layoutX="915.0" layoutY="40.0" mnemonicParsing="false" onAction="#botaoPesquisar" prefHeight="29.0" prefWidth="46.0" AnchorPane.bottomAnchor="511.0" AnchorPane.leftAnchor="915.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="40.0">
+            <Button layoutX="915.0" layoutY="40.0" mnemonicParsing="false" onAction="#botaoPesquisar" prefHeight="29.0" prefWidth="46.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="40.0">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -140,37 +145,32 @@
                   <Image url="@imagens/logo-inottec-azul-me.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="535.0" text="CPF:" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="1003.0" AnchorPane.topAnchor="535.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="535.0" text="CPF:" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="28.0">
                <font>
                   <Font name="DejaVu Sans Condensed Bold" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="509.0" text="CLIENTE: " textFill="WHITE" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="966.0" AnchorPane.topAnchor="509.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="27.0" layoutY="509.0" text="CLIENTE: " textFill="WHITE" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="27.0">
                <font>
                   <Font name="DejaVu Sans Condensed Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="textCliente" alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="510.0" prefHeight="19.0" prefWidth="165.0" text="Não indentificado" textFill="WHITE" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="806.0" AnchorPane.topAnchor="510.0">
+            <Label fx:id="textCliente" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="99.0" layoutY="508.0" prefHeight="21.0" prefWidth="261.0" text="Não indentificado" textFill="WHITE" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="99.0">
                <font>
                   <Font name="DejaVu Sans Mono Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="textCPF" alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="537.0" text="##.###.###-##" textFill="WHITE" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="858.0" AnchorPane.topAnchor="537.0">
+            <Label fx:id="textCPF" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="66.0" layoutY="534.0" prefHeight="21.0" prefWidth="147.0" text="##.###.###-##" textFill="WHITE" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="66.0">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="textOperador" alignment="CENTER" contentDisplay="CENTER" layoutX="142.0" layoutY="433.0" text="FELIPE" textFill="WHITE" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="869.0" AnchorPane.topAnchor="433.0">
+            <Label fx:id="textOperador" alignment="CENTER" contentDisplay="CENTER" layoutX="142.0" layoutY="433.0" text="FELIPE" textFill="WHITE" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="142.0">
                <font>
                   <Font name="DejaVu Sans Mono Bold" size="15.0" />
                </font>
             </Label>
             <Polyline fill="WHITE" layoutX="245.0" layoutY="329.0" points="-248.0, 144.33331298828125, 156.0, 158.0, 156.0, 158.0, -248.0, 151.0" stroke="TRANSPARENT" strokeDashOffset="1.0" strokeMiterLimit="1.0" strokeType="INSIDE" AnchorPane.bottomAnchor="97.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="662.0" AnchorPane.topAnchor="473.33331298828125" />
-            <TextField fx:id="campoCodigo" alignment="CENTER" layoutX="405.0" layoutY="40.0" onKeyPressed="#buscarProduto" prefHeight="33.0" prefWidth="87.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
             <Label layoutX="500.0" layoutY="16.0" prefHeight="24.0" prefWidth="96.0" text="PRODUTO" textFill="WHITE">
                <font>
                   <Font size="19.0" />
@@ -180,19 +180,24 @@
       </AnchorPane>
       <AnchorPane layoutX="-60.0" layoutY="672.0" prefHeight="29.0" prefWidth="1041.0" style="-fx-background-color: #1e90ff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label fx:id="textoData" alignment="CENTER" contentDisplay="CENTER" layoutX="862.0" layoutY="5.0" text="11/05/2021" textFill="WHITE" AnchorPane.rightAnchor="50.0">
+            <Label fx:id="textData" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="862.0" layoutY="5.0" prefHeight="21.0" prefWidth="104.0" text="11/05/2021" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="23.0">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="5.0" text="VERSÃO: 0.1" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="45.0" layoutY="5.0" text="VERSÃO 0.1" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="397.0" layoutY="5.0" text="inottec suporte : (83) 99371-2374" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="397.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="470.0" layoutY="5.0" text="inottec.com.br" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="470.0">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label contentDisplay="CENTER" layoutX="892.0" layoutY="5.0" text="Data:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
          </children></AnchorPane>

@@ -1,30 +1,24 @@
 package br.com.inottec.cdv.controlador;
 
+import java.io.IOException;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-
 import br.com.inottec.cdv.Main;
 import br.com.inottec.cdv.infra.DAO;
-import br.com.inottec.cdv.modelo.Fornecedores;
 import br.com.inottec.cdv.modelo.Produtos;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+
 
 public class PesquisarProduto {
 
-	private Long codigo;
-
-	private double totalApaga;
 
 	@FXML
 	private TextField campoDescrição;
@@ -53,68 +47,49 @@ public class PesquisarProduto {
 	@FXML
 	private TableView<Produtos> tabelaProdutos;
 
+	public static String codigo, descricao, controlePesquisarProduto;
+	
 	// criando um logger
 	private static Logger logger = Logger.getLogger(PesquisarProduto.class);
+	
 
-	// crinado uma mensagem de erro do tipo alerta
-	private Alert alertErro = new Alert(Alert.AlertType.ERROR);
+	public static String getCodigo() {
+		return codigo;
+	}
 
-	PontoDeVenda pdv = new PontoDeVenda();
+	public static void setCodigo(String codigo) {
+		PesquisarProduto.codigo = codigo;
+	}
+
+	public static String getDescricao() {
+		return descricao;
+	}
+
+	public static void setDescricao(String descricao) {
+		PesquisarProduto.descricao = descricao;
+	}
 
 	@FXML
-	void botaoAdicionar(ActionEvent event) {
+	void botaoAdicionar(ActionEvent event) throws IOException {
 		
-		PontoDeVenda pdv = new PontoDeVenda();
+		setCodigo(tabelaProdutos.getSelectionModel().getSelectedItem().getCodigo().toString());
+		setDescricao(tabelaProdutos.getSelectionModel().getSelectedItem().getDescricao().toString());
 		
-		pdv.campoQuantidade.setText("7");
-//		try {
-//			
-//			if (!campoDescrição.getText().equals("") || !campoDescrição.getText().equals(null)) {
-//
-////				Long idProduto = Long.parseLong(campoBuscarProduto.getText());
-//
-//				Produtos produto;
-//
-//				DAO<Produtos> dao = new DAO<>(Produtos.class);
-//
-//				produto = dao.obterPorID(codigo);
-//
-//				produto.setQtdEstoque(Integer.parseInt(campoQuantidade.getText()));
-//
-//				double subtotal = produto.getQtdEstoque() * produto.getPreco();
-//
-//				totalApaga = totalApaga + subtotal;
-//
-//				produto.setSubtotal(subtotal);
-//	
-//				pdv.campoQuantidade.setText("2");
-//				
-//				System.out.println(produto);
-////				
-////				pdv.trocaCampo(produto);
-//
-//				
-//
-//			}
-//
-//			
-//		} catch (Exception e) {
-//
-//			// criando titulo do alerta
-//			alertErro.setTitle("Erro");
-//			// criando cabeçario do alerta
-//			alertErro.setHeaderText("Codigo do produto !");
-//			// chamando o alerta
-//			alertErro.show();
-//		}
+		controlePesquisarProduto = "botaoAdicionar";
+		
+		Main tela = new Main();
 
+		tela.criaTelaPDV();
 
 	}
 
 	@FXML
-	void botaoVoltar(ActionEvent event) {
+	void botaoVoltar(ActionEvent event) throws IOException {
+		
+		Main tela = new Main();
 
-		Main.trocaTela("telaPDV");
+		tela.criaTelaPDV();
+
 	}
 
 	@FXML
@@ -124,12 +99,6 @@ public class PesquisarProduto {
 
 	}
 
-	@FXML
-	void carregaselecao(MouseEvent event) {
-
-		codigo = tabelaProdutos.getSelectionModel().getSelectedItem().getCodigo();
-		campoDescrição.setText(tabelaProdutos.getSelectionModel().getSelectedItem().getDescricao());
-	}
 
 	@FXML
 	void campoPesquisarProduto(KeyEvent event) {

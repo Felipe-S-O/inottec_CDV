@@ -1,9 +1,9 @@
 package br.com.inottec.cdv.controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import org.apache.log4j.Logger;
 
 import br.com.inottec.cdv.Main;
@@ -232,9 +232,11 @@ public class CadastroProduto implements Initializable {
 
 	//metodo que chama a tela de menu 
 	@FXML
-	private void botaoMenu(ActionEvent event) {
+	private void botaoMenu(ActionEvent event) throws IOException {
 
-		Main.trocaTela("menuPrincipal");
+		Main tela = new Main();
+
+		tela.criaTelaMenu();
 	}
 
 	//metodo que limpa os campos 

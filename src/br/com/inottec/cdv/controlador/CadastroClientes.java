@@ -1,9 +1,11 @@
 package br.com.inottec.cdv.controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
+
 import br.com.inottec.cdv.Main;
 import br.com.inottec.cdv.infra.DAO;
 import br.com.inottec.cdv.mascaraText.TextFieldFormatter;
@@ -26,7 +28,6 @@ import javafx.scene.input.KeyEvent;
 
 public class CadastroClientes implements Initializable {
 
-	// id dos campos do FXML
 
 	@FXML
 	private TabPane tabelaPane;
@@ -410,8 +411,11 @@ public class CadastroClientes implements Initializable {
 
 	// metodo que chama tela do menu principal
 	@FXML
-	private void botaoMenu(ActionEvent event) {
-		Main.trocaTela("menuPrincipal");
+	private void botaoMenu(ActionEvent event) throws IOException {
+     
+		Main tela = new Main();
+
+		tela.criaTelaMenu();
 	}
 
 	// metodo que lista os clinete ao pricioan o botaão

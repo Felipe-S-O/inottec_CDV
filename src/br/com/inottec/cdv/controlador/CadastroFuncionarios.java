@@ -1,5 +1,6 @@
 package br.com.inottec.cdv.controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,7 +25,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-//import javafx.scene.input.MouseEvent;
 
 public class CadastroFuncionarios implements Initializable {
 
@@ -274,10 +274,6 @@ public class CadastroFuncionarios implements Initializable {
 			funcuinario = dao.obterPorID(funcuinario.getCodigo());
 			logger.info("Consulta por  ID efetuada com sucesso");
 
-//		// verificando se cliente é nulo
-//		if (cliente != null) {
-
-			// logger.info("Cliente encontrado");
 
 			dao.abrirTransacao();
 
@@ -331,9 +327,11 @@ public class CadastroFuncionarios implements Initializable {
 
 	// metodo que chama tela de menu
 	@FXML
-	private void botaoMenu(ActionEvent event) {
+	private void botaoMenu(ActionEvent event) throws IOException {
+		
+		Main tela = new Main();
 
-		Main.trocaTela("menuPrincipal");
+		tela.criaTelaMenu();
 	}
 
 	// metodo que lista funcionrio com filtro

@@ -1,5 +1,6 @@
 package br.com.inottec.cdv.controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -24,11 +25,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-//import javafx.scene.input.MouseEvent;
 
 public class CadastroFornecedores implements Initializable {
 
-	// id dos campos do FXML
 	@FXML
 	private TabPane tabelaPane;
 
@@ -136,7 +135,7 @@ public class CadastroFornecedores implements Initializable {
 		// chamndo metodo para executa
 		obterUF();
 		campoCodigo.setEditable(false);
-		// listaFornecedores();
+	    listaFornecedores();
 	}
 
 	// metodo que altera um Fornecedor
@@ -446,9 +445,11 @@ public class CadastroFornecedores implements Initializable {
 
 	// metodo que chama a tela e menu
 	@FXML
-	private void botaoMenu(ActionEvent event) {
+	private void botaoMenu(ActionEvent event) throws IOException {
 
-		Main.trocaTela("menuPrincipal");
+		Main tela = new Main();
+
+		tela.criaTelaMenu();
 	}
 
 	// metodo que cria o comboBox

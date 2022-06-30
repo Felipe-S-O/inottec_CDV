@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="538.0" prefWidth="968.0" stylesheets="@estilo/Estilo.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.MenuPrincipal">
+<AnchorPane prefHeight="538.0" prefWidth="968.0" stylesheets="@estilo/Estilo.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.MenuPrincipal">
    <children>
       <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -78,7 +78,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Produtos">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#controleEstoque" text="Controle de Estoque">
+                <MenuItem mnemonicParsing="false" onAction="#consultaDeProdutos" text="Consulta de Produtos">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -86,18 +86,6 @@
                            </image>
                         </ImageView>
                      </graphic></MenuItem>
-                  <MenuItem mnemonicParsing="false" text="Consulta de Produtos">
-                     <accelerator>
-                        <KeyCodeCombination alt="DOWN" code="F1" control="UP" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@imagens/buscar.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </MenuItem>
               </items>
                <graphic>
                   <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
@@ -150,36 +138,43 @@
                      </image>
                   </ImageView>
                </graphic>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Sair">
-               <graphic>
-                  <ImageView fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagens/sair.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
                <items>
-                <MenuItem mnemonicParsing="false" onAction="#trocarDeUsuario" text="Trocar de Usuário">
+                  <MenuItem mnemonicParsing="false" onAction="#botaoSair" text="Sair">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@imagens/troca_Usuario.png" />
+                              <Image url="@imagens/sair.png" />
                            </image>
                         </ImageView>
-                     </graphic></MenuItem>
+                     </graphic>
+                  </MenuItem>
                </items>
             </Menu>
         </menus>
       </MenuBar>
       <Pane layoutX="317.0" layoutY="353.0" prefHeight="44.0" prefWidth="999.0" style="-fx-background-color: #245a8d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="116.0" layoutY="14.0" text="felipe silva" textFill="WHITE">
+            <Label fx:id="operador" alignment="CENTER" contentDisplay="CENTER" layoutX="102.0" layoutY="15.0" text="felipe silva" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="14.0" text="Usuário:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="424.0" layoutY="14.0" text="inottec.com.br" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="data" layoutX="848.0" layoutY="14.0" text="11/05/2021" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="803.0" layoutY="14.0" text="Data:" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

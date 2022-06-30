@@ -1,8 +1,13 @@
 package br.com.inottec.cdv.controlador;
 
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
 
@@ -13,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -26,7 +32,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class PontoDeVenda {
+public class PontoDeVenda implements Initializable {
 
 	@FXML
 	private TextField campoCodigo;
@@ -35,7 +41,7 @@ public class PontoDeVenda {
 	private TextField campoProduto;
 
 	@FXML
-	public TextField campoQuantidade;
+	private TextField campoQuantidade;
 
 	@FXML
 	private TextField campoValorTotal;
@@ -50,7 +56,7 @@ public class PontoDeVenda {
 	private Label textOperador;
 
 	@FXML
-	private Label textoData;
+	private Label textData;
 
 	@FXML
 	private TableColumn<Produtos, Long> colunaCodigo;
@@ -73,9 +79,9 @@ public class PontoDeVenda {
 	@FXML
 	private TableView<Produtos> tabelaCarrinho;
 
-	Double totalApaga = (double) 0;
+	public static Double valor;
 
-	static List<Produtos> produtos = new ArrayList<>();
+	public static List<Produtos> produtos = new ArrayList<>();
 
 	// criando um logger
 	private Logger logger = Logger.getLogger(PontoDeVenda.class);
@@ -83,30 +89,97 @@ public class PontoDeVenda {
 	// crinado uma mensagem de erro do tipo alerta
 	private Alert alertErro = new Alert(Alert.AlertType.ERROR);
 
+	// metodo que inicializa o comboBox
+
+	public void initialize(URL location, ResourceBundle resources) {
+		// chamndo metodo para executa
+
+		textOperador.setText(TelaLogin.operador);
+		somatotal();
+//		listaCarrinho();
+		adicionarCarrinho();
+		dataAtual();
+		pesquisarProduto();
+		identificaCliente();
+
+	}
+
+	public static Double getValor() {
+		return valor;
+	}
+
+	public static void setValor(Double valor) {
+		PontoDeVenda.valor = valor;
+	}
+
+	private void dataAtual() {
+		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		textData.setText(dtf4.format(LocalDateTime.now()));
+	}
+
+	private void pesquisarProduto() {
+
+		if ("botaoAdicionar".equals(PesquisarProduto.controlePesquisarProduto)) {
+
+			campoCodigo.setText(PesquisarProduto.getCodigo());
+
+			campoProduto.setText(PesquisarProduto.getDescricao());
+		}
+	}
+
+	private void identificaCliente() {
+
+		if ("botaoIdentificar".equals(IdentificaCliente.getControleID())) {
+
+			textCPF.setText(IdentificaCliente.getCPFadd());
+
+			textCliente.setText(IdentificaCliente.getNomeAdd());
+
+		}
+	}
+
 	@FXML
-	void botaoIdentificar(ActionEvent event) {
-		Main.trocaTela("telaIdentificao");
+	void botaoIdentificar(ActionEvent event) throws IOException {
+
+		Main tela = new Main();
+
+		tela.criaTelaIdentificar();
 
 	}
 
 	@FXML
-	void botaoMenu(ActionEvent event) {
-		Main.trocaTela("menuPrincipal");
+	void botaoMenu(ActionEvent event) throws IOException {
+		Main tela = new Main();
+
+		tela.criaTelaMenu();
 	}
 
 	@FXML
 
-	void botaoPagamento(ActionEvent event) {
+	void botaoPagamento(ActionEvent event) throws IOException {
 
-		Main.trocaTela("telaPagamento");
+		Main tela = new Main();
+		if (!campoValorTotal.getText().equals("")) {
+
+			tela.criaTelaPagamento();
+
+		} else {
+			// criando titulo do alerta
+			alertErro.setTitle("Erro");
+			// criando cabeçario do alerta
+			alertErro.setHeaderText("Adicione itens no carrinho!");
+			// chamando o alerta
+			alertErro.show();
+		}
 
 	}
 
 	@FXML
-	void botaoPesquisar(ActionEvent event) {
-		Main.trocaTela("telaPesquisarProduto");
+	void botaoPesquisar(ActionEvent event) throws IOException {
 
-//		campoBuscarProduto.setText("1");
+		Main tela = new Main();
+
+		tela.criaTelaPesquisarProduto();
 	}
 
 	@FXML
@@ -118,6 +191,7 @@ public class PontoDeVenda {
 
 			campoProduto.setText("");
 			campoCodigo.setText("");
+
 			campoCodigo.requestFocus();
 
 		}
@@ -135,7 +209,7 @@ public class PontoDeVenda {
 
 		} else if (event.getCode() == KeyCode.P) {
 
-			Main.trocaTela("telaPesquisarProduto");
+//			Main.trocaTela("telaPesquisarProduto");
 		}
 
 	}
@@ -185,17 +259,20 @@ public class PontoDeVenda {
 
 				double subtotal = produto.getQtdEstoque() * produto.getPreco();
 
-
 				produto.setExcluir(botaoexcluir());
 
 				produto.setSubtotal(subtotal);
-				
+
 				produtos.add(produto);
-				
+
 				adicionarCarrinho();
 
-				somatotal();	
-}
+				somatotal();
+				
+				Double valor = Double.parseDouble(campoValorTotal.getText());
+
+				setValor(valor);
+			}
 		} catch (Exception e) {
 
 			// criando titulo do alerta
@@ -234,9 +311,9 @@ public class PontoDeVenda {
 	}
 
 	public void somatotal() {
-		
+
 		Double total = (double) 0;
-		
+
 		for (Produtos pro : produtos) {
 
 			total = total + pro.getSubtotal();
@@ -244,7 +321,7 @@ public class PontoDeVenda {
 
 		campoValorTotal.setText(total.toString());
 	}
-	
+
 	// metodo que adiciona botão de Excluir no carrinho
 	private Button botaoexcluir() {
 
@@ -253,16 +330,18 @@ public class PontoDeVenda {
 		excluir.setOnAction(Event -> {
 
 			if (confirmarExclusao()) {
-			
+
 				for (Produtos verifica : tabelaCarrinho.getItems()) {
 					if (verifica.getExcluir() == excluir) {
 
 						tabelaCarrinho.getSelectionModel().clearSelection();
-						
+
 						tabelaCarrinho.getItems().remove(verifica);
-						
+
 						produtos.remove(verifica);
-						
+
+						adicionarCarrinho();
+
 						somatotal();
 
 						logger.info("Produto removido do carinho com sucesso");
@@ -272,8 +351,7 @@ public class PontoDeVenda {
 			}
 
 		});
-		
-		
+
 		return excluir;
 	}
 
@@ -301,17 +379,5 @@ public class PontoDeVenda {
 
 	}
 
-	public void teste() {
-		int teste = 1 + 1;
-
-		System.out.println(teste);
-	}
-
-//	// metodo adiciona codigo do produto
-//	public void adicionarProDescricao(double sbt, Produtos pro) {
-//
-//		produtos.add(pro);
-//		adicionarCarrinho();
-//	}
 
 }

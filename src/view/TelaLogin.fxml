@@ -7,16 +7,18 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="633.0" stylesheets="@estilo/Estilo.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.TelaLogin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="379.0" prefWidth="633.0" stylesheets="@estilo/Estilo.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.TelaLogin">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="384.0" layoutX="183.0" stroke="WHITE" strokeType="INSIDE" width="336.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#171717" height="384.0" layoutX="95.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" width="299.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="0.0" />
-      <PasswordField fx:id="campoSenha" layoutX="393.0" layoutY="195.0" prefHeight="26.0" prefWidth="200.0" AnchorPane.leftAnchor="393.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="195.0" />
-      <Button layoutX="333.0" layoutY="255.0" mnemonicParsing="false" onAction="#botaoEntrar" prefHeight="41.0" prefWidth="270.0" text="ENTRAR" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="30.0">
+      <TextField fx:id="campoUsuario" layoutX="364.0" layoutY="180.0" onKeyPressed="#keyUsuario" prefHeight="26.0" prefWidth="235.0" promptText="usuário" AnchorPane.leftAnchor="364.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="180.0" />
+      <PasswordField fx:id="campoSenha" layoutX="364.0" layoutY="223.0" onKeyPressed="#keySenha" prefHeight="26.0" prefWidth="235.0" promptText="senha" AnchorPane.leftAnchor="364.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="223.0" />
+      <Button fx:id="botaoEntrar" layoutX="333.0" layoutY="263.0" mnemonicParsing="false" onAction="#botaoEntrar" prefHeight="41.0" prefWidth="270.0" text="ENTRAR" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="30.0">
          <font>
             <Font size="16.0" />
          </font>
@@ -26,27 +28,39 @@
             <Image url="@imagens/logo-inottec-azul-me.png" />
          </image>
       </ImageView>
-      <Label alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="349.0" layoutY="58.0" prefHeight="28.0" prefWidth="235.0" text="Autenticação de Usuarios">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="338.0" layoutY="120.0" prefHeight="28.0" prefWidth="261.0" text="Autenticação de Usuarios" textAlignment="CENTER">
          <font>
-            <Font name="Liberation Sans Narrow Bold" size="23.0" />
+            <Font name="Liberation Sans Narrow Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="campoUsuario" layoutX="393.0" layoutY="143.0" prefHeight="26.0" prefWidth="200.0" AnchorPane.leftAnchor="393.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="143.0" />
-      <Label layoutX="333.0" layoutY="195.0" prefHeight="26.0" prefWidth="59.0" text="SENHA" AnchorPane.leftAnchor="333.0">
+      <Label fx:id="mensagem" alignment="CENTER" contentDisplay="CENTER" layoutX="338.0" layoutY="144.0" prefHeight="26.0" prefWidth="261.0" text="Informe seu usuario" textAlignment="CENTER" textFill="#ffce06" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="209.0" AnchorPane.leftAnchor="338.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="144.0">
          <font>
-            <Font name="Padauk Book" size="14.0" />
+            <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <Label layoutX="333.0" layoutY="143.0" prefHeight="26.0" prefWidth="59.0" text="USUARIO" AnchorPane.leftAnchor="333.0">
-         <font>
-            <Font name="Padauk Book" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="408.0" layoutY="109.0" text="Informe seu usuario" textFill="#ffce06">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Text fill="WHITE" layoutX="95.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VERSÃO 1.0" />
+      <Text fill="WHITE" layoutX="114.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VERSÃO 1.0" />
+      <Pane layoutX="337.0" layoutY="223.0" prefHeight="27.0" prefWidth="28.0" style="-fx-background-color: #76BCEB;" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="337.0" AnchorPane.topAnchor="223.0">
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="4.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/senha.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="337.0" layoutY="180.0" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: #76BCEB;" AnchorPane.bottomAnchor="173.0" AnchorPane.leftAnchor="337.0" AnchorPane.topAnchor="180.0">
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="3.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/usuario.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <ImageView fitHeight="91.0" fitWidth="93.0" layoutX="417.0" layoutY="21.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagens/login.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

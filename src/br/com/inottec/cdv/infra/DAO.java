@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import org.apache.log4j.Logger;
 import br.com.inottec.cdv.modelo.RestricaoEntidade;
-import javafx.scene.control.Alert;
+//import javafx.scene.control.Alert;
 
 //clase generica e criando uma restrição com entidade
 public class DAO<E extends RestricaoEntidade> {
@@ -24,7 +24,7 @@ public class DAO<E extends RestricaoEntidade> {
 	//private static Alert alertInf = new Alert(Alert.AlertType.INFORMATION);
 
 	// crinado uma mensagem de erro do tipo alerta
-	private static Alert alertErro = new Alert(Alert.AlertType.ERROR);
+//	private static Alert alertErro = new Alert(Alert.AlertType.ERROR);
 
 	// criando um conexao com o banco
 	static {
@@ -144,6 +144,7 @@ public class DAO<E extends RestricaoEntidade> {
 			if (classe == null) {
 				throw new UnsupportedOperationException("Classe nula.");
 				
+				
 			//se a classe não for nula 	
 			} else {
 				// criando uma jpql
@@ -155,13 +156,15 @@ public class DAO<E extends RestricaoEntidade> {
 			}
 		//tratando um erro 	
 		} catch (Exception e) {
-			// criando um alerta de confirmação
-			// criando titulo do alerta
-			alertErro.setTitle("Erro");
-			// criando cabeçario do alerta
-			alertErro.setHeaderText("Dados incorreto!");
-			// chamando o alerta
-			alertErro.show();
+			
+			logger.info("usuario ou senha incorreta");
+//			// criando um alerta de confirmação
+//			// criando titulo do alerta
+//			alertErro.setTitle("Erro");
+//			// criando cabeçario do alerta
+//			alertErro.setHeaderText("Dados incorreto!");
+//			// chamando o alerta
+//			alertErro.show();
 		}
 		return null;
 	}

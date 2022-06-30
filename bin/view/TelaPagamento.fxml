@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="298.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.TelaPagamento">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="298.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.TelaPagamento">
    <children>
       <Pane layoutX="69.0" layoutY="-15.0" prefHeight="68.0" prefWidth="298.0" style="-fx-background-color: #07a0fa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -18,19 +18,28 @@
                   <Font size="26.0" />
                </font>
             </Text>
+            <Button layoutX="245.0" layoutY="29.0" mnemonicParsing="false" onAction="#botaoVoltar" prefHeight="35.0" prefWidth="38.0" stylesheets="@estilo/Estilo.css">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagens/voltar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children></Pane>
-      <Pane layoutX="16.0" layoutY="79.0" prefHeight="326.0" prefWidth="266.0" style="-fx-background-color: #dddddd;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0">
+      <Pane layoutX="16.0" layoutY="79.0" prefHeight="326.0" prefWidth="266.0" style="-fx-background-color: #dddddd;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="79.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="61.0" layoutY="78.0" opacity="0.29" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imagens/logo.png" />
                </image>
             </ImageView>
-            <TextField fx:id="campoDinheiro" layoutX="137.0" layoutY="41.0" prefHeight="24.0" prefWidth="119.0" />
-            <TextField fx:id="campoCartao" layoutX="137.0" layoutY="77.0" prefHeight="24.0" prefWidth="119.0" />
-            <TextField fx:id="campoPix" layoutX="137.0" layoutY="114.0" prefHeight="24.0" prefWidth="119.0" />
-            <TextField fx:id="campoTroco" layoutX="137.0" layoutY="150.0" prefHeight="24.0" prefWidth="119.0" />
-            <TextField fx:id="campoFaltaPaga" layoutX="137.0" layoutY="184.0" prefHeight="24.0" prefWidth="119.0" />
+            <TextField fx:id="campoDinheiro" layoutX="137.0" layoutY="41.0" onKeyPressed="#keyDinheriro" prefHeight="24.0" prefWidth="119.0" text="0,0" />
+            <TextField fx:id="campoCartao" layoutX="137.0" layoutY="77.0" onKeyPressed="#keyCartao" prefHeight="24.0" prefWidth="119.0" text="0,0" />
+            <TextField fx:id="campoPix" layoutX="137.0" layoutY="114.0" onKeyPressed="#keyPIX" prefHeight="24.0" prefWidth="119.0" text="0,0" />
+            <TextField fx:id="campoTroco" layoutX="137.0" layoutY="150.0" prefHeight="24.0" prefWidth="119.0" text="0,0" />
+            <TextField fx:id="campoFaltaPaga" layoutX="137.0" layoutY="184.0" prefHeight="24.0" prefWidth="119.0" text="0,0" />
             <Text layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DINHERIO" />
             <Text layoutX="33.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total da Conta:" />
             <Text layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARTÃO" />
@@ -46,14 +55,24 @@
             <Text fill="#018629" layoutX="14.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TROCO" />
             <Text fill="RED" layoutX="14.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALTA PAGA" />
             <Text layoutX="14.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VALOR PAGO:" />
-            <Text fx:id="TotalDaConta" fill="RED" layoutX="150.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor">
+            <Text fx:id="totalDaConta" fill="RED" layoutX="150.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor" wrappingWidth="66.99609375">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
+            <Text fx:id="valorPago" fill="RED" layoutX="129.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor" wrappingWidth="66.99609375">
+               <font>
+                  <Font size="17.0" />
+               </font></Text>
+            <Text fill="RED" layoutX="124.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R$:">
                <font>
                   <Font size="16.0" />
-               </font></Text>
-            <Text fx:id="ValorPago" fill="RED" layoutX="153.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor">
+               </font>
+            </Text>
+            <Text fill="RED" layoutX="102.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R$:">
                <font>
                   <Font size="16.0" />
-               </font></Text>
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>

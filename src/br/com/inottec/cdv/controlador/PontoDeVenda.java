@@ -95,9 +95,9 @@ public class PontoDeVenda implements Initializable {
 		// chamndo metodo para executa
 
 		textOperador.setText(TelaLogin.operador);
+		adicionarCarrinho();
 		somatotal();
 //		listaCarrinho();
-		adicionarCarrinho();
 		dataAtual();
 		pesquisarProduto();
 		identificaCliente();

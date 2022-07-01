@@ -3,7 +3,6 @@ package br.com.inottec.cdv;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -41,11 +40,9 @@ public class Main extends Application {
 		janela.getIcons().add(new Image("/view/imagens/logo.png"));
 		
 		
-//		criaTelaLogin();
-		
-		criaTelaPDV();
 		// executando cenaro
-	//	janela.setScene(cenaTelaLogin);
+		criaTelaLogin();
+		
 		// executando a tela
 		janela.show();
 
@@ -101,6 +98,7 @@ public class Main extends Application {
 	
 
 	public void criaTelaPagamento() throws IOException {
+		
 
 		// pega o arquivo fxml e converte para gridpane
 		Parent fxmlTelaPagamento = FXMLLoader.load(getClass().getResource("/view/TelaPagamento.fxml"));

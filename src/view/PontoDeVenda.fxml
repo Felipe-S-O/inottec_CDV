@@ -63,12 +63,12 @@
       </AnchorPane>
       <AnchorPane layoutX="-15.0" layoutY="95.0" prefHeight="602.0" prefWidth="1073.0" style="-fx-background-color: #4c4f51;" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="87.0">
          <children>
-            <TextField fx:id="campoCodigo" alignment="CENTER" layoutX="405.0" layoutY="40.0" onKeyPressed="#buscarProduto" prefHeight="33.0" prefWidth="87.0">
+            <TextField fx:id="campoCodigo" alignment="CENTER" layoutX="405.0" layoutY="40.0" onKeyPressed="#campoCodigoDoProduto" prefHeight="33.0" prefWidth="87.0">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="campoQuantidade" alignment="CENTER" layoutX="939.0" layoutY="40.0" onKeyPressed="#burcar" prefHeight="33.0" prefWidth="73.0" text="1" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+            <TextField fx:id="campoQuantidade" alignment="CENTER" layoutX="939.0" layoutY="40.0" onKeyPressed="#campoQtdDoProduto" prefHeight="33.0" prefWidth="73.0" text="1" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
                <font>
                   <Font size="16.0" />
                </font>
@@ -99,7 +99,7 @@
                   <TableColumn fx:id="colunaSubtotal" prefWidth="69.0" text="Subtotal" />
               </columns>
             </TableView>
-            <TextField fx:id="campoProduto" layoutX="500.0" layoutY="40.0" prefHeight="33.0" prefWidth="404.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="162.0" AnchorPane.topAnchor="40.0">
+            <TextField fx:id="campoProduto" layoutX="500.0" layoutY="40.0" onKeyPressed="#campoProduto" prefHeight="33.0" prefWidth="404.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="162.0" AnchorPane.topAnchor="40.0">
                <font>
                   <Font size="16.0" />
                </font>
@@ -131,7 +131,7 @@
                </children>
             </AnchorPane>
             <MeshView layoutX="294.0" layoutY="239.0" />
-            <Button layoutX="915.0" layoutY="40.0" mnemonicParsing="false" onAction="#botaoPesquisar" prefHeight="29.0" prefWidth="46.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="40.0">
+            <Button layoutX="915.0" layoutY="40.0" mnemonicParsing="false" onAction="#botaoPesquisarProduto" prefHeight="29.0" prefWidth="46.0" AnchorPane.rightAnchor="105.0" AnchorPane.topAnchor="40.0">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>

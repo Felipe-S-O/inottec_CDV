@@ -81,7 +81,39 @@ public class PontoDeVenda implements Initializable {
 
 	public static Double valor;
 
+	public static boolean  validarPro = false, finalizarPagamento = false;
+
+//=========================================== get e set =================================================
+
+
+	public static boolean isValidarPro() {
+		return validarPro;
+	}
+
+	public static void setValidarPro(boolean validarPro) {
+		PontoDeVenda.validarPro = validarPro;
+	}
+
+	public static Double getValor() {
+		return valor;
+	}
+
+	public static void setValor(Double valor) {
+		PontoDeVenda.valor = valor;
+	}
+
+	public static boolean isFinalizarPagamento() {
+		return finalizarPagamento;
+	}
+
+	public static void setFinalizarPagamento(boolean finalizarPagamento) {
+		PontoDeVenda.finalizarPagamento = finalizarPagamento;
+	}
+
+//============================================//========================================================
 	public static List<Produtos> produtos = new ArrayList<>();
+
+	public List<Produtos> listaDeProdutos = new ArrayList<>();
 
 	// criando um logger
 	private Logger logger = Logger.getLogger(PontoDeVenda.class);
@@ -95,21 +127,13 @@ public class PontoDeVenda implements Initializable {
 		// chamndo metodo para executa
 
 		textOperador.setText(TelaLogin.operador);
-		adicionarCarrinho();
+		finalizarCarrinho();
+		iniciarCarrinho();
 		somatotal();
-//		listaCarrinho();
 		dataAtual();
 		pesquisarProduto();
 		identificaCliente();
 
-	}
-
-	public static Double getValor() {
-		return valor;
-	}
-
-	public static void setValor(Double valor) {
-		PontoDeVenda.valor = valor;
 	}
 
 	private void dataAtual() {
@@ -119,7 +143,7 @@ public class PontoDeVenda implements Initializable {
 
 	private void pesquisarProduto() {
 
-		if ("botaoAdicionar".equals(PesquisarProduto.controlePesquisarProduto)) {
+		if ("botaoAdicionar".equals(PesquisarProduto.getControlePesquisarProduto())) {
 
 			campoCodigo.setText(PesquisarProduto.getCodigo());
 
@@ -149,6 +173,7 @@ public class PontoDeVenda implements Initializable {
 
 	@FXML
 	void botaoMenu(ActionEvent event) throws IOException {
+
 		Main tela = new Main();
 
 		tela.criaTelaMenu();
@@ -158,8 +183,9 @@ public class PontoDeVenda implements Initializable {
 
 	void botaoPagamento(ActionEvent event) throws IOException {
 
-		Main tela = new Main();
-		if (!campoValorTotal.getText().equals("")) {
+		if (!campoValorTotal.getText().equals("") || !listaDeProdutos.isEmpty()) {
+
+			Main tela = new Main();
 
 			tela.criaTelaPagamento();
 
@@ -175,7 +201,7 @@ public class PontoDeVenda implements Initializable {
 	}
 
 	@FXML
-	void botaoPesquisar(ActionEvent event) throws IOException {
+	void botaoPesquisarProduto(ActionEvent event) throws IOException {
 
 		Main tela = new Main();
 
@@ -183,7 +209,19 @@ public class PontoDeVenda implements Initializable {
 	}
 
 	@FXML
-	void burcar(KeyEvent event) {
+	void campoProduto(KeyEvent event) throws IOException {
+
+		if (event.getCode() == KeyCode.P) {
+
+			Main tela = new Main();
+
+			tela.criaTelaPesquisarProduto();
+		}
+
+	}
+
+	@FXML
+	void campoQtdDoProduto(KeyEvent event) {
 		// condição que faz a adiciona produto preciona enter
 		if (event.getCode() == KeyCode.ENTER) {
 
@@ -193,12 +231,18 @@ public class PontoDeVenda implements Initializable {
 			campoCodigo.setText("");
 
 			campoCodigo.requestFocus();
+			
+			adicionaCarrinhoStatic();
+
+			PesquisarProduto.setControlePesquisarProduto("vazio");
+
+			IdentificaCliente.setControleID("vazio");
 
 		}
 	}
 
 	@FXML
-	void buscarProduto(KeyEvent event) {
+	void campoCodigoDoProduto(KeyEvent event) {
 
 		// condição que faz a adiciona produto preciona enter
 		if (event.getCode() == KeyCode.ENTER) {
@@ -206,10 +250,6 @@ public class PontoDeVenda implements Initializable {
 			apresentaProduto();
 
 			campoQuantidade.requestFocus();
-
-		} else if (event.getCode() == KeyCode.P) {
-
-//			Main.trocaTela("telaPesquisarProduto");
 		}
 
 	}
@@ -263,15 +303,18 @@ public class PontoDeVenda implements Initializable {
 
 				produto.setSubtotal(subtotal);
 
-				produtos.add(produto);
+				listaDeProdutos.add(produto);
 
 				adicionarCarrinho();
 
 				somatotal();
-				
+
 				Double valor = Double.parseDouble(campoValorTotal.getText());
 
 				setValor(valor);
+
+//				limparCarrinhoStatic();
+				
 			}
 		} catch (Exception e) {
 
@@ -285,7 +328,7 @@ public class PontoDeVenda implements Initializable {
 
 	}
 
-	public void adicionarCarrinho() {
+	private void adicionarCarrinho() {
 
 		/*
 		 * adicionado coluna do banco a coluna da tabela o nome da coluna do banco é o
@@ -304,21 +347,83 @@ public class PontoDeVenda implements Initializable {
 		colunaExcluir.setCellValueFactory(new PropertyValueFactory<Produtos, Button>("excluir"));
 
 		// crinado um lista do tipo ObservableList que recebe uma lista de clientes
-		ObservableList<Produtos> observaCarrinho = FXCollections.observableArrayList(produtos);
+		ObservableList<Produtos> observCarrinho = FXCollections.observableArrayList(listaDeProdutos);
 		// adicionado o ObservableList na tabela
-		tabelaCarrinho.setItems(observaCarrinho);
-		logger.info("Produto adicionado no carinho");
+		tabelaCarrinho.setItems(observCarrinho);
+
 	}
 
-	public void somatotal() {
+	/// metodo que inicia o carrinho quando troca de tela
+	private void iniciarCarrinho() {
+
+		if (validarPro) {
+
+			for (Produtos pdv : produtos) {
+
+				Produtos lista = new Produtos(pdv.getCodigo(), pdv.getDescricao(), pdv.getSubtotal(),
+						pdv.getQtdEstoque(), pdv.getFornecedor(), pdv.getPreco());
+
+				lista.setExcluir(botaoexcluir());
+
+				listaDeProdutos.add(lista);
+			}
+			
+			adicionarCarrinho();
+
+		}
+
+	}
+
+// metodo que adiciona carrinho na lista static de produto
+	private void adicionaCarrinhoStatic() {
+
+		limparCarrinhoStatic();
+		
+		if(!listaDeProdutos.isEmpty()) {			
+			
+			for (Produtos pdv : listaDeProdutos) {
+				
+				Produtos lista = new Produtos(pdv.getCodigo(), pdv.getDescricao(), pdv.getSubtotal(), pdv.getQtdEstoque(),
+						pdv.getFornecedor(), pdv.getPreco());
+				
+				produtos.add(lista);
+				
+				
+				/// o erro esta aqui tenta coloca no botão de voltar
+				
+				validarPro = true;		
+				
+			}
+		}
+	}
+
+	// metodo que limpar carrinho na static de produtos
+	private void limparCarrinhoStatic() {
+
+		int i = 0;
+
+		if (!produtos.isEmpty()) {
+
+			for (Produtos pdv : produtos) {
+
+				logger.info("Produto removido do carrinho static " + pdv.getDescricao());
+				produtos.remove(i);
+
+				i++;
+			}
+		}
+	}
+
+	private void somatotal() {
 
 		Double total = (double) 0;
 
-		for (Produtos pro : produtos) {
+		for (Produtos pro : listaDeProdutos) {
 
 			total = total + pro.getSubtotal();
 		}
 
+		setValor(total);
 		campoValorTotal.setText(total.toString());
 	}
 
@@ -338,11 +443,13 @@ public class PontoDeVenda implements Initializable {
 
 						tabelaCarrinho.getItems().remove(verifica);
 
-						produtos.remove(verifica);
+						listaDeProdutos.remove(verifica);
 
 						adicionarCarrinho();
 
 						somatotal();
+
+						limparCarrinhoStatic();
 
 						logger.info("Produto removido do carinho com sucesso");
 
@@ -357,6 +464,7 @@ public class PontoDeVenda implements Initializable {
 
 //	Metodo que gera mensagen de confirmação de para exlcur item do carrinho 
 	private boolean confirmarExclusao() {
+
 		boolean excluir = false;
 
 		Alert alert = new Alert(AlertType.WARNING);
@@ -379,5 +487,26 @@ public class PontoDeVenda implements Initializable {
 
 	}
 
+	// quando finalizar o pagamento vai limpa o carrinho
+	private void finalizarCarrinho() {
+
+		if (finalizarPagamento) {
+
+			for (int i = 0; i < produtos.size(); i++) {
+
+				produtos.remove(i);
+
+				tabelaCarrinho.getItems().remove(i);
+
+				textCPF.setText("##.###.###-##");
+
+				textCliente.setText("Não identificado");
+
+			}
+
+			finalizarPagamento = false;
+		}
+
+	}
 
 }

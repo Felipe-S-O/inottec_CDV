@@ -51,7 +51,16 @@ public class PesquisarProduto {
 	
 	// criando um logger
 	private static Logger logger = Logger.getLogger(PesquisarProduto.class);
-	
+
+// ============================ get e set ========================================
+
+	public static String getControlePesquisarProduto() {
+		return controlePesquisarProduto;
+	}
+
+	public static void setControlePesquisarProduto(String controlePesquisarProduto) {
+		PesquisarProduto.controlePesquisarProduto = controlePesquisarProduto;
+	}
 
 	public static String getCodigo() {
 		return codigo;
@@ -68,6 +77,8 @@ public class PesquisarProduto {
 	public static void setDescricao(String descricao) {
 		PesquisarProduto.descricao = descricao;
 	}
+	
+//========================================================================================================
 
 	@FXML
 	void botaoAdicionar(ActionEvent event) throws IOException {
@@ -77,6 +88,7 @@ public class PesquisarProduto {
 		
 		controlePesquisarProduto = "botaoAdicionar";
 		
+		
 		Main tela = new Main();
 
 		tela.criaTelaPDV();
@@ -85,6 +97,7 @@ public class PesquisarProduto {
 
 	@FXML
 	void botaoVoltar(ActionEvent event) throws IOException {
+	
 		
 		Main tela = new Main();
 

@@ -45,8 +45,19 @@ public class Produtos implements RestricaoEntidade{
 		this.preco = preco;
 		this.qtdEstoque = qtdEstoque;
 		this.fornecedor = fornecedor;
-	}
+	}	
 	
+	public Produtos(Long codigo, String descricao, double preco, int qtdEstoque, Fornecedores fornecedor,
+			double subtotal) {
+		super();
+		this.codigo = codigo;
+		this.descricao = descricao;
+		this.preco = preco;
+		this.qtdEstoque = qtdEstoque;
+		this.fornecedor = fornecedor;
+		this.subtotal = subtotal;
+	}
+
 	//==== get e set =====	
 	
 	public Long getCodigo() {

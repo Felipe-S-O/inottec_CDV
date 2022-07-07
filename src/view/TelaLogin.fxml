@@ -28,12 +28,12 @@
             <Image url="@imagens/logo-inottec-azul-me.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="338.0" layoutY="120.0" prefHeight="28.0" prefWidth="261.0" text="Autenticação de Usuarios" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="338.0" layoutY="120.0" prefHeight="28.0" prefWidth="261.0" text="Autenticação de Usuários" textAlignment="CENTER">
          <font>
             <Font name="Liberation Sans Narrow Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="mensagem" alignment="CENTER" contentDisplay="CENTER" layoutX="338.0" layoutY="144.0" prefHeight="26.0" prefWidth="261.0" text="Informe seu usuario" textAlignment="CENTER" textFill="#ffce06" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="209.0" AnchorPane.leftAnchor="338.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="144.0">
+      <Label fx:id="mensagem" alignment="CENTER" contentDisplay="CENTER" layoutX="338.0" layoutY="144.0" prefHeight="26.0" prefWidth="261.0" text="Informe seu usuário" textAlignment="CENTER" textFill="#ffce06" textOverrun="CENTER_ELLIPSIS" AnchorPane.bottomAnchor="209.0" AnchorPane.leftAnchor="338.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="144.0">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>

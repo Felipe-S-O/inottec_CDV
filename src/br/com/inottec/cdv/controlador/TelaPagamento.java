@@ -2,15 +2,19 @@ package br.com.inottec.cdv.controlador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
-
 import org.apache.log4j.Logger;
-
 import br.com.inottec.cdv.Main;
+import br.com.inottec.cdv.infra.DAO;
+import br.com.inottec.cdv.modelo.ItemPedido;
+import br.com.inottec.cdv.modelo.Pedido;
+import br.com.inottec.cdv.modelo.Produtos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -23,6 +27,12 @@ public class TelaPagamento implements Initializable {
 
 	@FXML
 	private Text valorPago;
+
+	@FXML
+	private Button botaoPagamento;
+
+	@FXML
+	private TextField campoDesconto;
 
 	@FXML
 	private TextField campoCartao;
@@ -39,13 +49,16 @@ public class TelaPagamento implements Initializable {
 	@FXML
 	private TextField campoTroco;
 
-	Double troco, faltaPaga, pago, total;
+	Double pix, dinheiro, cartao, troco, faltaPaga, pago, total;
 
 	// criando um logger
 	private Logger logger = Logger.getLogger(TelaPagamento.class);
 
 	// crinado uma mensagem de erro do tipo alerta
 	private Alert alertErro = new Alert(Alert.AlertType.ERROR);
+
+	// crinado uma mensagem de informação do tipo alerta
+	private Alert alertInf = new Alert(Alert.AlertType.INFORMATION);
 
 	// metodo que inicializa o comboBox
 	public void initialize(URL location, ResourceBundle resources) {
@@ -54,583 +67,53 @@ public class TelaPagamento implements Initializable {
 		totalDaConta.setText(PontoDeVenda.getValor().toString().replace(".", ","));
 		campoFaltaPaga.setText(PontoDeVenda.getValor().toString().replace(".", ","));
 		valorPago.setText("0,0");
+		campoDinheiro.requestFocus();
 		campoFaltaPaga.setEditable(false);
 		campoTroco.setEditable(false);
 	}
 
 	@FXML
+	void keyDesconto(KeyEvent event) {
+
+		if (event.getCode() == KeyCode.ENTER) {
+
+			calculor();
+			
+			botaoPagamento.requestFocus();			
+		}
+	}
+
+	@FXML
 	void keyCartao(KeyEvent event) {
 
-		try {
+		if (event.getCode() == KeyCode.ENTER) {
 
-			if (event.getCode() == KeyCode.ENTER) {
+			calculor();
 
-				double pix, dinheiro, cartao, troco1, faltaPag;
-
-				cartao = Double.parseDouble(campoCartao.getText().replace(",", "."));
-				dinheiro = Double.parseDouble(campoDinheiro.getText().replace(",", "."));
-				pix = Double.parseDouble(campoPix.getText().replace(",", "."));
-
-				/*
-				 * campo cartão
-				 */
-
-				if (cartao > 0 && dinheiro <= 0 && pix <= 0) {
-
-					valorPago.setText(campoCartao.getText().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - cartao;
-
-					troco1 = cartao - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-					/*
-					 * campo dinheiro e cartão
-					 */
-				} else if (cartao > 0 && dinheiro > 0 && pix <= 0) {
-
-					pago = cartao + dinheiro;
-
-					valorPago.setText(pago.toString().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - pago;
-
-					troco1 = pago - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-
-					/*
-					 * campo cartão pix
-					 */
-				} else if (cartao > 0 && dinheiro <= 0 && pix > 0) {
-
-					pago = cartao + pix;
-
-					valorPago.setText(pago.toString().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - pago;
-
-					troco1 = pago - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-
-					/*
-					 * campo cartão dinheiro pix
-					 */
-
-				} else if (cartao > 0 && dinheiro > 0 && pix > 0) {
-
-					pago = cartao + pix + dinheiro;
-
-					valorPago.setText(pago.toString().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - pago;
-
-					troco1 = pago - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-
-				}
-
-			}
-		} catch (Exception e) {
-
-			// criando titulo do alerta
-			alertErro.setTitle("Erro");
-			// criando cabeçario do alerta
-			alertErro.setHeaderText("Valor digitado incorreto!");
-			// chamando o alerta
-			alertErro.show();
-
-			logger.info("Valor digitado incorreto");
+			campoPix.requestFocus();
 		}
-
 	}
 
 	@FXML
 	void keyDinheriro(KeyEvent event) {
-		try {
 
-			if (event.getCode() == KeyCode.ENTER) {
+		if (event.getCode() == KeyCode.ENTER) {
 
-				double pix, dinheiro, cartao, troco1, faltaPag;
+			calculor();
 
-				cartao = Double.parseDouble(campoCartao.getText().replace(",", "."));
-				dinheiro = Double.parseDouble(campoDinheiro.getText().replace(",", "."));
-				pix = Double.parseDouble(campoPix.getText().replace(",", "."));
-
-				/*
-				 * campo dinheiro
-				 */
-
-				if (cartao <= 0 && dinheiro > 0 && pix <= 0) {
-
-					valorPago.setText(campoDinheiro.getText().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - dinheiro;
-
-					troco1 = dinheiro - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-					/*
-					 * campo dinheiro e cartão
-					 */
-				} else if (cartao > 0 && dinheiro > 0 && pix <= 0) {
-
-					pago = cartao + dinheiro;
-
-					valorPago.setText(pago.toString().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - pago;
-
-					troco1 = pago - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-
-					/*
-					 * campo dinheiro pix
-					 */
-				} else if (cartao <= 0 && dinheiro > 0 && pix > 0) {
-
-					pago = dinheiro + pix;
-
-					valorPago.setText(pago.toString().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - pago;
-
-					troco1 = pago - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-
-					/*
-					 * campo cartão dinheiro pix
-					 */
-
-				} else if (cartao > 0 && dinheiro > 0 && pix > 0) {
-
-					pago = cartao + pix + dinheiro;
-
-					valorPago.setText(pago.toString().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - pago;
-
-					troco1 = pago - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-
-				}
-
-			}
-		} catch (Exception e) {
-
-			// criando titulo do alerta
-			alertErro.setTitle("Erro");
-			// criando cabeçario do alerta
-			alertErro.setHeaderText("Valor digitado incorreto!");
-			// chamando o alerta
-			alertErro.show();
-
-			logger.info("Valor digitado incorreto");
+			campoCartao.requestFocus();
 		}
-
 	}
 
 	@FXML
 	void keyPIX(KeyEvent event) {
-		try {
 
-			if (event.getCode() == KeyCode.ENTER) {
+		if (event.getCode() == KeyCode.ENTER) {
 
-				double pix, dinheiro, cartao, troco1, faltaPag;
+			calculor();
 
-				cartao = Double.parseDouble(campoCartao.getText().replace(",", "."));
-				dinheiro = Double.parseDouble(campoDinheiro.getText().replace(",", "."));
-				pix = Double.parseDouble(campoPix.getText().replace(",", "."));
-
-				/*
-				 * campo pix
-				 */
-
-				if (cartao <= 0 && dinheiro <= 0 && pix > 0) {
-
-					valorPago.setText(campoPix.getText().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - pix;
-
-					troco1 = pix - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-					/*
-					 * campo dinheiro e pix
-					 */
-				} else if (cartao <= 0 && dinheiro > 0 && pix > 0) {
-
-					pago = pix + dinheiro;
-
-					valorPago.setText(pago.toString().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - pago;
-
-					troco1 = pago - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-
-					/*
-					 * campo cartão pix
-					 */
-				} else if (cartao > 0 && dinheiro <= 0 && pix > 0) {
-
-					pago = cartao + pix;
-
-					valorPago.setText(pago.toString().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - pago;
-
-					troco1 = pago - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-
-					/*
-					 * campo cartão dinheiro pix
-					 */
-
-				} else if (cartao > 0 && dinheiro > 0 && pix > 0) {
-
-					pago = cartao + pix + dinheiro;
-
-					valorPago.setText(pago.toString().replace(".", ","));
-
-					total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
-
-					faltaPag = total - pago;
-
-					troco1 = pago - total;
-
-					troco = troco1;
-
-					faltaPaga = faltaPag;
-
-					if (faltaPag > 0) {
-
-						String valorFormatado = String.format("%.2f", faltaPag);
-
-						campoFaltaPaga.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoFaltaPaga.setText("0,0");
-
-					}
-
-					if (troco1 > 0) {
-
-						String valorFormatado = String.format("%.2f", troco);
-
-						campoTroco.setText(valorFormatado.replace(".", ","));
-
-					} else {
-						campoTroco.setText("0,0");
-
-					}
-
-				}
-			}
-		} catch (Exception e) {
-			// criando titulo do alerta
-			alertErro.setTitle("Erro");
-			// criando cabeçario do alerta
-			alertErro.setHeaderText("Valor digitado incorreto!");
-			// chamando o alerta
-			alertErro.show();
-
-			logger.info("Valor digitado incorreto");
+			campoDesconto.requestFocus();
 		}
-
 	}
 
 	@FXML
@@ -644,27 +127,186 @@ public class TelaPagamento implements Initializable {
 	@FXML
 	void botaoFinalizarPagamento(ActionEvent event) throws IOException {
 
-		double faltaPag = faltaPaga;
+		try {
 
-		if (faltaPag == 0) {
+			double faltaPag = faltaPaga;
 
+			Date data = new Date();
 
-			Main tela = new Main();
+			DAO<Pedido> dao = new DAO<Pedido>();
 
-			tela.criaTelaPDV();
+			DAO<ItemPedido> daoItem = new DAO<ItemPedido>();
 
-			PontoDeVenda.setFinalizarPagamento(true);
+			if (faltaPag <= 0) {
 
-		} else {
+				Pedido pedido = new Pedido(this.pix, this.dinheiro, this.cartao, this.troco, this.pago, data,
+						TelaLogin.operador, IdentificaCliente.getCPFadd(), IdentificaCliente.getNomeAdd());
+
+				dao.incluirAtomico(pedido);
+
+				for (Produtos itens : PontoDeVenda.produtos) {
+
+					ItemPedido itemPedido = new ItemPedido(itens.getCodigo(), itens.getDescricao(), itens.getPreco(),
+							itens.getQtdEstoque(), itens.getSubtotal(), pedido);
+
+					System.out.println(itemPedido);
+
+					daoItem.incluirAtomico(itemPedido);
+				}
+
+				atualizarEstoque();
+
+				PontoDeVenda.setFinalizarPagamento(true);
+
+				Main tela = new Main();
+
+				tela.criaTelaPDV();
+
+				// criando um alerta de confirmação
+				// criando titulo do alerta
+				alertInf.setTitle("Finalizar");
+				// criando cabeçario do alerta
+				alertInf.setHeaderText("Pagamento finalizado com sucesso !");
+				// chamando o alerta
+				alertInf.show();
+
+			} else {
+
+				// criando titulo do alerta
+				alertErro.setTitle("Erro");
+				// criando cabeçario do alerta
+				alertErro.setHeaderText("Fanltando valor a paga !");
+				// chamando o alerta
+				alertErro.show();
+
+				logger.info("Fanltando valor a paga");
+			}
+
+		} catch (Exception e) {
 
 			// criando titulo do alerta
 			alertErro.setTitle("Erro");
 			// criando cabeçario do alerta
-			alertErro.setHeaderText("Fanltando valor a paga !");
+			alertErro.setHeaderText("erro no pagamento !");
 			// chamando o alerta
 			alertErro.show();
 
 			logger.info("Fanltando valor a paga");
+		}
+
+	}
+
+	// metodo que para atualizar estoque
+	@FXML
+	private void atualizarEstoque() {
+
+		try {
+
+			// criando dao do tipo produto
+			DAO<Produtos> dao = new DAO<>(Produtos.class);
+
+			for (Produtos itens : PontoDeVenda.produtos) {
+
+				Produtos produto = new Produtos();
+
+				// fazendo uma segunad consulta pq so essa que consegi fazer a alteração
+				produto = dao.obterPorID(itens.getCodigo());
+				logger.info("Consulta por  ID efetuada com sucesso");
+				// abrindo a conexao com o banco pq sem ele não da para fazer a alteração
+				dao.abrirTransacao();
+
+				int qtdestoque = produto.getQtdEstoque() - itens.getQtdEstoque();
+
+				produto.setQtdEstoque(qtdestoque);
+
+				// fechando a conexao
+				dao.fecharTransacao();
+			}
+
+			dao.fechar();
+
+			// finalizando alteração
+			logger.info("Estoque atualizado com sucesso!");
+
+		} catch (Exception e) {
+
+			// finalizando alteração
+			logger.info("Erro na atualização do estoque!");
+		}
+	}
+
+	private void calculor() {
+
+		try {
+
+			double pix, dinheiro, cartao, desconto, troco1, faltaPag;
+
+			cartao = Double.parseDouble(campoCartao.getText().replace(",", "."));
+			dinheiro = Double.parseDouble(campoDinheiro.getText().replace(",", "."));
+			pix = Double.parseDouble(campoPix.getText().replace(",", "."));
+			desconto = Double.parseDouble(campoDesconto.getText().replace(",", "."));
+
+			if (cartao >= 0 && dinheiro >= 0 && pix >= 0 && desconto >= 0) {
+
+				pago = cartao + pix + dinheiro;
+
+				valorPago.setText(pago.toString().replace(".", ","));
+
+				total = Double.parseDouble(totalDaConta.getText().replace(",", "."));
+
+				total = total - desconto;
+
+				faltaPag = total - pago;
+
+				troco1 = pago - total;
+
+				troco = troco1;
+
+				faltaPaga = faltaPag;
+
+				if (faltaPag > 0) {
+
+					String valorFormatado = String.format("%.2f", faltaPag);
+
+					campoFaltaPaga.setText(valorFormatado.replace(".", ","));
+
+				} else {
+					campoFaltaPaga.setText("0,0");
+
+					this.pix = pix;
+					this.dinheiro = dinheiro;
+					this.cartao = cartao;
+
+				}
+
+				if (troco1 > 0) {
+
+					String valorFormatado = String.format("%.2f", troco);
+
+					campoTroco.setText(valorFormatado.replace(".", ","));
+
+				} else {
+					campoTroco.setText("0,0");
+
+				}
+			} else {
+				// criando titulo do alerta
+				alertErro.setTitle("Erro");
+				// criando cabeçario do alerta
+				alertErro.setHeaderText("valor digitado incorretamente !");
+				// chamando o alerta
+				alertErro.show();
+			}
+
+		} catch (Exception e) {
+
+			// criando titulo do alerta
+			alertErro.setTitle("Erro");
+			// criando cabeçario do alerta
+			alertErro.setHeaderText("valor digitado incorretamente");
+			// chamando o alerta
+			alertErro.show();
+
 		}
 
 	}

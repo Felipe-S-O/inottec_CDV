@@ -11,6 +11,55 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="298.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.inottec.cdv.controlador.TelaPagamento">
    <children>
+      <Pane layoutX="16.0" layoutY="79.0" prefHeight="326.0" prefWidth="266.0" style="-fx-background-color: #dddddd;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="79.0">
+         <children>
+            <TextField fx:id="campoDinheiro" layoutX="137.0" layoutY="37.0" onKeyPressed="#keyDinheriro" prefHeight="24.0" prefWidth="119.0" text="0,0" />
+            <TextField fx:id="campoCartao" layoutX="137.0" layoutY="73.0" onKeyPressed="#keyCartao" prefHeight="24.0" prefWidth="119.0" text="0,0" />
+            <TextField fx:id="campoPix" layoutX="137.0" layoutY="107.0" onKeyPressed="#keyPIX" prefHeight="24.0" prefWidth="119.0" text="0,0" />
+            <TextField fx:id="campoTroco" layoutX="137.0" layoutY="174.0" prefHeight="24.0" prefWidth="119.0" text="0,0" />
+            <TextField fx:id="campoFaltaPaga" layoutX="137.0" layoutY="208.0" prefHeight="24.0" prefWidth="119.0" text="0,0" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="61.0" layoutY="78.0" opacity="0.29" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagens/logo.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="14.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DINHERIO" />
+            <Text layoutX="41.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total da Conta:" />
+            <Text layoutX="14.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARTÃO" />
+            <Button fx:id="botaoPagamento" layoutX="35.0" layoutY="272.0" mnemonicParsing="false" onAction="#botaoFinalizarPagamento" style="-fx-background-color: #07a0fa;" text="FINALIZAR PAGAMENTO " textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagens/vendas.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Text layoutX="14.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PIX" />
+            <Text fill="#018629" layoutX="14.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TROCO" />
+            <Text fill="RED" layoutX="14.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALTA PAGA" />
+            <Text layoutX="14.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VALOR PAGO:" />
+            <Text fx:id="totalDaConta" fill="RED" layoutX="159.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor" wrappingWidth="86.99609375">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Text>
+            <Text fx:id="valorPago" fill="#ff7900" layoutX="129.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor" wrappingWidth="80.16796875">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font></Text>
+            <Text fill="RED" layoutX="132.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R$:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text fill="#ff7900" layoutX="102.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R$:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <TextField fx:id="campoDesconto" layoutX="137.0" layoutY="142.0" onKeyPressed="#keyDesconto" prefHeight="24.0" prefWidth="119.0" text="0,0" />
+            <Text fill="#0f00ff" layoutX="14.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DESCONTO" />
+         </children>
+      </Pane>
       <Pane layoutX="69.0" layoutY="-15.0" prefHeight="68.0" prefWidth="298.0" style="-fx-background-color: #07a0fa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text fill="WHITE" layoutX="66.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAGAMENTO">
@@ -28,52 +77,5 @@
                </graphic>
             </Button>
          </children></Pane>
-      <Pane layoutX="16.0" layoutY="79.0" prefHeight="326.0" prefWidth="266.0" style="-fx-background-color: #dddddd;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="79.0">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="61.0" layoutY="78.0" opacity="0.29" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@imagens/logo.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="campoDinheiro" layoutX="137.0" layoutY="41.0" onKeyPressed="#keyDinheriro" prefHeight="24.0" prefWidth="119.0" text="0,0" />
-            <TextField fx:id="campoCartao" layoutX="137.0" layoutY="77.0" onKeyPressed="#keyCartao" prefHeight="24.0" prefWidth="119.0" text="0,0" />
-            <TextField fx:id="campoPix" layoutX="137.0" layoutY="114.0" onKeyPressed="#keyPIX" prefHeight="24.0" prefWidth="119.0" text="0,0" />
-            <TextField fx:id="campoTroco" layoutX="137.0" layoutY="150.0" prefHeight="24.0" prefWidth="119.0" text="0,0" />
-            <TextField fx:id="campoFaltaPaga" layoutX="137.0" layoutY="184.0" prefHeight="24.0" prefWidth="119.0" text="0,0" />
-            <Text layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DINHERIO" />
-            <Text layoutX="33.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total da Conta:" />
-            <Text layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARTÃO" />
-            <Button layoutX="22.0" layoutY="270.0" mnemonicParsing="false" onAction="#botaoFinalizarPagamento" style="-fx-background-color: #07a0fa;" text="FINALIZAR PAGAMENTO " textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@imagens/vendas.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Text layoutX="14.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PIX" />
-            <Text fill="#018629" layoutX="14.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TROCO" />
-            <Text fill="RED" layoutX="14.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALTA PAGA" />
-            <Text layoutX="14.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VALOR PAGO:" />
-            <Text fx:id="totalDaConta" fill="RED" layoutX="150.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor" wrappingWidth="66.99609375">
-               <font>
-                  <Font size="17.0" />
-               </font></Text>
-            <Text fx:id="valorPago" fill="RED" layoutX="129.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="valor" wrappingWidth="66.99609375">
-               <font>
-                  <Font size="17.0" />
-               </font></Text>
-            <Text fill="RED" layoutX="124.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R$:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-            <Text fill="RED" layoutX="102.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R$:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
    </children>
 </AnchorPane>

@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import org.apache.log4j.Logger;
+//import org.graalvm.compiler.asm.amd64.AMD64Assembler.VexGeneralPurposeRVMOp;
 
 import br.com.inottec.cdv.Main;
 import br.com.inottec.cdv.infra.DAO;
@@ -81,18 +82,9 @@ public class PontoDeVenda implements Initializable {
 
 	public static Double valor;
 
-	public static boolean  validarPro = false, finalizarPagamento = false;
+	public static boolean finalizarPagamento = false;
 
 //=========================================== get e set =================================================
-
-
-	public static boolean isValidarPro() {
-		return validarPro;
-	}
-
-	public static void setValidarPro(boolean validarPro) {
-		PontoDeVenda.validarPro = validarPro;
-	}
 
 	public static Double getValor() {
 		return valor;
@@ -180,10 +172,19 @@ public class PontoDeVenda implements Initializable {
 	}
 
 	@FXML
+	void botaoCancelarVenda(ActionEvent event) {
+		
+		listaDeProdutos.clear();
+		
+		adicionarCarrinho();
+
+	}
+
+	@FXML
 
 	void botaoPagamento(ActionEvent event) throws IOException {
 
-		if (!campoValorTotal.getText().equals("") || !listaDeProdutos.isEmpty()) {
+		if (!campoValorTotal.getText().equals("") || !produtos.isEmpty()) {
 
 			Main tela = new Main();
 
@@ -229,9 +230,10 @@ public class PontoDeVenda implements Initializable {
 
 			campoProduto.setText("");
 			campoCodigo.setText("");
+			campoQuantidade.setText("1");
 
 			campoCodigo.requestFocus();
-			
+
 			adicionaCarrinhoStatic();
 
 			PesquisarProduto.setControlePesquisarProduto("vazio");
@@ -313,8 +315,6 @@ public class PontoDeVenda implements Initializable {
 
 				setValor(valor);
 
-//				limparCarrinhoStatic();
-				
 			}
 		} catch (Exception e) {
 
@@ -356,7 +356,7 @@ public class PontoDeVenda implements Initializable {
 	/// metodo que inicia o carrinho quando troca de tela
 	private void iniciarCarrinho() {
 
-		if (validarPro) {
+		if (!produtos.isEmpty()) {
 
 			for (Produtos pdv : produtos) {
 
@@ -367,49 +367,31 @@ public class PontoDeVenda implements Initializable {
 
 				listaDeProdutos.add(lista);
 			}
-			
-			adicionarCarrinho();
 
 		}
+		adicionarCarrinho();
 
 	}
 
 // metodo que adiciona carrinho na lista static de produto
 	private void adicionaCarrinhoStatic() {
 
-		limparCarrinhoStatic();
-		
-		if(!listaDeProdutos.isEmpty()) {			
-			
-			for (Produtos pdv : listaDeProdutos) {
-				
-				Produtos lista = new Produtos(pdv.getCodigo(), pdv.getDescricao(), pdv.getSubtotal(), pdv.getQtdEstoque(),
-						pdv.getFornecedor(), pdv.getPreco());
-				
-				produtos.add(lista);
-				
-				
-				/// o erro esta aqui tenta coloca no botão de voltar
-				
-				validarPro = true;		
-				
-			}
-		}
-	}
+		if (produtos.size() >= 0) {
 
-	// metodo que limpar carrinho na static de produtos
-	private void limparCarrinhoStatic() {
+			produtos.clear();
 
-		int i = 0;
+			if (!listaDeProdutos.isEmpty()) {
 
-		if (!produtos.isEmpty()) {
+				for (Produtos pdv : listaDeProdutos) {
 
-			for (Produtos pdv : produtos) {
+					Produtos lista = new Produtos(pdv.getCodigo(), pdv.getDescricao(), pdv.getSubtotal(),
+							pdv.getQtdEstoque(), pdv.getFornecedor(), pdv.getPreco());
 
-				logger.info("Produto removido do carrinho static " + pdv.getDescricao());
-				produtos.remove(i);
+					lista.setExcluir(botaoexcluir());
 
-				i++;
+					produtos.add(lista);
+
+				}
 			}
 		}
 	}
@@ -449,7 +431,7 @@ public class PontoDeVenda implements Initializable {
 
 						somatotal();
 
-						limparCarrinhoStatic();
+						adicionaCarrinhoStatic();
 
 						logger.info("Produto removido do carinho com sucesso");
 
@@ -492,21 +474,15 @@ public class PontoDeVenda implements Initializable {
 
 		if (finalizarPagamento) {
 
-			for (int i = 0; i < produtos.size(); i++) {
+			produtos.clear();
 
-				produtos.remove(i);
+			textCliente.setText("Não identificado");
+			textCPF.setText("##.###.###-##");
 
-				tabelaCarrinho.getItems().remove(i);
-
-				textCPF.setText("##.###.###-##");
-
-				textCliente.setText("Não identificado");
-
-			}
-
-			finalizarPagamento = false;
+			logger.info("Produto removido do carinho com sucesso");
 		}
 
+		finalizarPagamento = false;
 	}
 
 }

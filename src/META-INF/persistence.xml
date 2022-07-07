@@ -10,6 +10,8 @@
 		<class>br.com.inottec.cdv.modelo.Funcionarios</class>
 		<class>br.com.inottec.cdv.modelo.Fornecedores</class>
 		<class>br.com.inottec.cdv.modelo.Produtos</class>
+		<class>br.com.inottec.cdv.modelo.Pedido</class>
+		<class>br.com.inottec.cdv.modelo.ItemPedido</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver"

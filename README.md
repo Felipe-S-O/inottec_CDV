@@ -1,7 +1,7 @@
 # inottec_CDV
 sistema desktop para controle de vendas 
 
-![inottec cdv gif](https://user-images.githubusercontent.com/63815922/186804526-e39e21e2-b0d3-4fc7-8158-03bdf84e7213.gif)
+![inottec-cdv-gif](https://user-images.githubusercontent.com/63815922/186804971-5a8f6741-169d-404a-b072-7af45fe1ed15.gif)
 
 
 #  Tecnologia utilizada

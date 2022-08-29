@@ -13,4 +13,4 @@ https://user-images.githubusercontent.com/63815922/186805668-6aae615d-3f24-48be-
   *  <img align="center" alt="Felipe-Java" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"> Java
 
 #  Faça o Download do inottec CDV
- [Download](https://inottec.com.br/inottec-pro/)
+ [Download](https://inottec.com.br/inottec-cdv/)

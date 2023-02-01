@@ -5,7 +5,7 @@ sistema desktop para controle de vendas
 | :placard: Vitrine.Dev |     |
 | -------------  | --- |
 | :sparkles: Nome        | **inottec_CDV**
-| :label: Tecnologias | Java/javaFX, MySQL/JPA Hibernate (tecnologias utilizadas)
+| :label: Tecnologias | Java18, javaFX, MySQL/JPA Hibernate, log4j (tecnologias utilizadas)
 | :rocket: URL         | https://inottec.com.br/inottec-cdv/
 | :fire: Desafio     | https://url-do-desafio.com.br
 

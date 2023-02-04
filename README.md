@@ -1,5 +1,5 @@
 <h1 align="center">inottec CDV</h1>
-(https://user-images.githubusercontent.com/63815922/216737345-dd7dd7e7-2328-423f-aaea-e0ae329cb87e.png?text=imagem+lindona+do+meu+projeto#vitrinedev)
+https://user-images.githubusercontent.com/63815922/216737345-dd7dd7e7-2328-423f-aaea-e0ae329cb87e.png?text=imagem+lindona+do+meu+projeto#vitrinedev
 sistema desktop para controle de vendas
 
 | :placard: Vitrine.Dev |     |

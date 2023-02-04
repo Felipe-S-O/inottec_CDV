@@ -58,7 +58,7 @@ https://user-images.githubusercontent.com/63815922/186805668-6aae615d-3f24-48be-
 
 <a href="https://www.java.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> 
 
-<a href="https://www.java.com" target="_blank"> <img src="https://mariadb.com/wp-content/uploads/2019/11/mariadb-logo-vertical_blue.svg" alt="java" width="40" height="40"/> </a> 
+<a href="https://www.java.com" target="_blank"> <img src="https://mariadb.com/wp-content/uploads/2019/11/mariadb-logo-vertical_white.svg" alt="java" width="40" height="40"/> </a> 
 
 ###
 

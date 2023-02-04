@@ -66,7 +66,7 @@ https://user-images.githubusercontent.com/63815922/186805668-6aae615d-3f24-48be-
 
 Você pode [acessar o código fonte do projeto](https://github.com/Felipe-S-O/inottec_CDV) ou [baixá-lo](https://github.com/camilafernanda/GlicoCare/archive/refs/heads/main.zip).
 
-Faça o download do instalado [aqui](https://inottec.com.br/inottec-cdv/)
+Pagina do projeto [aqui](https://inottec.com.br/inottec-cdv/)
 
 ## Abrir e rodar o projeto
 

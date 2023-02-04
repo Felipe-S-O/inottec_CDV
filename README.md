@@ -72,7 +72,7 @@ Faça o download do instalado [aqui](https://inottec.com.br/inottec-cdv/)
 
 Para roda o inottec CDV, faça o [download](https://drive.google.com/drive/folders/18dkVchQlUY__EncRhXMa6aAckbXIhLkK?usp=sharing), para duvidas de instalação e usabilidade do sistema, na [inottec Academia](https://ftsolucoes.com/curso/inottec-cdv/) tem a instrução de instalação e o curso de usabilidade.
 
-## Desenvolvedores
+## Desenvolvedor
 
 [<img src="https://avatars.githubusercontent.com/u/63815922?v=4" width=115><br><sub>Felipe Silva de Oliveira</sub>](https://github.com/Felipe-S-O) 
 

@@ -2,6 +2,9 @@
 
 ![](https://user-images.githubusercontent.com/63815922/216737345-dd7dd7e7-2328-423f-aaea-e0ae329cb87e.png?text=inottec-CDV#vitrinedev)
 
+
+ <img align="center" alt="Felipe-Java" height="30" width="40" src="https://user-images.githubusercontent.com/63815922/216737345-dd7dd7e7-2328-423f-aaea-e0ae329cb87e.png">
+
 sistema desktop para controle de vendas
 
 | :placard: Vitrine.Dev |     |

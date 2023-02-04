@@ -64,6 +64,7 @@ https://user-images.githubusercontent.com/63815922/186805668-6aae615d-3f24-48be-
 
 <a href="https://www.java.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/hibernate/hibernate-icon.svg" alt="java" width="40" height="40"/> </a> 
 
+<code><img width="40px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" title = "JAVA"/></code>
 ###
 
 ## Acesso ao projeto

@@ -36,13 +36,13 @@ Com o inottec CDV é possível efetuar cadastro de clientes, produtos, fornecedo
 
 ## Funcionalidades
 
-:heavy_check_mark: `Funcionalidade 1:` funcionalidade1.
+:heavy_check_mark: `Funcionalidade 1:` 🛒 Permite fazer vendas através do PDV com emissão de cupom não fiscal..
 
-:heavy_check_mark: `Funcionalidade 2:` funcionalidade2.
+:heavy_check_mark: `Funcionalidade 2:` 💰 Controle financeira: Dashboard, Conta Cliente e Relatórios de Vendas.
 
-:heavy_check_mark: `Funcionalidade 3:` funcionalidade3.
+:heavy_check_mark: `Funcionalidade 3:` 🙍‍♂️ Permite cadastrar Clientes, Fornecedores e Operador..
 
-:heavy_check_mark: `Funcionalidade 4:` funcionalidade4.
+:heavy_check_mark: `Funcionalidade 4:` 📈 Gera relatórios de vendas..
 
 ## Aplicação
 
@@ -70,7 +70,7 @@ Faça o download do instalado [aqui](https://inottec.com.br/inottec-cdv/)
 
 ## Abrir e rodar o projeto
 
-Após baixar o projeto, você pode abrir com o `Desktop`. Para isso, na tela de launcher clique em:
+Para roda o inottec CDV, faça o [download](https://drive.google.com/drive/folders/18dkVchQlUY__EncRhXMa6aAckbXIhLkK?usp=sharing), para duvidas de instalação e usabilidade do sistema, na [inottec Academia](https://ftsolucoes.com/curso/inottec-cdv/) tem a instrução de instalação e o curso de usabilidade.
 
 ## Desenvolvedores
 

@@ -74,5 +74,5 @@ Para roda o inottec CDV, faça o [download](https://drive.google.com/drive/folde
 
 ## Desenvolvedor
 
-[<img src="https://avatars.githubusercontent.com/u/63815922?v=4" width=115><br><sub>Felipe Silva de Oliveira</sub>](https://github.com/Felipe-S-O) 
+[<img src="https://avatars.githubusercontent.com/u/63815922?v=4" width=115><br><sub>Felipe S.O</sub>](https://github.com/Felipe-S-O) 
 

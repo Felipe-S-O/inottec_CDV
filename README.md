@@ -3,6 +3,10 @@
   <a href="https://inottec.com.br/inottec-cdv/"><img src="https://user-images.githubusercontent.com/63815922/216737345-dd7dd7e7-2328-423f-aaea-e0ae329cb87e.png?text=inottec-CDV#vitrinedev" alt="inottec"></a>
 </h1>
 
+<p align="center">
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
+</p>
+
 sistema desktop para controle de vendas
 
 | :placard: Vitrine.Dev |     |

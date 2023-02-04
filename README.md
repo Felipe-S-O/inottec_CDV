@@ -58,12 +58,13 @@ https://user-images.githubusercontent.com/63815922/186805668-6aae615d-3f24-48be-
 
 <a href="https://www.java.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> 
 
+<a href="https://www.java.com" target="_blank"> <img src="https://mariadb.com/wp-content/uploads/2019/11/mariadb-logo-vertical_blue.svg" alt="java" width="40" height="40"/> </a> 
+
 ###
 
 ## Acesso ao projeto
 
 Você pode [acessar o código fonte do projeto](https://github.com/Felipe-S-O/inottec_CDV) ou [baixá-lo](https://github.com/camilafernanda/GlicoCare/archive/refs/heads/main.zip).
-
 
 Faça o download do instalado [aqui](https://inottec.com.br/inottec-cdv/)
 

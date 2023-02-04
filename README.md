@@ -7,7 +7,7 @@
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
 
-### Tópicos 
+### Índice
 
 - [Descrição do projeto](#descrição-do-projeto)
 
@@ -52,7 +52,7 @@ https://user-images.githubusercontent.com/63815922/186805668-6aae615d-3f24-48be-
 
 ###
 
-## 🔨 Ferramentas utilizadas
+## Ferramentas utilizadas
 
 <a href="https://www.java.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> 
 

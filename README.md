@@ -1,5 +1,5 @@
 <h1 align="center">
-  <p align="center">CDV</p>
+  <p align="center">Controle de Vendas</p>
   <a href="https://inottec.com.br/inottec-cdv/"><img src="https://user-images.githubusercontent.com/63815922/216737345-dd7dd7e7-2328-423f-aaea-e0ae329cb87e.png?text=inottec-CDV#vitrinedev" alt="inottec"></a>
 </h1>
 

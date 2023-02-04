@@ -36,7 +36,7 @@ Com o inottec CDV é possível efetuar cadastro de clientes, produtos, fornecedo
 
 ## Funcionalidades
 
-:heavy_check_mark: `Funcionalidade 1:` 🛒 Permite fazer vendas através do PDV com emissão de cupom não fiscal..
+:heavy_check_mark: `Funcionalidade 1:` 🛒 Permite efetuar vendas através do PDV com emissão de cupom não fiscal..
 
 :heavy_check_mark: `Funcionalidade 2:` 💰 Controle financeira: Dashboard, Conta Cliente e Relatórios de Vendas.
 

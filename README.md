@@ -60,7 +60,7 @@ https://user-images.githubusercontent.com/63815922/186805668-6aae615d-3f24-48be-
 
 <a href="https://www.java.com" target="_blank"> <img src="https://mariadb.com/wp-content/uploads/2019/11/mariadb-logo-vertical_white.svg" alt="java" width="40" height="40"/> </a> 
 
-<a href="https://www.java.com" target="_blank"> <img src="https://img.icons8.com/nolan/64/scene-builder.png" alt="java" width="40" height="40"/> </a> 
+<a href="https://www.java.com" target="_blank"> <img src="https://icons8.com.br/icon/BZz399uT6eo0/scene-builder" alt="java" width="40" height="40"/> </a> 
 
 ###
 

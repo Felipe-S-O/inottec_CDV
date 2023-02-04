@@ -10,7 +10,7 @@ sistema desktop para controle de vendas
 | :fire: Desafio     | https://url-do-desafio.com.br
 
 <!-- Inserir imagem com a #vitrinedev ao final do link -->
-![](https://via.placeholder.com/1200x500.png?text=imagem+lindona+do+meu+projeto#vitrinedev)
+![](https://user-images.githubusercontent.com/63815922/216737345-dd7dd7e7-2328-423f-aaea-e0ae329cb87e.png?text=imagem+lindona+do+meu+projeto#vitrinedev)
 
 ## Detalhes do projeto
 

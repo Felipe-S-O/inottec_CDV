@@ -71,5 +71,5 @@ Após baixar o projeto, você pode abrir com o `Desktop`. Para isso, na tela de 
 
 ## Desenvolvedores
 
-| [<img src="https://avatars.githubusercontent.com/u/63815922?v=4" width=115><br><sub>Felipe Silva de Oliveira</sub>](https://github.com/Felipe-S-O) | [<img src="https://avatars.githubusercontent.com/u/63815922?v=4" width=115><br><sub>Felipe Silva de Oliveira</sub>](https://github.com/Felipe-S-O)  |
+| [<img src="https://avatars.githubusercontent.com/u/63815922?v=4" width=115><br><sub>Felipe Silva de Oliveira</sub>](https://github.com/Felipe-S-O) |
 | :---: | :---: 

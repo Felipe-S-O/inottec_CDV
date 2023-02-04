@@ -27,8 +27,9 @@
 
 <p align="justify">
 
-  descrição
-
+Sistema de Controle de Vendas, solução completa para gerenciar pequenas e micro empresas!
+Com o inottec CDV é possível efetuar cadastro de clientes, produtos, fornecedores e emissão de cupom não Fiscal.
+  
 ![Descrição da imagem.](link imagem)
 </p>
 

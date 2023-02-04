@@ -62,6 +62,8 @@ https://user-images.githubusercontent.com/63815922/186805668-6aae615d-3f24-48be-
 
 <a href="https://www.java.com" target="_blank"> <img src="https://user-images.githubusercontent.com/63815922/216746259-4db019d1-6e3c-4cd3-b54b-aaa307d2ce56.png" alt="java" width="40" height="40"/> </a> 
 
+<a href="https://www.java.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/hibernate/hibernate-icon.svg" alt="java" width="40" height="40"/> </a> 
+
 ###
 
 ## Acesso ao projeto

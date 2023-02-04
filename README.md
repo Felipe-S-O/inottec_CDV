@@ -55,16 +55,10 @@ https://user-images.githubusercontent.com/63815922/186805668-6aae615d-3f24-48be-
 ###
 
 ## Ferramentas utilizadas
-
-<a href="https://www.java.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> 
-
-<a href="https://www.java.com" target="_blank"> <img src="https://mariadb.com/wp-content/uploads/2019/11/mariadb-logo-vertical_white.svg" alt="java" width="40" height="40"/> </a> 
-
-<a href="https://www.java.com" target="_blank"> <img src="https://user-images.githubusercontent.com/63815922/216746259-4db019d1-6e3c-4cd3-b54b-aaa307d2ce56.png" alt="java" width="40" height="40"/> </a> 
-
-<a href="https://www.java.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/hibernate/hibernate-icon.svg" alt="java" width="40" height="40"/> </a> 
-
 <code><img width="40px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" title = "JAVA"/></code>
+<code><img width="40px" src="https://mariadb.com/wp-content/uploads/2019/11/mariadb-logo-vertical_white.svg" title = "MariaDB"/></code>
+<code><img width="40px" src="https://user-images.githubusercontent.com/63815922/216746259-4db019d1-6e3c-4cd3-b54b-aaa307d2ce56.png" title = "Scene Builder"/></code>
+<code><img width="40px" src="https://www.vectorlogo.zone/logos/hibernate/hibernate-icon.svg" title = "Hibernate"/></code>
 ###
 
 ## Acesso ao projeto

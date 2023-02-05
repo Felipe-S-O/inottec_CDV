@@ -49,8 +49,14 @@ Com o inottec CDV é possível efetuar cadastro de clientes, produtos, fornecedo
 <div align="center">
 
 https://media.giphy.com/media/l5YvARRMz5gP5EzJfU/giphy.gif
+  
+  https://user-images.githubusercontent.com/63815922/216799273-ac3ba458-d61b-4216-9f60-144fe07a4ee5.mp4
 
 </div>
+
+
+
+
 
 ###
 
